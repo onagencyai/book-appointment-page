@@ -37,6 +37,8 @@
   body {
     font-family: var(--font-sans);
     color: var(--ink);
+    background:
+      linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 34%, #F7F7F8 100%);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "ss01","ss02","cv11";
@@ -143,14 +145,15 @@
     content: "";
     position: absolute;
     inset: var(--nav-h) 0 auto;
-    height: 360px;
+    height: 420px;
     pointer-events: none;
     z-index: 0;
     background:
-      linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,250,250,0)),
-      linear-gradient(90deg, rgba(0,112,243,0.05), rgba(10,10,10,0.035), rgba(0,112,243,0.04));
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0));
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0));
+      linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0)),
+      linear-gradient(112deg, rgba(0,112,243,0.055) 0%, rgba(255,255,255,0) 34%, rgba(10,10,10,0.045) 68%, rgba(255,255,255,0) 100%),
+      repeating-linear-gradient(90deg, rgba(17,24,39,0.03) 0 1px, transparent 1px 96px);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.92), rgba(0,0,0,0));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.92), rgba(0,0,0,0));
   }
   .container {
     position: relative;
@@ -168,8 +171,8 @@
     pointer-events: none;
     z-index: 0;
     background-image:
-      linear-gradient(to right,  rgba(17,24,39,0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(17,24,39,0.055) 1px, transparent 1px);
+      linear-gradient(to right,  rgba(17,24,39,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(17,24,39,0.04) 1px, transparent 1px);
     background-size: 56px 56px;
     background-position: 0 0, 0 56px;
     -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0));
@@ -191,10 +194,17 @@
     font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 600;
-    color: rgba(17,24,39,0.62);
+    color: rgba(17,24,39,0.68);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
+    padding: 6px 9px;
+    border: 1px solid rgba(17,24,39,0.08);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.72);
+    box-shadow: 0 1px 2px rgba(10,10,10,0.03), inset 0 1px 0 rgba(255,255,255,0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
   h1.hero-title {
     font-size: clamp(32px, 4vw, 46px);
@@ -202,13 +212,13 @@
     letter-spacing: -0.038em;
     font-weight: 600;
     margin: 0 0 18px;
-    color: var(--ink);
+    color: #050505;
     text-wrap: balance;
   }
   .lede {
     font-size: 15px;
     line-height: 1.55;
-    color: var(--muted);
+    color: rgba(17,24,39,0.62);
     margin: 0 0 32px;
     max-width: 480px;
     text-wrap: pretty;
@@ -245,12 +255,14 @@
 
   .card {
     position: relative;
-    background: linear-gradient(180deg, #FFFFFF 0%, #FCFCFC 100%);
-    border: 1px solid var(--line);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.96), rgba(251,251,252,0.98)),
+      linear-gradient(135deg, rgba(255,255,255,0.88), rgba(17,24,39,0.025));
+    border: 1px solid rgba(17,24,39,0.09);
     border-radius: var(--r-md);
     padding: 20px;
     cursor: pointer;
-    transition: border-color 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+    transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
     text-align: left;
     font-family: inherit;
     color: inherit;
@@ -259,23 +271,45 @@
     gap: 12px;
     min-height: 170px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.72);
+    box-shadow:
+      0 1px 2px rgba(10,10,10,0.035),
+      0 18px 42px -34px rgba(10,10,10,0.28),
+      inset 0 1px 0 rgba(255,255,255,0.88);
   }
   .card::before {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 14px;
+    right: 14px;
+    height: 1px;
     pointer-events: none;
-    background: linear-gradient(135deg, rgba(255,255,255,0.95), transparent 38%);
-    opacity: 0;
+    background: linear-gradient(90deg, transparent, rgba(17,24,39,0.18), transparent);
+    opacity: 0.42;
     transition: opacity 180ms ease;
   }
-  .card:hover { border-color: #C9C9C9; box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255,255,255,0.86); transform: translateY(-1px); }
-  .card:hover::before { opacity: 1; }
-  .card:active { transform: translateY(0); }
+  .card:hover {
+    border-color: rgba(17,24,39,0.18);
+    box-shadow:
+      0 1px 2px rgba(10,10,10,0.04),
+      0 22px 46px -36px rgba(10,10,10,0.34),
+      inset 0 1px 0 rgba(255,255,255,0.94);
+  }
+  .card:hover::before { opacity: 0.68; }
+  .card:active { border-color: rgba(17,24,39,0.24); }
   .card.selected {
-    border-color: #171717;
-    box-shadow: 0 0 0 1px rgba(10,10,10,0.86), 0 12px 28px -18px rgba(10,10,10,0.34), inset 0 1px 0 rgba(255,255,255,0.92);
+    border-color: rgba(10,10,10,0.84);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,1), rgba(248,248,249,1)),
+      linear-gradient(135deg, rgba(0,112,243,0.07), rgba(255,255,255,0));
+    box-shadow:
+      0 0 0 1px rgba(10,10,10,0.72),
+      0 24px 54px -38px rgba(10,10,10,0.42),
+      inset 0 1px 0 rgba(255,255,255,0.95);
+  }
+  .card.selected::before {
+    background: linear-gradient(90deg, transparent, rgba(0,112,243,0.72), rgba(10,10,10,0.28), transparent);
+    opacity: 1;
   }
 
   .card-head {
@@ -287,14 +321,14 @@
   .card-glyph {
     width: 30px; height: 30px;
     border-radius: 7px;
-    background: linear-gradient(180deg, #F8F8F8, #EFEFF0);
-    border: 1px solid var(--line-2);
+    background: linear-gradient(180deg, #FFFFFF, #F2F2F3);
+    border: 1px solid rgba(17,24,39,0.08);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--ink-2);
     flex-shrink: 0;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.82);
+    box-shadow: 0 1px 2px rgba(10,10,10,0.04), inset 0 1px 0 rgba(255,255,255,0.9);
     transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
   }
   .card.selected .card-glyph { background: var(--ink); border-color: var(--ink); color: #fff; box-shadow: none; }
