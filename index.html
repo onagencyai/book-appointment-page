@@ -282,9 +282,9 @@
 
   .card-title {
     font-family: var(--font-sans);
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
     color: var(--ink);
     margin: 0;
   }
@@ -410,7 +410,23 @@
   input.invalid, textarea.invalid { border-color: #DC2626 !important; box-shadow: 0 0 0 3px rgba(220,38,38,0.10) !important; }
 
   .submit-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 8px; }
-  .submit-meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+  .submit-back {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted-2);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .submit-back:hover { color: var(--ink); }
 
   .summary { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 32px; }
   .chip {
@@ -941,7 +957,9 @@ function App() {
               ))}
 
               <div className="submit-row">
-                <div className="submit-meta">Continue to scheduling</div>
+                <button type="button" className="submit-back" onClick={() => { setFlowStep(0); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+                  ← Back to services
+                </button>
                 <button type="submit" className="btn">
                   Continue
                   <svg className="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
