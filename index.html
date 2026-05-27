@@ -808,9 +808,47 @@ function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleSubmit = ev => {
+  const handleSubmit = async ev => {
     ev.preventDefault();
     if (!validate()) return;
+
+    try {
+      const payload = {
+        access_key: "3cdd884e-bef5-4630-a791-7adc96bec13f",
+        subject: "New Demo Request — " + (values.name || "Unknown"),
+        from_name: "On Agency Book Demo",
+        "Name":             values.name     || "",
+        "Email":            values.email    || "",
+        "Phone":            values.phone    || "",
+        "Business Name":    values.business || "",
+        "Business Website": values.website  || "",
+        "Services":         ordered.map(s => s.title).join(", "),
+      };
+      ordered.forEach(s => {
+        if (s.id === "receptionist") {
+          if (values.rc_challenge) payload["Receptionist — Main Challenge"]    = values.rc_challenge;
+          if (values.rc_volume)    payload["Receptionist — Inbound Calls/Day"] = values.rc_volume;
+          if (values.rc_notes)     payload["Receptionist — Notes"]             = values.rc_notes;
+        }
+        if (s.id === "outbound") {
+          if (values.ob_usecase) payload["Outbound — Use Case"]    = values.ob_usecase;
+          if (values.ob_volume)  payload["Outbound — Calls/Day"]   = values.ob_volume;
+          if (values.ob_notes)   payload["Outbound — Notes"]       = values.ob_notes;
+        }
+        if (s.id === "automation") {
+          if (values.au_process) payload["Automation — Process"]   = values.au_process;
+          if (values.au_notes)   payload["Automation — Notes"]     = values.au_notes;
+        }
+      });
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (_) {
+      // Silent — never block the user flow
+    }
+
     setFlowStep(2);
     setTimeout(() => {
       if (calRef.current) {
