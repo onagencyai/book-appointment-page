@@ -139,6 +139,19 @@
     min-height: 100vh;
     padding-top: calc(var(--nav-h) + 44px);
   }
+  .page::before {
+    content: "";
+    position: absolute;
+    inset: var(--nav-h) 0 auto;
+    height: 360px;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,250,250,0)),
+      linear-gradient(90deg, rgba(0,112,243,0.05), rgba(10,10,10,0.035), rgba(0,112,243,0.04));
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0));
+  }
   .container {
     position: relative;
     z-index: 1;
@@ -177,7 +190,7 @@
     gap: 7px;
     font-family: var(--font-mono);
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     color: rgba(17,24,39,0.62);
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -232,7 +245,7 @@
 
   .card {
     position: relative;
-    background: var(--surface);
+    background: linear-gradient(180deg, #FFFFFF 0%, #FCFCFC 100%);
     border: 1px solid var(--line);
     border-radius: var(--r-md);
     padding: 20px;
@@ -246,10 +259,24 @@
     gap: 12px;
     min-height: 170px;
     overflow: hidden;
+    box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.72);
   }
-  .card:hover { border-color: #C9C9C9; box-shadow: var(--shadow-md); transform: translateY(-1px); }
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), transparent 38%);
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+  .card:hover { border-color: #C9C9C9; box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255,255,255,0.86); transform: translateY(-1px); }
+  .card:hover::before { opacity: 1; }
   .card:active { transform: translateY(0); }
-  .card.selected { border-color: #525252; box-shadow: var(--shadow-md); }
+  .card.selected {
+    border-color: #171717;
+    box-shadow: 0 0 0 1px rgba(10,10,10,0.86), 0 12px 28px -18px rgba(10,10,10,0.34), inset 0 1px 0 rgba(255,255,255,0.92);
+  }
 
   .card-head {
     display: flex;
@@ -260,16 +287,17 @@
   .card-glyph {
     width: 30px; height: 30px;
     border-radius: 7px;
-    background: #F4F4F5;
+    background: linear-gradient(180deg, #F8F8F8, #EFEFF0);
     border: 1px solid var(--line-2);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--ink-2);
     flex-shrink: 0;
-    transition: background 180ms ease, border-color 180ms ease;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.82);
+    transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
   }
-  .card.selected .card-glyph { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .card.selected .card-glyph { background: var(--ink); border-color: var(--ink); color: #fff; box-shadow: none; }
   .card-glyph svg {
     width: 16px;
     height: 16px;
