@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Book a Demo — On Agency</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1377 932'%3E%3Cline x1='71.7' y1='52.5' x2='422.5' y2='255' stroke='black' stroke-width='105' stroke-linecap='round'/%3E%3Cline x1='953.7' y1='657.5' x2='1304.5' y2='860' stroke='black' stroke-width='105' stroke-linecap='round'/%3E%3Cline x1='954.2' y1='255' x2='1305' y2='52.5' stroke='black' stroke-width='105' stroke-linecap='round'/%3E%3Cline x1='72.2' y1='860' x2='423' y2='657.5' stroke='black' stroke-width='105' stroke-linecap='round'/%3E%3C/svg%3E" type="image/svg+xml">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201377%20932%22%3E%3Cstyle%3Eline%7Bstroke:black%7D%40media(prefers-color-scheme:dark)%7Bline%7Bstroke:white%7D%7D%3C/style%3E%3Cline%20x1=%2271.7%22%20y1=%2252.5%22%20x2=%22422.5%22%20y2=%22255%22%20stroke-width=%22105%22%20stroke-linecap=%22round%22/%3E%3Cline%20x1=%22953.7%22%20y1=%22657.5%22%20x2=%221304.5%22%20y2=%22860%22%20stroke-width=%22105%22%20stroke-linecap=%22round%22/%3E%3Cline%20x1=%22954.2%22%20y1=%22255%22%20x2=%221305%22%20y2=%2252.5%22%20stroke-width=%22105%22%20stroke-linecap=%22round%22/%3E%3Cline%20x1=%2272.2%22%20y1=%22860%22%20x2=%22423%22%20y2=%22657.5%22%20stroke-width=%22105%22%20stroke-linecap=%22round%22/%3E%3C/svg%3E" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg:        #FAFAFA;
@@ -18,15 +18,16 @@
     --muted-2:   #A1A1AA;
     --line:      #E5E5E5;
     --line-2:    #EFEFEF;
-    --blue:      #3B82F6;
-    --blue-ring: rgba(59,130,246,0.14);
+    --blue:      #0070f3;
+    --blue-dark: #0060df;
+    --blue-ring: rgba(0,112,243,0.14);
     --shadow-sm: 0 1px 2px rgba(10,10,10,0.04);
     --shadow-md: 0 4px 18px -8px rgba(10,10,10,0.10), 0 1px 2px rgba(10,10,10,0.04);
     --shadow-lg: 0 20px 60px -20px rgba(10,10,10,0.18), 0 8px 24px -12px rgba(10,10,10,0.08);
     --r-sm: 8px;
     --r-md: 12px;
     --r-lg: 16px;
-    --nav-h: 60px;
+    --nav-h: 64px;
     --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
     --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   }
@@ -49,76 +50,120 @@
     top: 0; left: 0; right: 0;
     z-index: 100;
     height: var(--nav-h);
-    background: rgba(250,250,250,0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(250,250,250,0.88);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
     border-bottom: 1px solid var(--line-2);
+  }
+  .nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 28px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 28px;
   }
   .nav-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
     text-decoration: none;
     color: var(--ink);
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: -0.02em;
     transition: opacity 0.15s;
+    width: fit-content;
   }
-  .nav-logo:hover { opacity: 0.6; }
+  .nav-logo:hover { opacity: 0.55; }
+
+  /* Centered step indicator */
   .nav-steps {
     display: flex;
     align-items: center;
-    gap: 4px;
-    font-family: var(--font-mono);
-    font-size: 11px;
+    gap: 0;
   }
   .nav-step-item {
-    padding: 3px 9px;
-    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 6px;
     color: var(--muted-2);
-    transition: all 0.2s;
-    letter-spacing: 0.02em;
+    transition: color 0.25s ease;
   }
-  .nav-step-item.active {
-    background: var(--ink);
+  .nav-step-item.active { color: var(--blue); }
+  .nav-step-item.done   { color: var(--blue); opacity: 0.75; }
+
+  .nav-step-circle {
+    width: 20px; height: 20px;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0;
+    flex-shrink: 0;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+  .nav-step-item.active .nav-step-circle,
+  .nav-step-item.done   .nav-step-circle {
+    background: var(--blue);
+    border-color: var(--blue);
     color: #fff;
   }
-  .nav-step-item.done {
-    color: var(--muted);
+  .nav-step-label {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
-  .nav-step-sep { color: var(--line); font-size: 10px; }
+  .nav-step-connector {
+    width: 28px; height: 1px;
+    background: var(--line);
+    margin: 0 2px;
+    flex-shrink: 0;
+    transition: background 0.25s ease;
+  }
+  .nav-step-connector.done { background: rgba(59,130,246,0.35); }
+
+  @media (max-width: 600px) { .nav-steps { display: none; } }
+  @media (max-width: 480px) { .nav-inner { padding: 0 16px; } }
 
   /* ─── Page layout ─── */
   .page {
     position: relative;
     min-height: 100vh;
-    padding: calc(var(--nav-h) + 64px) 24px 80px;
+    padding-top: calc(var(--nav-h) + 44px);
   }
   .container {
     position: relative;
     z-index: 1;
-    max-width: 720px;
+    max-width: 960px;
     margin: 0 auto;
+    padding: 0 28px 48px;
   }
 
-  /* ─── Grid background (fades out downward) ─── */
+  /* ─── Grid background (copied from login page) ─── */
   .grid-bg {
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 560px;
+    height: min(42vh, 360px);
     pointer-events: none;
     z-index: 0;
     background-image:
-      linear-gradient(to right,  rgba(0,0,0,0.042) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0,0,0,0.042) 1px, transparent 1px);
-    background-size: 48px 48px;
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%);
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%);
+      linear-gradient(to right,  rgba(17,24,39,0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(17,24,39,0.055) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: 0 0, 0 56px;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0));
+  }
+  @media (max-width: 640px) {
+    .grid-bg {
+      height: min(36vh, 300px);
+      background-size: 46px 46px;
+      background-position: 0 0, 0 46px;
+    }
   }
 
   /* ─── Hero ─── */
@@ -127,27 +172,27 @@
     align-items: center;
     gap: 7px;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 12px;
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 20px;
   }
   h1.hero-title {
-    font-size: clamp(34px, 5vw, 48px);
-    line-height: 1.04;
-    letter-spacing: -0.035em;
+    font-size: clamp(32px, 4vw, 46px);
+    line-height: 1.03;
+    letter-spacing: -0.038em;
     font-weight: 600;
-    margin: 0 0 16px;
+    margin: 0 0 18px;
     color: var(--ink);
     text-wrap: balance;
   }
   .lede {
-    font-size: 17px;
+    font-size: 15px;
     line-height: 1.55;
     color: var(--muted);
-    margin: 0 0 56px;
-    max-width: 560px;
+    margin: 0 0 32px;
+    max-width: 480px;
     text-wrap: pretty;
   }
 
@@ -175,7 +220,7 @@
   .services {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 14px;
     margin-bottom: 28px;
   }
   @media (max-width: 700px) { .services { grid-template-columns: 1fr; } }
@@ -187,17 +232,18 @@
     border-radius: var(--r-md);
     padding: 20px;
     cursor: pointer;
-    transition: border-color 180ms ease, box-shadow 180ms ease;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 120ms ease;
     text-align: left;
     font-family: inherit;
     color: inherit;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    min-height: 200px;
+    gap: 12px;
+    min-height: 170px;
     overflow: hidden;
   }
-  .card:hover { border-color: #D4D4D4; box-shadow: var(--shadow-md); }
+  .card:hover { border-color: #C9C9C9; box-shadow: var(--shadow-md); transform: translateY(-1px); }
+  .card:active { transform: translateY(0); }
   .card.selected { border-color: #525252; box-shadow: var(--shadow-md); }
 
   .card-head {
@@ -207,8 +253,8 @@
     gap: 12px;
   }
   .card-glyph {
-    width: 28px; height: 28px;
-    border-radius: 6px;
+    width: 30px; height: 30px;
+    border-radius: 7px;
     background: #F4F4F5;
     border: 1px solid var(--line-2);
     display: flex;
@@ -233,7 +279,15 @@
   .card.selected .check-ring { background: var(--ink); border-color: var(--ink); }
   .check-ring svg { opacity: 0; transform: scale(0.6); transition: all 180ms ease; }
   .card.selected .check-ring svg { opacity: 1; transform: scale(1); }
-  .card-title { font-size: 15px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); margin: 0; }
+
+  .card-title {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0;
+  }
   .card-desc  { font-size: 13px; line-height: 1.5; color: var(--muted); margin: 4px 0 0; }
   .card-tag   { margin-top: auto; font-family: var(--font-mono); font-size: 10px; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.06em; }
 
@@ -243,7 +297,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    margin-bottom: 72px;
+    margin-bottom: 0;
+    padding-bottom: 40px;
   }
   .hint {
     font-family: var(--font-mono);
@@ -259,7 +314,7 @@
     font-size: 14px;
     font-weight: 500;
     letter-spacing: -0.005em;
-    padding: 11px 18px;
+    padding: 10px 18px;
     border-radius: var(--r-sm);
     border: 1px solid var(--ink);
     background: var(--ink);
@@ -267,15 +322,15 @@
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    transition: transform 140ms ease, background-color 140ms ease, opacity 140ms ease;
-    box-shadow: 0 1px 2px rgba(10,10,10,0.16), inset 0 1px 0 rgba(255,255,255,0.08);
+    gap: 8px;
+    transition: transform 140ms ease, background 140ms ease, opacity 140ms ease;
+    box-shadow: 0 1px 2px rgba(10,10,10,0.12), inset 0 1px 0 rgba(255,255,255,0.06);
   }
-  .btn:hover:not(:disabled) { background: #1F1F1F; }
-  .btn:active:not(:disabled) { transform: translateY(0.5px); }
-  .btn:disabled { background: #E5E5E5; border-color: #E5E5E5; color: #A1A1AA; cursor: not-allowed; box-shadow: none; }
+  .btn:hover:not(:disabled) { background: #1F1F1F; transform: translateY(-0.5px); }
+  .btn:active:not(:disabled) { transform: translateY(0.5px); box-shadow: none; }
+  .btn:disabled { background: #E5E5E5; border-color: #E5E5E5; color: #A1A1AA; cursor: not-allowed; box-shadow: none; transform: none; }
   .btn .arrow { transition: transform 180ms ease; }
-  .btn:hover:not(:disabled) .arrow { transform: translateX(2px); }
+  .btn:hover:not(:disabled) .arrow { transform: translateX(3px); }
 
   /* ─── Form ─── */
   .form-section { margin-bottom: 52px; }
@@ -288,7 +343,14 @@
     border-bottom: 1px solid var(--line-2);
   }
   .fsec-index { font-family: var(--font-mono); font-size: 10px; color: var(--muted-2); width: 22px; }
-  .fsec-title { font-size: 13px; font-weight: 500; color: var(--ink-2); letter-spacing: -0.005em; }
+  .fsec-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
   .fsec-meta  { margin-left: auto; font-family: var(--font-mono); font-size: 10px; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.06em; }
 
   .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
@@ -314,7 +376,6 @@
     font-weight: 400;
   }
 
-  /* Form inputs — Apple-style blue focus */
   input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select {
     width: 100%;
     background: var(--surface);
@@ -330,13 +391,11 @@
     appearance: none;
     -webkit-appearance: none;
   }
-  input::placeholder, textarea::placeholder { color: #B5B5B5; }
-  input[type=text]:hover, input[type=email]:hover, input[type=tel]:hover, input[type=url]:hover,
-  textarea:hover, select:hover { border-color: #93C5FD; }
+  input::placeholder, textarea::placeholder { color: #C0C0C0; }
   input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[type=url]:focus,
   textarea:focus, select:focus {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px var(--blue-ring);
+    border-color: rgba(59,130,246,0.65);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.13);
   }
   textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
   select {
@@ -347,15 +406,12 @@
     cursor: pointer;
   }
 
-  /* Inline error */
   .err { margin-top: 6px; font-size: 12px; color: #B91C1C; font-family: var(--font-mono); }
   input.invalid, textarea.invalid { border-color: #DC2626 !important; box-shadow: 0 0 0 3px rgba(220,38,38,0.10) !important; }
 
-  /* Submit row */
   .submit-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 8px; }
   .submit-meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
 
-  /* Selection chips */
   .summary { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 32px; }
   .chip {
     display: inline-flex;
@@ -371,7 +427,6 @@
   }
   .chip-dot { width: 6px; height: 6px; border-radius: 999px; background: var(--ink); }
 
-  /* Edit button inline */
   .btn-ghost {
     background: none;
     border: none;
@@ -417,28 +472,36 @@
   .cal-dot { width: 6px; height: 6px; border-radius: 999px; background: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.12); }
   .cal-frame { background: var(--surface); min-height: 720px; }
 
-  /* Divider */
   .rule { height: 1px; background: var(--line-2); margin: 0 0 52px; }
 
   /* ─── Footer ─── */
   .site-footer {
-    margin-top: 80px;
-    padding: 20px 0 0;
-    border-top: 1px solid var(--line-2);
+    max-width: 960px;
+    margin: 32px auto 0;
+    padding: 20px 28px 40px;
+    border-top: 1px solid var(--line);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
   }
-  .site-footer a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
-  .site-footer a:hover { color: var(--ink-2); }
-  .footer-links { display: flex; gap: 16px; }
+  .footer-copy {
+    font: 13px/1 var(--font-sans);
+    color: rgba(17,24,39,0.4);
+    letter-spacing: -0.02em;
+  }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-link {
+    font: 13px/1 var(--font-sans);
+    color: rgba(17,24,39,0.4);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .footer-link:hover { color: rgba(17,24,39,0.75); }
 
   /* ─── Animations ─── */
   @keyframes rise {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
   }
   .rise   { animation: rise 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
@@ -448,9 +511,9 @@
   .rise-4 { animation-delay: 210ms; }
 
   @media (max-width: 480px) {
-    .top-nav { padding: 0 16px; }
-    .page { padding: calc(var(--nav-h) + 40px) 16px 60px; }
-    .nav-steps { display: none; }
+    .page { padding-top: calc(var(--nav-h) + 44px); }
+    .container { padding-left: 16px; padding-right: 16px; }
+    .site-footer { padding: 24px 16px 48px; }
   }
 </style>
 </head>
@@ -470,7 +533,7 @@
 <script type="text/babel" data-presets="react">
 const { useState, useMemo, useEffect, useRef } = React;
 
-/* ─── Lucide icon components ─── */
+/* ─── Icons ─── */
 const PhoneIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.52 12a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -501,13 +564,35 @@ const CalendarIcon = () => (
 );
 
 const OnAgencyMark = () => (
-  <svg width="22" height="15" viewBox="0 0 1377 932" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="71.7163" y1="52.5088" x2="422.457"  y2="255.009" stroke="currentColor" strokeWidth="140" strokeLinecap="round"/>
-    <line x1="953.716" y1="657.509" x2="1304.46"  y2="860.009" stroke="currentColor" strokeWidth="140" strokeLinecap="round"/>
-    <line x1="954.216" y1="255.009" x2="1304.96"  y2="52.5088" stroke="currentColor" strokeWidth="140" strokeLinecap="round"/>
-    <line x1="72.2163" y1="860.009" x2="422.957"  y2="657.509" stroke="currentColor" strokeWidth="140" strokeLinecap="round"/>
+  <svg width="30" height="20" viewBox="0 0 1377 932" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="71.7163" y1="52.5088" x2="422.457"  y2="255.009" stroke="currentColor" strokeWidth="105" strokeLinecap="round"/>
+    <line x1="953.716" y1="657.509" x2="1304.46"  y2="860.009" stroke="currentColor" strokeWidth="105" strokeLinecap="round"/>
+    <line x1="954.216" y1="255.009" x2="1304.96"  y2="52.5088" stroke="currentColor" strokeWidth="105" strokeLinecap="round"/>
+    <line x1="72.2163" y1="860.009" x2="422.957"  y2="657.509" stroke="currentColor" strokeWidth="105" strokeLinecap="round"/>
   </svg>
 );
+
+const CheckMini = () => (
+  <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+    <path d="M2.5 6.2L5 8.7l4.5-5.4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+/* ─── Step copy ─── */
+const STEP_COPY = [
+  {
+    title: "Book a free demo.",
+    lede:  "Pick the services you'd like to talk through. We'll tailor the questions to match.",
+  },
+  {
+    title: "Tell us about you.",
+    lede:  "Fill in the form below and we'll use it to personalize your demo experience.",
+  },
+  {
+    title: "Pick a time.",
+    lede:  "Choose a slot that works for you. We'll send a calendar invite right away.",
+  },
+];
 
 /* ─── Data ─── */
 const SERVICES = [
@@ -544,17 +629,17 @@ const SHARED = [
 
 const PER_SERVICE = {
   receptionist: [
-    { key:"rc_challenge", label:"Main challenge you're looking to solve?",  type:"textarea", placeholder:"Missed after-hours calls, long hold times, qualifying leads…",      required:true  },
-    { key:"rc_volume",    label:"Inbound calls per day on average?",         type:"select",   options:["Fewer than 25","25–100","100–500","500–1,000","1,000+"],               required:true  },
+    { key:"rc_challenge", label:"Main challenge you're looking to solve?",  type:"textarea", placeholder:"Missed after hours calls, long hold times, qualifying leads",      required:true  },
+    { key:"rc_volume",    label:"Inbound calls per day on average?",         type:"text",     placeholder:"e.g. 50",                                                           required:true  },
     { key:"rc_notes",     label:"Additional notes",                          type:"textarea", placeholder:"Anything else we should know.",                                     required:false },
   ],
   outbound: [
-    { key:"ob_usecase", label:"What would you use AI outbound calling for?", type:"textarea", placeholder:"Lead qualification, appointment setting, win-back campaigns…",     required:true  },
-    { key:"ob_volume",  label:"Outbound calls per day on average?",          type:"select",   options:["Fewer than 100","100–500","500–2,000","2,000–10,000","10,000+"],       required:true  },
+    { key:"ob_usecase", label:"What would you use AI outbound calling for?", type:"textarea", placeholder:"Lead qualification, appointment setting, win-back campaigns",      required:true  },
+    { key:"ob_volume",  label:"Outbound calls per day on average?",          type:"text",     placeholder:"e.g. 200",                                                          required:true  },
     { key:"ob_notes",   label:"Additional notes",                            type:"textarea", placeholder:"Anything else we should know.",                                     required:false },
   ],
   automation: [
-    { key:"au_process", label:"What process are you looking to automate?",   type:"textarea", placeholder:"CRM hygiene, lead routing, document generation, reporting…",      required:true  },
+    { key:"au_process", label:"What process are you looking to automate?",   type:"textarea", placeholder:"CRM hygiene, lead routing, document generation, reporting",       required:true  },
     { key:"au_notes",   label:"Additional notes",                            type:"textarea", placeholder:"Anything else we should know.",                                     required:false },
   ],
 };
@@ -636,7 +721,7 @@ function FieldGroup({ fields, values, errors, onChange }) {
   return <>{rows}</>;
 }
 
-function NavSteps({ step }) {
+function NavSteps({ step, onNavigate }) {
   const items = [
     { label: "Services", n: 0 },
     { label: "Details",  n: 1 },
@@ -644,14 +729,26 @@ function NavSteps({ step }) {
   ];
   return (
     <div className="nav-steps">
-      {items.map((s, i) => (
-        <React.Fragment key={s.n}>
-          {i > 0 && <span className="nav-step-sep">·</span>}
-          <span className={"nav-step-item" + (step === s.n ? " active" : step > s.n ? " done" : "")}>
-            {s.label}
-          </span>
-        </React.Fragment>
-      ))}
+      {items.map((s, i) => {
+        const clickable = s.n < step;
+        return (
+          <React.Fragment key={s.n}>
+            {i > 0 && (
+              <div className={"nav-step-connector" + (step > s.n - 1 ? " done" : "")} />
+            )}
+            <div
+              className={"nav-step-item" + (step === s.n ? " active" : step > s.n ? " done" : "") + (clickable ? " clickable" : "")}
+              onClick={() => clickable && onNavigate(s.n)}
+              style={clickable ? { cursor: "pointer" } : {}}
+            >
+              <div className="nav-step-circle">
+                {step > s.n ? <CheckMini /> : (i + 1)}
+              </div>
+              <span className="nav-step-label">{s.label}</span>
+            </div>
+          </React.Fragment>
+        );
+      })}
     </div>
   );
 }
@@ -659,7 +756,7 @@ function NavSteps({ step }) {
 /* ─── App ─── */
 function App() {
   const [selected,  setSelected]  = useState([]);
-  const [flowStep,  setFlowStep]  = useState(0); // 0=services  1=form  2=calendar
+  const [flowStep,  setFlowStep]  = useState(0);
   const [values,    setValues]    = useState({});
   const [errors,    setErrors]    = useState({});
   const calRef = useRef(null);
@@ -744,15 +841,15 @@ function App() {
     <>
       {/* Fixed nav */}
       <nav className="top-nav">
-        <a href="https://onagency.ai" className="nav-logo" target="_blank" rel="noopener noreferrer">
-          <OnAgencyMark />
-          On Agency
-        </a>
-        <NavSteps step={flowStep} />
+        <div className="nav-inner">
+          <a href="https://onagency.ai" className="nav-logo" target="_blank" rel="noopener noreferrer" aria-label="On Agency">
+            <OnAgencyMark />
+          </a>
+          <NavSteps step={flowStep} onNavigate={n => { setFlowStep(n); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+        </div>
       </nav>
 
       <div className="page">
-        {/* Grid bg — fades out downward */}
         <div className="grid-bg" aria-hidden="true" />
 
         <div className="container">
@@ -761,11 +858,11 @@ function App() {
             <CalendarIcon />
             Book a Demo Appointment
           </div>
-          <h1 className="hero-title rise rise-1">
-            Build the AI layer your business has been quietly waiting for.
+          <h1 className="hero-title rise rise-1" key={"title-" + flowStep}>
+            {STEP_COPY[flowStep].title}
           </h1>
-          <p className="lede rise rise-2">
-            Pick the services you'd like to talk through. We'll tailor the questions to what you select, then you'll grab a time on the calendar — all on this page.
+          <p className="lede rise rise-2" key={"lede-" + flowStep}>
+            {STEP_COPY[flowStep].lede}
           </p>
 
           {/* ══ STEP 1 — Services ══ */}
@@ -790,7 +887,7 @@ function App() {
 
               <div className="service-footer rise rise-4">
                 {selected.length === 0
-                  ? <span className="hint">↑ Select at least one service to continue</span>
+                  ? <span className="hint">Select at least one service to continue</span>
                   : <span className="hint">{selected.length} service{selected.length > 1 ? "s" : ""} selected</span>
                 }
                 <button
@@ -811,14 +908,6 @@ function App() {
           {/* ══ STEP 2 — Form ══ */}
           {flowStep === 1 && (
             <form onSubmit={handleSubmit} noValidate>
-              <div className="rule" />
-
-              <div className="step-header">
-                <div className="step-label">Step 02 / About you</div>
-                <div className="step-count">{requiredCount} required fields</div>
-              </div>
-
-              {/* Selection summary + back */}
               <div className="summary">
                 {ordered.map(s => (
                   <span key={s.id} className="chip">
@@ -831,17 +920,15 @@ function App() {
                 </button>
               </div>
 
-              {/* Shared fields */}
               <section className="form-section">
                 <div className="form-section-head">
                   <div className="fsec-index">01</div>
-                  <div className="fsec-title">Contact &amp; business</div>
+                  <div className="fsec-title">Contact and business</div>
                   <div className="fsec-meta">Shared</div>
                 </div>
                 <FieldGroup fields={SHARED} values={values} errors={errors} onChange={onChange} />
               </section>
 
-              {/* Per-service fields */}
               {ordered.map((s, idx) => (
                 <section className="form-section" key={s.id}>
                   <div className="form-section-head">
@@ -854,7 +941,7 @@ function App() {
               ))}
 
               <div className="submit-row">
-                <div className="submit-meta">⌵ &nbsp;Continue to scheduling</div>
+                <div className="submit-meta">Continue to scheduling</div>
                 <button type="submit" className="btn">
                   Continue
                   <svg className="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -868,12 +955,6 @@ function App() {
           {/* ══ STEP 3 — Calendar ══ */}
           {flowStep === 2 && (
             <div ref={calRef}>
-              <div className="rule" />
-              <div className="step-header">
-                <div className="step-label">Step 03 / Schedule</div>
-                <div className="step-count">30 min · video call</div>
-              </div>
-
               <div className="calendar-shell rise">
                 <div className="calendar-head">
                   <div>
@@ -892,16 +973,16 @@ function App() {
               </div>
             </div>
           )}
-
-          {/* ── Footer ── */}
-          <footer className="site-footer">
-            <span>© On Agency 2026</span>
-            <div className="footer-links">
-              <a href="mailto:hello@onagency.ai">hello@onagency.ai</a>
-              <a href="https://onagency.ai" target="_blank" rel="noopener noreferrer">onagency.ai</a>
-            </div>
-          </footer>
         </div>
+
+        {/* ── Footer ── */}
+        <footer className="site-footer">
+          <span className="footer-copy">© 2026 On Agency</span>
+          <div className="footer-links">
+            <a href="https://onagency.ai/privacy-policy" className="footer-link">Privacy Policy</a>
+            <a href="https://onagency.ai/terms-of-service" className="footer-link">Terms of Service</a>
+          </div>
+        </footer>
       </div>
     </>
   );
