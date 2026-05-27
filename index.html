@@ -269,6 +269,10 @@
     transition: background 180ms ease, border-color 180ms ease;
   }
   .card.selected .card-glyph { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .card-glyph svg {
+    width: 16px;
+    height: 16px;
+  }
   .check-ring {
     width: 18px; height: 18px;
     border-radius: 999px;
@@ -529,6 +533,11 @@
   }
 
   @media (min-width: 1024px) {
+    .nav-inner {
+      max-width: 1040px;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
     .container {
       max-width: 1040px;
       padding-left: 40px;
@@ -541,22 +550,14 @@
       padding: 22px;
       min-height: 182px;
     }
+    .card-glyph {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+    }
     .card-title { font-size: 17px; }
-    .card-desc  { font-size: 14px; }
-    .site-footer { margin-top: 72px; }
-  }
-
-  @media (min-width: 1600px) and (min-height: 900px) {
-    .page { padding-top: calc(var(--nav-h) + 68px); }
-    .container {
-      min-height: calc(100vh - (var(--nav-h) + 68px));
-      display: flex;
-      flex-direction: column;
-    }
-    .site-footer {
-      margin-top: auto;
-      padding-bottom: 28px;
-    }
+    .card-desc  { font-size: 12.5px; line-height: 1.45; }
+    .site-footer { margin-top: 48px; }
   }
 </style>
 </head>
