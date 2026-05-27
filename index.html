@@ -126,8 +126,12 @@
   }
   .nav-step-connector.done { background: rgba(59,130,246,0.35); }
 
-  @media (max-width: 600px) { .nav-steps { display: none; } }
-  @media (max-width: 480px) { .nav-inner { padding: 0 16px; } }
+  @media (max-width: 540px) {
+    .nav-step-label { display: none; }
+    .nav-step-connector { width: 16px; }
+    .nav-step-item { padding: 0 3px; }
+  }
+  @media (max-width: 480px) { .nav-inner { padding: 0 20px; } }
 
   /* ─── Page layout ─── */
   .page {
@@ -528,8 +532,8 @@
 
   @media (max-width: 480px) {
     .page { padding-top: calc(var(--nav-h) + 44px); }
-    .container { padding-left: 16px; padding-right: 16px; }
-    .site-footer { padding: 24px 16px 48px; }
+    .container { padding-left: 20px; padding-right: 20px; }
+    .site-footer { padding: 20px 20px 40px; }
   }
 </style>
 </head>
