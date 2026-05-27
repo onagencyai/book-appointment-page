@@ -606,6 +606,7 @@
   }
 
   @media (min-width: 1024px) {
+    .page { padding-top: calc(var(--nav-h) + 64px); }
     .nav-inner {
       max-width: 1040px;
       padding-left: 40px;
@@ -630,7 +631,12 @@
     }
     .card-title { font-size: 17px; }
     .card-desc  { font-size: 12.5px; line-height: 1.45; }
-    .site-footer { margin-top: 48px; }
+    .site-footer {
+      max-width: 1040px;
+      padding-left: 40px;
+      padding-right: 40px;
+      margin-top: 48px;
+    }
   }
 </style>
 </head>
