@@ -824,8 +824,8 @@ function App() {
 
   useEffect(() => {
     if (flowStep !== 2 || !window.Cal) return;
-    window.Cal("init", "book-appointment", { origin: "https://app.cal.com" });
-    window.Cal.ns["book-appointment"]("inline", {
+    window.Cal("init", "book-free-demo", { origin: "https://app.cal.com" });
+    window.Cal.ns["book-free-demo"]("inline", {
       elementOrSelector: "#cal-inline",
       config: {
         layout: "month_view",
@@ -834,7 +834,7 @@ function App() {
         email: values.email || "",
         notes: buildNotes(ordered, values),
       },
-      calLink: "onagency/book-appointment",
+      calLink: "onagency/book-free-demo",
     });
     window.Cal.ns["ai-receptionist-demo"]("ui", {
       theme: "light",
