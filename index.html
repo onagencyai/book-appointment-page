@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book a Demo — On Agency</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1377 932'%3E%3Cline x1='71.7' y1='52.5' x2='422.5' y2='255' stroke='black' stroke-width='105' stroke-linecap='round'/%3E%3Cline x1='953.7' y1='657.5' x2='1304.5' y2='860' stroke='black' stroke-width='105' stroke-linecap='round'/%3E%3Cline x1='954.2' y1='255' x2='1305' y2='52.5' stroke='black' stroke-width='105' stroke-linecap='round'/%3E%3Cline x1='72.2' y1='860' x2='423' y2='657.5' stroke='black' stroke-width='105' stroke-linecap='round'/%3E%3C/svg%3E" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #FAFAFA;
+    --surface:   #FFFFFF;
+    --ink:       #0A0A0A;
+    --ink-2:     #171717;
+    --muted:     #6B7280;
+    --muted-2:   #A1A1AA;
+    --line:      #E5E5E5;
+    --line-2:    #EFEFEF;
+    --blue:      #3B82F6;
+    --blue-ring: rgba(59,130,246,0.14);
+    --shadow-sm: 0 1px 2px rgba(10,10,10,0.04);
+    --shadow-md: 0 4px 18px -8px rgba(10,10,10,0.10), 0 1px 2px rgba(10,10,10,0.04);
+    --shadow-lg: 0 20px 60px -20px rgba(10,10,10,0.18), 0 8px 24px -12px rgba(10,10,10,0.08);
+    --r-sm: 8px;
+    --r-md: 12px;
+    --r-lg: 16px;
+    --nav-h: 60px;
+    --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); overflow-x: hidden; }
+  body {
+    font-family: var(--font-sans);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01","ss02","cv11";
+    letter-spacing: -0.011em;
+    line-height: 1.5;
+  }
+
+  /* ─── Nav ─── */
+  .top-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: var(--nav-h);
+    background: rgba(250,250,250,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line-2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    transition: opacity 0.15s;
+  }
+  .nav-logo:hover { opacity: 0.6; }
+  .nav-steps {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .nav-step-item {
+    padding: 3px 9px;
+    border-radius: 5px;
+    color: var(--muted-2);
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-step-item.active {
+    background: var(--ink);
+    color: #fff;
+  }
+  .nav-step-item.done {
+    color: var(--muted);
+  }
+  .nav-step-sep { color: var(--line); font-size: 10px; }
+
+  /* ─── Page layout ─── */
+  .page {
+    position: relative;
+    min-height: 100vh;
+    padding: calc(var(--nav-h) + 64px) 24px 80px;
+  }
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* ─── Grid background (fades out downward) ─── */
+  .grid-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 560px;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      linear-gradient(to right,  rgba(0,0,0,0.042) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.042) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%);
+  }
+
+  /* ─── Hero ─── */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+  h1.hero-title {
+    font-size: clamp(34px, 5vw, 48px);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+    margin: 0 0 16px;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .lede {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--muted);
+    margin: 0 0 56px;
+    max-width: 560px;
+    text-wrap: pretty;
+  }
+
+  /* ─── Step header ─── */
+  .step-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0 0 20px;
+  }
+  .step-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .step-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted-2);
+  }
+
+  /* ─── Service cards ─── */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 700px) { .services { grid-template-columns: 1fr; } }
+
+  .card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 20px;
+    cursor: pointer;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 200px;
+    overflow: hidden;
+  }
+  .card:hover { border-color: #D4D4D4; box-shadow: var(--shadow-md); }
+  .card.selected { border-color: #525252; box-shadow: var(--shadow-md); }
+
+  .card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .card-glyph {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: #F4F4F5;
+    border: 1px solid var(--line-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-2);
+    flex-shrink: 0;
+    transition: background 180ms ease, border-color 180ms ease;
+  }
+  .card.selected .card-glyph { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .check-ring {
+    width: 18px; height: 18px;
+    border-radius: 999px;
+    border: 1.25px solid #D4D4D4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    transition: all 180ms ease;
+    flex-shrink: 0;
+  }
+  .card.selected .check-ring { background: var(--ink); border-color: var(--ink); }
+  .check-ring svg { opacity: 0; transform: scale(0.6); transition: all 180ms ease; }
+  .card.selected .check-ring svg { opacity: 1; transform: scale(1); }
+  .card-title { font-size: 15px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); margin: 0; }
+  .card-desc  { font-size: 13px; line-height: 1.5; color: var(--muted); margin: 4px 0 0; }
+  .card-tag   { margin-top: auto; font-family: var(--font-mono); font-size: 10px; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ─── Service footer (Next button row) ─── */
+  .service-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 72px;
+  }
+  .hint {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted-2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── Button ─── */
+  .btn {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    padding: 11px 18px;
+    border-radius: var(--r-sm);
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 140ms ease, background-color 140ms ease, opacity 140ms ease;
+    box-shadow: 0 1px 2px rgba(10,10,10,0.16), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .btn:hover:not(:disabled) { background: #1F1F1F; }
+  .btn:active:not(:disabled) { transform: translateY(0.5px); }
+  .btn:disabled { background: #E5E5E5; border-color: #E5E5E5; color: #A1A1AA; cursor: not-allowed; box-shadow: none; }
+  .btn .arrow { transition: transform 180ms ease; }
+  .btn:hover:not(:disabled) .arrow { transform: translateX(2px); }
+
+  /* ─── Form ─── */
+  .form-section { margin-bottom: 52px; }
+  .form-section-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--line-2);
+  }
+  .fsec-index { font-family: var(--font-mono); font-size: 10px; color: var(--muted-2); width: 22px; }
+  .fsec-title { font-size: 13px; font-weight: 500; color: var(--ink-2); letter-spacing: -0.005em; }
+  .fsec-meta  { margin-left: auto; font-family: var(--font-mono); font-size: 10px; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+  .field-row .field { margin-bottom: 0; }
+  @media (max-width: 540px) { .field-row { grid-template-columns: 1fr; } }
+
+  label {
+    font-size: 13px;
+    color: var(--ink-2);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  label .optional {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted-2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 400;
+  }
+
+  /* Form inputs — Apple-style blue focus */
+  input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    padding: 11px 13px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    transition: border-color 140ms ease, box-shadow 140ms ease;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  input::placeholder, textarea::placeholder { color: #B5B5B5; }
+  input[type=text]:hover, input[type=email]:hover, input[type=tel]:hover, input[type=url]:hover,
+  textarea:hover, select:hover { border-color: #93C5FD; }
+  input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[type=url]:focus,
+  textarea:focus, select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px var(--blue-ring);
+  }
+  textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
+  select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'><path d='M1 1L5 5L9 1' stroke='%236B7280' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  /* Inline error */
+  .err { margin-top: 6px; font-size: 12px; color: #B91C1C; font-family: var(--font-mono); }
+  input.invalid, textarea.invalid { border-color: #DC2626 !important; box-shadow: 0 0 0 3px rgba(220,38,38,0.10) !important; }
+
+  /* Submit row */
+  .submit-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 8px; }
+  .submit-meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+
+  /* Selection chips */
+  .summary { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 32px; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px 5px 8px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--ink-2);
+    font-weight: 500;
+  }
+  .chip-dot { width: 6px; height: 6px; border-radius: 999px; background: var(--ink); }
+
+  /* Edit button inline */
+  .btn-ghost {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted-2);
+    padding: 4px 8px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: color 0.15s, background 0.15s;
+  }
+  .btn-ghost:hover { color: var(--ink-2); background: var(--line-2); }
+
+  /* Calendar */
+  .calendar-shell {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .calendar-head {
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--line-2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .calendar-head h3 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.015em; }
+  .calendar-head p { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+  .cal-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .cal-dot { width: 6px; height: 6px; border-radius: 999px; background: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.12); }
+  .cal-frame { background: var(--surface); min-height: 720px; }
+
+  /* Divider */
+  .rule { height: 1px; background: var(--line-2); margin: 0 0 52px; }
+
+  /* ─── Footer ─── */
+  .site-footer {
+    margin-top: 80px;
+    padding: 20px 0 0;
+    border-top: 1px solid var(--line-2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .site-footer a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+  .site-footer a:hover { color: var(--ink-2); }
+  .footer-links { display: flex; gap: 16px; }
+
+  /* ─── Animations ─── */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .rise   { animation: rise 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .rise-1 { animation-delay: 40ms; }
+  .rise-2 { animation-delay: 90ms; }
+  .rise-3 { animation-delay: 150ms; }
+  .rise-4 { animation-delay: 210ms; }
+
+  @media (max-width: 480px) {
+    .top-nav { padding: 0 16px; }
+    .page { padding: calc(var(--nav-h) + 40px) 16px 60px; }
+    .nav-steps { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- Cal.com embed -->
+<script type="text/javascript">
+(function(C,A,L){let p=function(a,ar){a.q.push(ar);};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true;}if(ar[0]===L){const api=function(){p(api,arguments);};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,["initNamespace",namespace]);}else p(cal,ar);return;}p(cal,ar);};})(window,"https://app.cal.com/embed/embed.js","init");
+</script>
+
+<script type="text/babel" data-presets="react">
+const { useState, useMemo, useEffect, useRef } = React;
+
+/* ─── Lucide icon components ─── */
+const PhoneIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.52 12a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </svg>
+);
+
+const PhoneOutgoingIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="23 7 23 1 17 1"/>
+    <line x1="16" y1="8" x2="23" y2="1"/>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.52 12a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </svg>
+);
+
+const ZapIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+  </svg>
+);
+
+const CalendarIcon = () => (
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+    <line x1="16" y1="2" x2="16" y2="6"/>
+    <line x1="8" y1="2" x2="8" y2="6"/>
+    <line x1="3" y1="10" x2="21" y2="10"/>
+  </svg>
+);
+
+const OnAgencyMark = () => (
+  <svg width="22" height="15" viewBox="0 0 1377 932" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="71.7163" y1="52.5088" x2="422.457"  y2="255.009" stroke="currentColor" strokeWidth="140" strokeLinecap="round"/>
+    <line x1="953.716" y1="657.509" x2="1304.46"  y2="860.009" stroke="currentColor" strokeWidth="140" strokeLinecap="round"/>
+    <line x1="954.216" y1="255.009" x2="1304.96"  y2="52.5088" stroke="currentColor" strokeWidth="140" strokeLinecap="round"/>
+    <line x1="72.2163" y1="860.009" x2="422.957"  y2="657.509" stroke="currentColor" strokeWidth="140" strokeLinecap="round"/>
+  </svg>
+);
+
+/* ─── Data ─── */
+const SERVICES = [
+  {
+    id: "receptionist",
+    title: "AI Receptionist",
+    desc: "A 24/7 voice agent that answers, qualifies, and routes inbound calls.",
+    tag: "Inbound",
+    icon: <PhoneIcon />,
+  },
+  {
+    id: "outbound",
+    title: "AI Outbound Caller",
+    desc: "Place high-volume, natural-sounding calls for sales, follow-ups, and reactivation.",
+    tag: "Outbound",
+    icon: <PhoneOutgoingIcon />,
+  },
+  {
+    id: "automation",
+    title: "AI Automation",
+    desc: "Custom workflows that connect your tools and run the busywork on autopilot.",
+    tag: "Operations",
+    icon: <ZapIcon />,
+  },
+];
+
+const SHARED = [
+  { key:"name",     label:"Your name",        type:"text",  placeholder:"Jane Cooper",          required:true,  half:true },
+  { key:"email",    label:"Work email",        type:"email", placeholder:"jane@company.com",      required:true,  half:true },
+  { key:"phone",    label:"Phone",             type:"tel",   placeholder:"+1 (555) 000-0000",     required:true,  half:true },
+  { key:"business", label:"Business name",     type:"text",  placeholder:"Acme, Inc.",            required:true,  half:true },
+  { key:"website",  label:"Business website",  type:"url",   placeholder:"https://acme.com",      required:true  },
+];
+
+const PER_SERVICE = {
+  receptionist: [
+    { key:"rc_challenge", label:"Main challenge you're looking to solve?",  type:"textarea", placeholder:"Missed after-hours calls, long hold times, qualifying leads…",      required:true  },
+    { key:"rc_volume",    label:"Inbound calls per day on average?",         type:"select",   options:["Fewer than 25","25–100","100–500","500–1,000","1,000+"],               required:true  },
+    { key:"rc_notes",     label:"Additional notes",                          type:"textarea", placeholder:"Anything else we should know.",                                     required:false },
+  ],
+  outbound: [
+    { key:"ob_usecase", label:"What would you use AI outbound calling for?", type:"textarea", placeholder:"Lead qualification, appointment setting, win-back campaigns…",     required:true  },
+    { key:"ob_volume",  label:"Outbound calls per day on average?",          type:"select",   options:["Fewer than 100","100–500","500–2,000","2,000–10,000","10,000+"],       required:true  },
+    { key:"ob_notes",   label:"Additional notes",                            type:"textarea", placeholder:"Anything else we should know.",                                     required:false },
+  ],
+  automation: [
+    { key:"au_process", label:"What process are you looking to automate?",   type:"textarea", placeholder:"CRM hygiene, lead routing, document generation, reporting…",      required:true  },
+    { key:"au_notes",   label:"Additional notes",                            type:"textarea", placeholder:"Anything else we should know.",                                     required:false },
+  ],
+};
+
+/* ─── Sub-components ─── */
+function ServiceCard({ service, selected, onToggle, delay }) {
+  return (
+    <button
+      type="button"
+      className={"card rise" + (selected ? " selected" : "")}
+      style={{ animationDelay: delay + "ms" }}
+      onClick={onToggle}
+      aria-pressed={selected}
+    >
+      <div className="card-head">
+        <div className="card-glyph">{service.icon}</div>
+        <div className="check-ring" aria-hidden="true">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+            <path d="M2.5 6.2L5 8.7l4.5-5.4" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <h3 className="card-title">{service.title}</h3>
+        <p className="card-desc">{service.desc}</p>
+      </div>
+      <div className="card-tag">{service.tag}</div>
+    </button>
+  );
+}
+
+function Field({ def, value, error, onChange }) {
+  const id = "f-" + def.key;
+  const base = {
+    id,
+    value: value || "",
+    onChange: e => onChange(def.key, e.target.value),
+    className: error ? "invalid" : "",
+  };
+  return (
+    <div className="field">
+      <label htmlFor={id}>
+        <span>{def.label}</span>
+        {!def.required && <span className="optional">Optional</span>}
+      </label>
+      {def.type === "textarea" ? (
+        <textarea {...base} placeholder={def.placeholder} rows={3} />
+      ) : def.type === "select" ? (
+        <select {...base}>
+          <option value="" disabled>Select an option</option>
+          {def.options.map(o => <option key={o} value={o}>{o}</option>)}
+        </select>
+      ) : (
+        <input type={def.type} {...base} placeholder={def.placeholder} autoComplete="off" />
+      )}
+      {error && <div className="err">{error}</div>}
+    </div>
+  );
+}
+
+function FieldGroup({ fields, values, errors, onChange }) {
+  const rows = [];
+  let i = 0;
+  while (i < fields.length) {
+    const f = fields[i], nxt = fields[i + 1];
+    if (f.half && nxt && nxt.half) {
+      rows.push(
+        <div className="field-row" key={f.key + "-row"}>
+          <Field def={f}   value={values[f.key]}   error={errors[f.key]}   onChange={onChange} />
+          <Field def={nxt} value={values[nxt.key]} error={errors[nxt.key]} onChange={onChange} />
+        </div>
+      );
+      i += 2;
+    } else {
+      rows.push(<Field key={f.key} def={f} value={values[f.key]} error={errors[f.key]} onChange={onChange} />);
+      i += 1;
+    }
+  }
+  return <>{rows}</>;
+}
+
+function NavSteps({ step }) {
+  const items = [
+    { label: "Services", n: 0 },
+    { label: "Details",  n: 1 },
+    { label: "Schedule", n: 2 },
+  ];
+  return (
+    <div className="nav-steps">
+      {items.map((s, i) => (
+        <React.Fragment key={s.n}>
+          {i > 0 && <span className="nav-step-sep">·</span>}
+          <span className={"nav-step-item" + (step === s.n ? " active" : step > s.n ? " done" : "")}>
+            {s.label}
+          </span>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+
+/* ─── App ─── */
+function App() {
+  const [selected,  setSelected]  = useState([]);
+  const [flowStep,  setFlowStep]  = useState(0); // 0=services  1=form  2=calendar
+  const [values,    setValues]    = useState({});
+  const [errors,    setErrors]    = useState({});
+  const calRef = useRef(null);
+
+  const toggle = id =>
+    setSelected(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
+
+  const onChange = (key, val) => {
+    setValues(v => ({ ...v, [key]: val }));
+    if (errors[key]) setErrors(e => { const n = {...e}; delete n[key]; return n; });
+  };
+
+  const ordered = useMemo(() => SERVICES.filter(s => selected.includes(s.id)), [selected]);
+
+  const validate = () => {
+    const e = {};
+    [...SHARED, ...ordered.flatMap(s => PER_SERVICE[s.id])]
+      .filter(f => f.required)
+      .forEach(f => {
+        const v = (values[f.key] || "").trim();
+        if (!v) { e[f.key] = "Required."; return; }
+        if (f.type === "email" && !/^\S+@\S+\.\S+$/.test(v)) e[f.key] = "Enter a valid email.";
+        if (f.type === "url"   && !/^(https?:\/\/)?\S+\.\S+/.test(v)) e[f.key] = "Enter a valid URL.";
+      });
+    setErrors(e);
+    return !Object.keys(e).length;
+  };
+
+  const handleNext = () => {
+    setFlowStep(1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleSubmit = ev => {
+    ev.preventDefault();
+    if (!validate()) return;
+    setFlowStep(2);
+    setTimeout(() => {
+      if (calRef.current) {
+        const y = calRef.current.getBoundingClientRect().top + window.scrollY - 24;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }, 80);
+  };
+
+  useEffect(() => {
+    if (flowStep !== 2 || !window.Cal) return;
+    window.Cal("init", "ai-receptionist-demo", { origin: "https://app.cal.com" });
+    window.Cal.ns["ai-receptionist-demo"]("inline", {
+      elementOrSelector: "#cal-inline",
+      config: {
+        layout: "month_view",
+        theme: "light",
+        name:  values.name  || "",
+        email: values.email || "",
+        notes: buildNotes(ordered, values),
+      },
+      calLink: "onagency/ai-receptionist-demo",
+    });
+    window.Cal.ns["ai-receptionist-demo"]("ui", {
+      theme: "light",
+      hideEventTypeDetails: false,
+      layout: "month_view",
+      cssVarsPerTheme: {
+        light: {
+          "cal-brand":    "#0A0A0A",
+          "cal-bg":       "#FFFFFF",
+          "cal-bg-muted": "#FAFAFA",
+        }
+      }
+    });
+  }, [flowStep]);
+
+  const requiredCount = useMemo(() => {
+    if (!ordered.length) return 0;
+    return [...SHARED, ...ordered.flatMap(s => PER_SERVICE[s.id])].filter(f => f.required).length;
+  }, [ordered]);
+
+  const firstName = values.name?.split(" ")[0] || "there";
+
+  return (
+    <>
+      {/* Fixed nav */}
+      <nav className="top-nav">
+        <a href="https://onagency.ai" className="nav-logo" target="_blank" rel="noopener noreferrer">
+          <OnAgencyMark />
+          On Agency
+        </a>
+        <NavSteps step={flowStep} />
+      </nav>
+
+      <div className="page">
+        {/* Grid bg — fades out downward */}
+        <div className="grid-bg" aria-hidden="true" />
+
+        <div className="container">
+          {/* ── Hero ── */}
+          <div className="eyebrow rise">
+            <CalendarIcon />
+            Book a Demo Appointment
+          </div>
+          <h1 className="hero-title rise rise-1">
+            Build the AI layer your business has been quietly waiting for.
+          </h1>
+          <p className="lede rise rise-2">
+            Pick the services you'd like to talk through. We'll tailor the questions to what you select, then you'll grab a time on the calendar — all on this page.
+          </p>
+
+          {/* ══ STEP 1 — Services ══ */}
+          {flowStep === 0 && (
+            <>
+              <div className="step-header rise rise-3">
+                <div className="step-label">Step 01 / Services</div>
+                <div className="step-count">{selected.length} selected · multi-select</div>
+              </div>
+
+              <div className="services">
+                {SERVICES.map((s, i) => (
+                  <ServiceCard
+                    key={s.id}
+                    service={s}
+                    delay={150 + i * 60}
+                    selected={selected.includes(s.id)}
+                    onToggle={() => toggle(s.id)}
+                  />
+                ))}
+              </div>
+
+              <div className="service-footer rise rise-4">
+                {selected.length === 0
+                  ? <span className="hint">↑ Select at least one service to continue</span>
+                  : <span className="hint">{selected.length} service{selected.length > 1 ? "s" : ""} selected</span>
+                }
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={handleNext}
+                  disabled={selected.length === 0}
+                >
+                  Next
+                  <svg className="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </>
+          )}
+
+          {/* ══ STEP 2 — Form ══ */}
+          {flowStep === 1 && (
+            <form onSubmit={handleSubmit} noValidate>
+              <div className="rule" />
+
+              <div className="step-header">
+                <div className="step-label">Step 02 / About you</div>
+                <div className="step-count">{requiredCount} required fields</div>
+              </div>
+
+              {/* Selection summary + back */}
+              <div className="summary">
+                {ordered.map(s => (
+                  <span key={s.id} className="chip">
+                    <span className="chip-dot" />
+                    {s.title}
+                  </span>
+                ))}
+                <button type="button" className="btn-ghost" onClick={() => setFlowStep(0)}>
+                  ← Edit
+                </button>
+              </div>
+
+              {/* Shared fields */}
+              <section className="form-section">
+                <div className="form-section-head">
+                  <div className="fsec-index">01</div>
+                  <div className="fsec-title">Contact &amp; business</div>
+                  <div className="fsec-meta">Shared</div>
+                </div>
+                <FieldGroup fields={SHARED} values={values} errors={errors} onChange={onChange} />
+              </section>
+
+              {/* Per-service fields */}
+              {ordered.map((s, idx) => (
+                <section className="form-section" key={s.id}>
+                  <div className="form-section-head">
+                    <div className="fsec-index">{String(idx + 2).padStart(2, "0")}</div>
+                    <div className="fsec-title">{s.title}</div>
+                    <div className="fsec-meta">{s.tag}</div>
+                  </div>
+                  <FieldGroup fields={PER_SERVICE[s.id]} values={values} errors={errors} onChange={onChange} />
+                </section>
+              ))}
+
+              <div className="submit-row">
+                <div className="submit-meta">⌵ &nbsp;Continue to scheduling</div>
+                <button type="submit" className="btn">
+                  Continue
+                  <svg className="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          )}
+
+          {/* ══ STEP 3 — Calendar ══ */}
+          {flowStep === 2 && (
+            <div ref={calRef}>
+              <div className="rule" />
+              <div className="step-header">
+                <div className="step-label">Step 03 / Schedule</div>
+                <div className="step-count">30 min · video call</div>
+              </div>
+
+              <div className="calendar-shell rise">
+                <div className="calendar-head">
+                  <div>
+                    <h3>Pick a time that works</h3>
+                    <p>
+                      Hi {firstName} — we'll send the invite to{" "}
+                      <strong style={{ color:"var(--ink-2)", fontWeight:500 }}>{values.email}</strong>.
+                    </p>
+                  </div>
+                  <div className="cal-meta">
+                    <span className="cal-dot" />
+                    <span>Available this week</span>
+                  </div>
+                </div>
+                <div id="cal-inline" className="cal-frame" />
+              </div>
+            </div>
+          )}
+
+          {/* ── Footer ── */}
+          <footer className="site-footer">
+            <span>© On Agency 2026</span>
+            <div className="footer-links">
+              <a href="mailto:hello@onagency.ai">hello@onagency.ai</a>
+              <a href="https://onagency.ai" target="_blank" rel="noopener noreferrer">onagency.ai</a>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function buildNotes(services, v) {
+  const lines = ["Services of interest: " + services.map(s => s.title).join(", ")];
+  if (v.business) lines.push("Business: " + v.business);
+  if (v.website)  lines.push("Website: "  + v.website);
+  services.forEach(s => {
+    if (s.id === "receptionist") {
+      if (v.rc_challenge) lines.push("Receptionist challenge: " + v.rc_challenge);
+      if (v.rc_volume)    lines.push("Inbound volume: "         + v.rc_volume);
+      if (v.rc_notes)     lines.push("Receptionist notes: "     + v.rc_notes);
+    }
+    if (s.id === "outbound") {
+      if (v.ob_usecase) lines.push("Outbound use case: " + v.ob_usecase);
+      if (v.ob_volume)  lines.push("Outbound volume: "   + v.ob_volume);
+      if (v.ob_notes)   lines.push("Outbound notes: "    + v.ob_notes);
+    }
+    if (s.id === "automation") {
+      if (v.au_process) lines.push("Automation process: " + v.au_process);
+      if (v.au_notes)   lines.push("Automation notes: "   + v.au_notes);
+    }
+  });
+  return lines.join("\n");
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
