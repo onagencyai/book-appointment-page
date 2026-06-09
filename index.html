@@ -1,1166 +1,678 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book a Demo — On Agency</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201377%20932%22%3E%3Cstyle%3Eline%7Bstroke:black%7D%40media(prefers-color-scheme:dark)%7Bline%7Bstroke:white%7D%7D%3C/style%3E%3Cline%20x1=%2271.7%22%20y1=%2252.5%22%20x2=%22422.5%22%20y2=%22255%22%20stroke-width=%22105%22%20stroke-linecap=%22round%22/%3E%3Cline%20x1=%22953.7%22%20y1=%22657.5%22%20x2=%221304.5%22%20y2=%22860%22%20stroke-width=%22105%22%20stroke-linecap=%22round%22/%3E%3Cline%20x1=%22954.2%22%20y1=%22255%22%20x2=%221305%22%20y2=%2252.5%22%20stroke-width=%22105%22%20stroke-linecap=%22round%22/%3E%3Cline%20x1=%2272.2%22%20y1=%22860%22%20x2=%22423%22%20y2=%22657.5%22%20stroke-width=%22105%22%20stroke-linecap=%22round%22/%3E%3C/svg%3E" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:        #FAFAFA;
-    --surface:   #FFFFFF;
-    --ink:       #0A0A0A;
-    --ink-2:     #171717;
-    --muted:     #6B7280;
-    --muted-2:   #A1A1AA;
-    --line:      #E5E5E5;
-    --line-2:    #EFEFEF;
-    --blue:      #0070f3;
-    --blue-dark: #0060df;
-    --blue-ring: rgba(0,112,243,0.14);
-    --shadow-sm: 0 1px 2px rgba(10,10,10,0.04);
-    --shadow-md: 0 4px 18px -8px rgba(10,10,10,0.10), 0 1px 2px rgba(10,10,10,0.04);
-    --shadow-lg: 0 20px 60px -20px rgba(10,10,10,0.18), 0 8px 24px -12px rgba(10,10,10,0.08);
-    --r-sm: 8px;
-    --r-md: 12px;
-    --r-lg: 16px;
-    --nav-h: 64px;
-    --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-    --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
 
-  *, *::before, *::after { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); overflow-x: hidden; }
-  body {
-    font-family: var(--font-sans);
-    color: var(--ink);
-    background:
-      linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 34%, #F7F7F8 100%);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "ss01","ss02","cv11";
-    letter-spacing: -0.011em;
-    line-height: 1.5;
-  }
+:root {
+  --surface-subtle:       #fafafa;
+  --surface-base:         #ffffff;
+  --surface-raised:       #f0f0f0;
+  --border-default:       #e5e5e5;
+  --border-subtle:        #f0f0f0;
+  --content-strong:       #1a1a1a;
+  --content-default:      #333333;
+  --content-subtle:       #646465;
+  --content-disabled:     #c2c2c2;
+  --content-accent:       #0a0a0a;
+  --interactive-default:  #ffffff;
+  --interactive-hover:    #f0f0f0;
+  --interactive-disabled: #e5e5e5;
+  --accent-default:       #0a0a0a;
+  --accent-hover:         #1f1f1f;
+  --accent-lighter:       #f5f5f5;
+  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
 
-  /* ─── Nav ─── */
-  .top-nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    height: var(--nav-h);
-    background: rgba(250,250,250,0.88);
-    backdrop-filter: saturate(180%) blur(16px);
-    -webkit-backdrop-filter: saturate(180%) blur(16px);
-    border-bottom: 1px solid var(--line-2);
-  }
-  .nav-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    height: 100%;
-    padding: 0 28px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: var(--ink);
-    transition: opacity 0.15s;
-    width: fit-content;
-  }
-  .nav-logo:hover { opacity: 0.55; }
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--surface-subtle);
+}
 
-  /* Centered step indicator */
-  .nav-steps {
-    display: flex;
-    align-items: center;
-    gap: 0;
-  }
-  .nav-step-item {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 0 6px;
-    color: var(--muted-2);
-    transition: color 0.25s ease;
-  }
-  .nav-step-item.active { color: var(--blue); }
-  .nav-step-item.done   { color: var(--blue); opacity: 0.75; }
+/* ── Shell ── */
+.product-shell {
+  background-color: var(--surface-subtle);
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
 
-  .nav-step-circle {
-    width: 20px; height: 20px;
-    border-radius: 999px;
-    border: 1.5px solid currentColor;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0;
-    flex-shrink: 0;
-    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
-  }
-  .nav-step-item.active .nav-step-circle,
-  .nav-step-item.done   .nav-step-circle {
-    background: var(--blue);
-    border-color: var(--blue);
-    color: #fff;
-  }
-  .nav-step-label {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-  }
-  .nav-step-connector {
-    width: 28px; height: 1px;
-    background: var(--line);
-    margin: 0 2px;
-    flex-shrink: 0;
-    transition: background 0.25s ease;
-  }
-  .nav-step-connector.done { background: rgba(59,130,246,0.35); }
+/* ── Logo header ── */
+.logo-header {
+  flex-shrink: 0;
+  padding: 32px 0;
+}
+.logo-header a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
 
-  @media (max-width: 540px) {
-    .nav-step-label { display: none; }
-    .nav-step-connector { width: 16px; }
-    .nav-step-item { padding: 0 3px; }
-  }
-  @media (max-width: 480px) { .nav-inner { padding: 0 28px; } }
+/* ── Main content ── */
+.main-content {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px 16px;
+}
 
-  /* ─── Page layout ─── */
-  .page {
-    position: relative;
-    min-height: 100vh;
-    padding-top: calc(var(--nav-h) + 44px);
-  }
-  .page::before {
-    content: "";
-    position: absolute;
-    inset: var(--nav-h) 0 auto;
-    height: 420px;
-    pointer-events: none;
-    z-index: 0;
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0)),
-      linear-gradient(112deg, rgba(0,112,243,0.055) 0%, rgba(255,255,255,0) 34%, rgba(10,10,10,0.045) 68%, rgba(255,255,255,0) 100%),
-      repeating-linear-gradient(90deg, rgba(17,24,39,0.03) 0 1px, transparent 1px 96px);
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.92), rgba(0,0,0,0));
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.92), rgba(0,0,0,0));
-  }
-  .container {
-    position: relative;
-    z-index: 1;
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 28px 48px;
-  }
+.card-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
 
-  /* ─── Grid background (copied from login page) ─── */
-  .grid-bg {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: min(42vh, 360px);
-    pointer-events: none;
-    z-index: 0;
-    background-image:
-      linear-gradient(to right,  rgba(17,24,39,0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(17,24,39,0.04) 1px, transparent 1px);
-    background-size: 56px 56px;
-    background-position: 0 0, 0 56px;
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0));
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0));
-  }
-  @media (max-width: 640px) {
-    .grid-bg {
-      height: min(36vh, 300px);
-      background-size: 46px 46px;
-      background-position: 0 0, 0 46px;
-    }
-  }
+/* ── Booking card (step 1) ── */
+.booking-card {
+  background-color: var(--surface-base);
+  border: 1px solid var(--border-default);
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 600px;
+  width: 100%;
+  max-width: 960px;
+  overflow: hidden;
+  border-radius: 24px;
+}
 
-  /* ─── Hero ─── */
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(17,24,39,0.66);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 20px;
-  }
-  h1.hero-title {
-    font-size: clamp(32px, 4vw, 46px);
-    line-height: 1.03;
-    letter-spacing: -0.038em;
-    font-weight: 500;
-    margin: 0 0 18px;
-    color: #050505;
-    text-wrap: balance;
-  }
-  .lede {
-    font-size: 15px;
-    line-height: 1.55;
-    color: rgba(17,24,39,0.62);
-    margin: 0 0 32px;
-    max-width: 480px;
-    text-wrap: pretty;
-  }
+@media (min-width: 768px) {
+  .booking-card { grid-template-columns: 1fr 1fr; }
+}
 
-  /* ─── Step header ─── */
-  .step-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin: 0 0 20px;
-  }
-  .step-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-  }
-  .step-count {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted-2);
-  }
+/* ── Form panel (left) ── */
+.form-panel {
+  min-height: 598px;
+  overflow-y: auto;
+  padding: 40px 40px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
 
-  /* ─── Service cards ─── */
-  .services {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin-bottom: 28px;
-  }
-  @media (max-width: 700px) { .services { grid-template-columns: 1fr; } }
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 
-  .card {
-    position: relative;
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.96), rgba(251,251,252,0.98)),
-      linear-gradient(135deg, rgba(255,255,255,0.88), rgba(17,24,39,0.025));
-    border: 1px solid rgba(17,24,39,0.09);
-    border-radius: var(--r-md);
-    padding: 20px;
-    cursor: pointer;
-    transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
-    text-align: left;
-    font-family: inherit;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    min-height: 170px;
-    overflow: hidden;
-    box-shadow:
-      0 1px 2px rgba(10,10,10,0.035),
-      0 18px 42px -34px rgba(10,10,10,0.28),
-      inset 0 1px 0 rgba(255,255,255,0.88);
-  }
-  .card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 14px;
-    right: 14px;
-    height: 1px;
-    pointer-events: none;
-    background: linear-gradient(90deg, transparent, rgba(17,24,39,0.18), transparent);
-    opacity: 0.42;
-    transition: opacity 180ms ease;
-  }
-  .card:hover {
-    border-color: rgba(17,24,39,0.18);
-    box-shadow:
-      0 1px 2px rgba(10,10,10,0.04),
-      0 22px 46px -36px rgba(10,10,10,0.34),
-      inset 0 1px 0 rgba(255,255,255,0.94);
-  }
-  .card:hover::before { opacity: 0.68; }
-  .card:active { border-color: rgba(17,24,39,0.24); }
-  .card.selected {
-    border-color: rgba(10,10,10,0.84);
-    background:
-      linear-gradient(180deg, rgba(255,255,255,1), rgba(248,248,249,1)),
-      linear-gradient(135deg, rgba(0,112,243,0.07), rgba(255,255,255,0));
-    box-shadow:
-      0 0 0 1px rgba(10,10,10,0.72),
-      0 24px 54px -38px rgba(10,10,10,0.42),
-      inset 0 1px 0 rgba(255,255,255,0.95);
-  }
-  .card-head {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  .card-glyph {
-    width: 30px; height: 30px;
-    border-radius: 7px;
-    background: #F3F4F6;
-    border: 1px solid rgba(17,24,39,0.06);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--ink-2);
-    flex-shrink: 0;
-    box-shadow: none;
-    transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-  }
-  .card:nth-child(1) .card-glyph { background: #EFF6FF; border-color: rgba(0,112,243,0.10); color: #0060DF; }
-  .card:nth-child(2) .card-glyph { background: #F0FDF4; border-color: rgba(22,163,74,0.12); color: #15803D; }
-  .card:nth-child(3) .card-glyph { background: #FFF7ED; border-color: rgba(234,88,12,0.12); color: #C2410C; }
-  .card.selected .card-glyph { background: var(--ink); border-color: var(--ink); color: #fff; box-shadow: none; }
-  .card-glyph svg {
-    width: 16px;
-    height: 16px;
-  }
-  .check-ring {
-    width: 18px; height: 18px;
-    border-radius: 999px;
-    border: 1.25px solid #D4D4D4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--surface);
-    transition: all 180ms ease;
-    flex-shrink: 0;
-  }
-  .card.selected .check-ring { background: var(--ink); border-color: var(--ink); }
-  .check-ring svg { opacity: 0; transform: scale(0.6); transition: all 180ms ease; }
-  .card.selected .check-ring svg { opacity: 1; transform: scale(1); }
+.form-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
-  .card-title {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin: 0;
-  }
-  .card-desc  { font-size: 13px; line-height: 1.5; color: var(--muted); margin: 4px 0 0; }
-  .card-tag   { margin-top: auto; font-family: var(--font-mono); font-size: 10px; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.06em; }
+.form-title {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--content-strong);
+  line-height: 1.3;
+}
 
-  /* ─── Service footer (Next button row) ─── */
-  .service-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 0;
-    padding-bottom: 40px;
-  }
-  .hint {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted-2);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
+.form-subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--content-subtle);
+  line-height: 1.5;
+}
 
-  /* ─── Button ─── */
-  .btn {
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.005em;
-    padding: 10px 18px;
-    border-radius: var(--r-sm);
-    border: 1px solid var(--ink);
-    background: var(--ink);
-    color: #fff;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: transform 140ms ease, background 140ms ease, opacity 140ms ease;
-    box-shadow: 0 1px 2px rgba(10,10,10,0.12), inset 0 1px 0 rgba(255,255,255,0.06);
-  }
-  .btn:hover:not(:disabled) { background: #1F1F1F; transform: translateY(-0.5px); }
-  .btn:active:not(:disabled) { transform: translateY(0.5px); box-shadow: none; }
-  .btn:disabled { background: #E5E5E5; border-color: #E5E5E5; color: #A1A1AA; cursor: not-allowed; box-shadow: none; transform: none; }
-  .btn .arrow { transition: transform 180ms ease; }
-  .btn:hover:not(:disabled) .arrow { transform: translateX(3px); }
+/* ── Field ── */
+.name-row {
+  display: flex;
+  gap: 12px;
+}
 
-  /* ─── Form ─── */
-  .form-section { margin-bottom: 52px; }
-  .form-section-head {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 14px;
-    margin-bottom: 22px;
-    border-bottom: 1px solid var(--line-2);
-  }
-  .fsec-index { font-family: var(--font-mono); font-size: 10px; color: var(--muted-2); width: 22px; }
-  .fsec-title {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .fsec-meta  { margin-left: auto; font-family: var(--font-mono); font-size: 10px; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.06em; }
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
 
-  .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
-  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
-  .field-row .field { margin-bottom: 0; }
-  @media (max-width: 540px) { .field-row { grid-template-columns: 1fr; } }
+.field-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--content-subtle);
+  line-height: 1.4;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+}
 
-  label {
-    font-size: 13px;
-    color: var(--ink-2);
-    font-weight: 500;
-    letter-spacing: -0.005em;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-  }
-  label .optional {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--muted-2);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 400;
-  }
+.field-input {
+  width: 100%;
+  min-width: 0;
+  outline: none;
+  color: var(--content-default);
+  background: var(--interactive-default);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  height: 32px;
+  padding: 4px 10px;
+  font-size: 14px;
+  font-family: var(--font);
+  transition: border-color 150ms, background 150ms, box-shadow 150ms;
+  appearance: none;
+  -webkit-appearance: none;
+}
 
-  input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select {
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--r-sm);
-    padding: 11px 13px;
-    font-family: inherit;
-    font-size: 14px;
-    color: var(--ink);
-    letter-spacing: -0.005em;
-    transition: border-color 140ms ease, box-shadow 140ms ease;
-    outline: none;
-    appearance: none;
-    -webkit-appearance: none;
-  }
-  input::placeholder, textarea::placeholder { color: #C0C0C0; }
-  input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[type=url]:focus,
-  textarea:focus, select:focus {
-    border-color: rgba(59,130,246,0.65);
-    box-shadow: 0 0 0 3px rgba(59,130,246,0.13);
-  }
-  textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
-  select {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'><path d='M1 1L5 5L9 1' stroke='%236B7280' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 36px;
-    cursor: pointer;
-  }
+.field-input::placeholder { color: var(--content-disabled); }
 
-  .err { margin-top: 6px; font-size: 12px; color: #B91C1C; font-family: var(--font-mono); }
-  input.invalid, textarea.invalid { border-color: #DC2626 !important; box-shadow: 0 0 0 3px rgba(220,38,38,0.10) !important; }
+.field-input:hover {
+  background: var(--interactive-hover);
+}
 
-  .submit-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 8px; }
-  .submit-back {
-    font-size: 11px;
-    font-weight: 400;
-    color: var(--muted-2);
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-    font-family: var(--font-mono);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: color 0.15s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .submit-back:hover { color: var(--ink); }
+.field-input:focus {
+  background: var(--interactive-hover);
+  border-color: var(--content-strong);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  outline: none;
+}
 
-  .summary { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 32px; }
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 10px 5px 8px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    font-size: 12px;
-    color: var(--ink-2);
-    font-weight: 500;
-  }
-  .chip-dot { width: 6px; height: 6px; border-radius: 999px; background: var(--ink); }
+/* ── Industry toggle group ── */
+.toggle-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
 
-  .btn-ghost {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted-2);
-    padding: 4px 8px;
-    border-radius: 999px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    transition: color 0.15s, background 0.15s;
-  }
-  .btn-ghost:hover { color: var(--ink-2); background: var(--line-2); }
+.toggle-btn {
+  display: inline-flex;
+  cursor: pointer;
+  align-items: center;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-base);
+  border-radius: 6px;
+  height: 36px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font);
+  color: var(--content-subtle);
+  gap: 8px;
+  width: 100%;
+  justify-content: flex-start;
+  transition: border-color 150ms, background 150ms, color 150ms;
+  flex-shrink: 0;
+}
 
-  /* Calendar */
-  .calendar-shell {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--r-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-  }
-  .calendar-head {
-    padding: 14px 24px;
-    border-bottom: 1px solid var(--line-2);
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  .cal-meta {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-  }
-  .cal-dot { width: 6px; height: 6px; border-radius: 999px; background: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.12); }
-  .cal-frame { background: var(--surface); min-height: 720px; }
+.toggle-btn svg {
+  color: var(--content-subtle);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: color 150ms;
+}
 
-  .rule { height: 1px; background: var(--line-2); margin: 0 0 52px; }
+.toggle-btn span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-  /* ─── Footer ─── */
-  .site-footer {
-    max-width: 960px;
-    margin: 32px auto 0;
-    padding: 20px 28px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  .footer-links { display: flex; gap: 20px; }
-  .footer-link {
-    font: 13px/1 var(--font-sans);
-    color: rgba(17,24,39,0.4);
-    letter-spacing: -0.02em;
-    text-decoration: none;
-    transition: color 0.15s ease;
-  }
-  .footer-link:hover { color: rgba(17,24,39,0.75); }
+.toggle-btn:hover {
+  border-color: var(--border-default);
+  background: var(--interactive-hover);
+  color: var(--content-default);
+}
 
-  /* ─── Animations ─── */
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .rise   { animation: rise 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-  .rise-1 { animation-delay: 40ms; }
-  .rise-2 { animation-delay: 90ms; }
-  .rise-3 { animation-delay: 150ms; }
-  .rise-4 { animation-delay: 210ms; }
+.toggle-btn.selected {
+  border-color: var(--accent-default);
+  background: var(--accent-lighter);
+  color: var(--content-accent);
+}
 
-  @media (max-width: 480px) {
-    .page { padding-top: calc(var(--nav-h) + 44px); }
-    .container { padding-left: 28px; padding-right: 28px; }
-    .site-footer { padding: 20px 28px 40px; }
-    .card-head {
-      width: 100%;
-    }
-    .check-ring {
-      margin-left: auto;
-    }
-    .card {
-      padding: 18px;
-      min-height: 176px;
-    }
-    .card-glyph {
-      width: 38px;
-      height: 38px;
-      border-radius: 9px;
-    }
-    .card-glyph svg {
-      width: 19px;
-      height: 19px;
-    }
-  }
+.toggle-btn.selected svg {
+  color: var(--content-accent);
+}
 
-  @media (min-width: 1024px) {
-    .page { padding-top: calc(var(--nav-h) + 64px); }
-    .nav-inner {
-      max-width: 1040px;
-      padding-left: 40px;
-      padding-right: 40px;
-    }
-    .container {
-      max-width: 1040px;
-      padding-left: 40px;
-      padding-right: 40px;
-    }
-    h1.hero-title {
-      font-size: clamp(36px, 3.8vw, 50px);
-    }
-    .card {
-      padding: 22px;
-      min-height: 182px;
-    }
-    .card-glyph {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
-    }
-    .card-title { font-size: 17px; }
-    .card-desc  { font-size: 12.5px; line-height: 1.45; }
-    .site-footer {
-      max-width: 1040px;
-      padding-left: 40px;
-      padding-right: 40px;
-      margin-top: 48px;
-    }
-  }
+/* ── Continue button ── */
+.continue-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  flex-shrink: 0;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  background: var(--accent-default);
+  color: #ffffff;
+  height: 36px;
+  gap: 6px;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font);
+  width: 100%;
+  transition: background 150ms;
+}
+
+.continue-btn:hover { background: var(--accent-hover); }
+
+.continue-btn:disabled {
+  background: var(--interactive-disabled);
+  color: var(--content-disabled);
+  cursor: not-allowed;
+}
+
+/* ── Right panel ── */
+.right-panel {
+  display: none;
+  padding: 4px 4px 4px 0;
+}
+
+@media (min-width: 768px) {
+  .right-panel { display: block; }
+}
+
+.right-panel-inner {
+  border: 1px solid var(--border-default);
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.right-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.right-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  color: transparent;
+}
+
+.testimonial-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 24px;
+}
+
+.testimonial-card {
+  background: var(--surface-base);
+  width: 388px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 24px rgba(0,0,0,0.06);
+}
+
+.testimonial-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.testimonial-quote {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--content-default);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.testimonial-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.author-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--content-default);
+}
+
+.author-role {
+  font-size: 12px;
+  color: var(--content-subtle);
+}
+
+/* ── Stats card ── */
+.stats-card {
+  background: var(--surface-subtle);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-row svg {
+  color: var(--content-subtle);
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.stat-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--content-default);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--content-subtle);
+}
+
+/* ── Progress bar ── */
+.progress-container {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.progress-track {
+  height: 4px;
+  width: 100%;
+  background: transparent;
+}
+
+.progress-fill {
+  background: var(--accent-default);
+  height: 100%;
+  border-radius: 999px;
+  transition: width 500ms ease-out;
+}
+
+/* ── Step 2 – calendar view ── */
+.booking-card-cal {
+  background-color: var(--surface-base);
+  border: 1px solid var(--border-default);
+  width: 100%;
+  max-width: 960px;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.cal-panel {
+  padding: 40px;
+}
+
+.cal-title {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--content-strong);
+  margin-bottom: 4px;
+}
+
+.cal-subtitle {
+  font-size: 12px;
+  color: var(--content-subtle);
+  margin-bottom: 24px;
+}
+
+#cal-inline {
+  min-height: 600px;
+}
 </style>
 </head>
 <body>
 
-<div id="root"></div>
+<div class="product-shell">
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <!-- Logo -->
+  <div class="logo-header">
+    <a href="/" aria-label="Conduit">
+      <img src="https://www.conduit.ai/figma/conduit-wordmark.svg?dpl=dpl_GZu3z9XoAj9UushYC4Gdt1BPzDnf" alt="Conduit" width="86" height="19" decoding="async">
+    </a>
+  </div>
+
+  <!-- Main -->
+  <div class="main-content">
+
+    <!-- ── Step 1: form ── -->
+    <div id="step-1" class="card-wrapper">
+      <div class="booking-card">
+
+        <!-- Left: form -->
+        <div class="form-panel">
+          <div class="form-body">
+
+            <div class="form-title-group">
+              <h1 class="form-title">Get Started</h1>
+              <p class="form-subtitle">A few details and we'll get your demo booked.</p>
+            </div>
+
+            <!-- Name -->
+            <div class="name-row">
+              <div class="field-group">
+                <div class="field-label">First Name</div>
+                <input id="first-name" class="field-input" type="text" placeholder="Barry" autocomplete="given-name">
+              </div>
+              <div class="field-group">
+                <div class="field-label">Last Name</div>
+                <input id="last-name" class="field-input" type="text" placeholder="Sternlicht" autocomplete="family-name">
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="field-group">
+              <div class="field-label">Work Email</div>
+              <input id="work-email" class="field-input" type="email" placeholder="barry@starwoodcapital.ai" autocomplete="email">
+            </div>
+
+            <!-- Industry -->
+            <div class="field-group">
+              <div class="field-label">Industry</div>
+              <div class="toggle-group" role="group" aria-label="Industry">
+
+                <button type="button" class="toggle-btn" data-value="short-term-rental" onclick="selectIndustry(this)">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.477 1.336a2 2 0 0 1 1.046 0c.397.108.732.37.999.58 2.303 1.809 4.62 3.599 6.934 5.394.377.292.709.55.956.884.217.294.379.624.477.975.112.4.112.82.111 1.298-.003 2.457 0 4.914 0 7.372 0 .527 0 .981-.03 1.356-.033.395-.104.789-.297 1.167a3 3 0 0 1-1.311 1.311c-.378.193-.772.264-1.167.296-.802.066-1.614.03-2.418.031-.12 0-.262 0-.387-.01a1.51 1.51 0 0 1-.571-.153 1.5 1.5 0 0 1-.655-.656 1.508 1.508 0 0 1-.154-.571 4.923 4.923 0 0 1-.01-.387l.008-5.596c0-.56.001-.841-.108-1.056a1 1 0 0 0-.437-.437c-.214-.11-.494-.11-1.055-.11h-2.8c-.56 0-.839 0-1.053.11a1 1 0 0 0-.437.436c-.109.213-.11.493-.11 1.052L9 20.223c0 .12 0 .262-.01.387a1.508 1.508 0 0 1-.154.571 1.5 1.5 0 0 1-.655.655 1.51 1.51 0 0 1-.571.154c-.126.01-.268.01-.387.01-.804 0-1.617.035-2.418-.03-.395-.033-.789-.104-1.167-.297a3 3 0 0 1-1.311-1.311c-.193-.378-.264-.772-.296-1.167C2 18.82 2 18.365 2 17.838c0-2.457.003-4.914 0-7.371 0-.477-.001-.897.111-1.298a3 3 0 0 1 .477-.975c.247-.334.58-.592.956-.884 2.313-1.795 4.631-3.585 6.934-5.394.267-.21.602-.472 1-.58Z" fill="currentColor"/></svg>
+                  <span>Short Term Rental</span>
+                </button>
+
+                <button type="button" class="toggle-btn" data-value="independent-hotel" onclick="selectIndustry(this)">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.161 2h9.678c.527 0 .982 0 1.356.03.395.033.789.104 1.167.297a3 3 0 0 1 1.311 1.311c.193.378.264.772.296 1.167.031.375.031.83.031 1.356V20h1a1 1 0 1 1 0 2H2a1 1 0 1 1 0-2h1V6.161c0-.527 0-.981.03-1.356.033-.395.104-.789.297-1.167a3 3 0 0 1 1.311-1.311c.378-.193.772-.264 1.167-.296C6.18 2 6.635 2 7.161 2Zm.089 4a1 1 0 0 0 0 2H10a1 1 0 1 0 0-2H7.25Zm0 4a1 1 0 1 0 0 2H10a1 1 0 1 0 0-2H7.25Zm-1 5a1 1 0 0 1 1-1H10a1 1 0 1 1 0 2H7.25a1 1 0 0 1-1-1ZM14 6a1 1 0 1 0 0 2h2.75a1 1 0 1 0 0-2H14Zm-1 5a1 1 0 0 1 1-1h2.75a1 1 0 1 1 0 2H14a1 1 0 0 1-1-1Zm1 3a1 1 0 1 0 0 2h2.75a1 1 0 1 0 0-2H14Z" fill="currentColor"/></svg>
+                  <span>Independent Hotel</span>
+                </button>
+
+                <button type="button" class="toggle-btn" data-value="hotel-chain" onclick="selectIndustry(this)">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.338 2h-2.676c-.528 0-.982 0-1.357.03-.395.033-.789.104-1.167.297a3 3 0 0 0-1.311 1.311c-.193.378-.264.772-.296 1.167-.031.375-.031.83-.031 1.356V10H4.568c-.252 0-.498 0-.706.017a2.02 2.02 0 0 0-.77.201 2 2 0 0 0-.874.874 2.022 2.022 0 0 0-.201.77C2 12.07 2 12.316 2 12.568V20a1 1 0 1 0 0 2h20a1 1 0 1 0 0-2v-7.432c0-.252 0-.498-.017-.706a2.023 2.023 0 0 0-.201-.77 2 2 0 0 0-.874-.874 2.02 2.02 0 0 0-.77-.201 9.155 9.155 0 0 0-.706-.017H17.5V6.161c0-.527 0-.981-.03-1.356-.033-.395-.104-.789-.297-1.167a3 3 0 0 0-1.311-1.311c-.378-.193-.772-.264-1.167-.296A17.9 17.9 0 0 0 13.338 2ZM10 7a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1Zm1 3a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2h-2Z" fill="currentColor"/></svg>
+                  <span>Hotel Chain</span>
+                </button>
+
+                <button type="button" class="toggle-btn" data-value="aparthotel" onclick="selectIndustry(this)">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.162 2h3.676c.528 0 .982 0 1.357.03.395.033.789.104 1.167.297a3 3 0 0 1 1.311 1.311c.193.378.264.772.296 1.167.031.375.031.83.031 1.356V20a1 1 0 1 1 0 2H2a1 1 0 1 1 0-2v-5.838c0-.528 0-.982.03-1.357.033-.395.104-.789.297-1.167a3 3 0 0 1 1.311-1.311c.378-.193.772-.264 1.167-.296C5.18 10 5.635 10 6.161 10H10V6.161c0-.527 0-.981.03-1.356.033-.395.104-.789.297-1.167a3 3 0 0 1 1.311-1.311c.378-.193.772-.264 1.167-.296C13.18 2 13.635 2 14.162 2ZM19 7a1 1 0 0 0-1-1h-4a1 1 0 1 0 0 2h4a1 1 0 0 0 1-1Zm0 4a1 1 0 0 0-1-1h-4a1 1 0 1 0 0 2h4a1 1 0 0 0 1-1Zm-1 3a1 1 0 1 1 0 2h-4a1 1 0 1 1 0-2h4Z" fill="currentColor"/></svg>
+                  <span>Aparthotel</span>
+                </button>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Continue -->
+          <button type="button" class="continue-btn" onclick="handleContinue()">
+            Continue
+          </button>
+        </div>
+
+        <!-- Right: testimonial -->
+        <div class="right-panel">
+          <div class="right-panel-inner">
+            <div class="right-bg">
+              <img src="https://www.conduit.ai/_next/image?url=%2Ffigma%2Fblog-thumb-bg-5.png&w=1920&q=75&dpl=dpl_GZu3z9XoAj9UushYC4Gdt1BPzDnf" alt="" decoding="async">
+            </div>
+            <div class="testimonial-wrapper">
+              <div class="testimonial-card">
+                <div class="testimonial-body">
+                  <p class="testimonial-quote">"Before Conduit, thousands of guest messages went unanswered. Now agents handle 15,000 messages a day, and our support team is 80% smaller."</p>
+                  <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://www.conduit.ai/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzqfc7p0h%2Fproduction%2F1bf7f6390dcc9e922abc6bf21eef3f15a08b31c4-200x200.png%3Fw%3D2000%26fit%3Dmax%26auto%3Dformat%26dpr%3D2&w=64&q=75" alt="Iuliia Rymar" loading="lazy" decoding="async">
+                    <div class="author-info">
+                      <span class="author-name">Iuliia Rymar</span>
+                      <span class="author-role">Operations Manager, Arbio</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="stats-card">
+                  <div class="stat-row">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.094 11.229A8.01 8.01 0 0 1 6 10c0-4.418 3.605-8 8.053-8 4.447 0 8.052 3.582 8.052 8 0 .998-.184 1.954-.52 2.835-.07.182-.105.274-.12.345a.897.897 0 0 0-.024.194c-.002.073.008.153.028.314l.403 3.27c.043.355.065.532.006.66a.5.5 0 0 1-.257.252c-.13.055-.306.03-.66-.022l-3.184-.467c-.167-.024-.25-.037-.326-.036a.898.898 0 0 0-.2.021c-.074.016-.169.051-.358.122a8.174 8.174 0 0 1-4.07.42M7.632 22C10.597 22 13 19.538 13 16.5S10.597 11 7.632 11c-2.965 0-5.369 2.462-5.369 5.5 0 .61.097 1.198.277 1.747.075.232.113.348.126.427.013.083.015.13.01.213-.005.08-.025.17-.065.351L2 22l2.995-.409c.163-.022.245-.034.316-.033.076 0 .115.005.19.02.07.013.173.05.381.123a5.246 5.246 0 0 0 1.75.299Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="stat-value">1.28M</span>
+                    <span class="stat-label">messages handled</span>
+                  </div>
+                  <div class="stat-row">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 21v-7.4c0-.56 0-.84.109-1.054a1 1 0 0 1 .437-.437C9.76 12 10.04 12 10.6 12h2.8c.56 0 .84 0 1.054.109a1 1 0 0 1 .437.437C15 12.76 15 13.04 15 13.6V21M11.018 2.764 4.235 8.039c-.453.353-.68.53-.843.75a2 2 0 0 0-.318.65C3 9.704 3 9.991 3 10.565V17.8c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874C4.52 21 5.08 21 6.2 21h11.6c1.12 0 1.68 0 2.108-.218a2 2 0 0 0 .874-.874C21 19.48 21 18.92 21 17.8v-7.235c0-.574 0-.861-.074-1.126a2.002 2.002 0 0 0-.318-.65c-.163-.22-.39-.397-.843-.75l-6.783-5.275c-.351-.273-.527-.41-.72-.462a1 1 0 0 0-.523 0c-.194.052-.37.189-.721.462Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="stat-value">805</span>
+                    <span class="stat-label">active listings</span>
+                  </div>
+                  <div class="stat-row">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2 4.093 12.688c-.348.418-.523.628-.525.804a.5.5 0 0 0 .185.397c.138.111.41.111.955.111H12l-1 8 8.907-10.688c.348-.418.523-.628.525-.804a.5.5 0 0 0-.185-.397c-.138-.111-.41-.111-.955-.111H12l1-8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="stat-value">86%</span>
+                    <span class="stat-label">automated</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Step 2: calendar ── -->
+    <div id="step-2" class="card-wrapper" style="display: none;">
+      <div class="booking-card-cal">
+        <div class="cal-panel">
+          <h1 class="cal-title">Pick a time.</h1>
+          <p class="cal-subtitle">Choose a slot that works for you. We'll send a calendar invite right away.</p>
+          <div id="cal-inline"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-container">
+    <div class="progress-track">
+      <div id="progress-fill" class="progress-fill" style="width: 50%;"></div>
+    </div>
+  </div>
+
+</div>
 
 <!-- Cal.com embed -->
 <script type="text/javascript">
 (function(C,A,L){let p=function(a,ar){a.q.push(ar);};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true;}if(ar[0]===L){const api=function(){p(api,arguments);};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,["initNamespace",namespace]);}else p(cal,ar);return;}p(cal,ar);};})(window,"https://app.cal.com/embed/embed.js","init");
 </script>
 
-<script type="text/babel" data-presets="react">
-const { useState, useMemo, useEffect, useRef } = React;
+<script>
+var selectedIndustry = null;
 
-/* ─── Icons ─── */
-const PhoneIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.52 12a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-  </svg>
-);
-
-const PhoneOutgoingIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="23 7 23 1 17 1"/>
-    <line x1="16" y1="8" x2="23" y2="1"/>
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.52 12a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-  </svg>
-);
-
-const ZapIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-  </svg>
-);
-
-const CalendarIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-    <line x1="16" y1="2" x2="16" y2="6"/>
-    <line x1="8" y1="2" x2="8" y2="6"/>
-    <line x1="3" y1="10" x2="21" y2="10"/>
-  </svg>
-);
-
-const OnAgencyMark = () => (
-  <svg width="30" height="20" viewBox="0 0 1377 932" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="71.7163" y1="52.5088" x2="422.457"  y2="255.009" stroke="currentColor" strokeWidth="105" strokeLinecap="round"/>
-    <line x1="953.716" y1="657.509" x2="1304.46"  y2="860.009" stroke="currentColor" strokeWidth="105" strokeLinecap="round"/>
-    <line x1="954.216" y1="255.009" x2="1304.96"  y2="52.5088" stroke="currentColor" strokeWidth="105" strokeLinecap="round"/>
-    <line x1="72.2163" y1="860.009" x2="422.957"  y2="657.509" stroke="currentColor" strokeWidth="105" strokeLinecap="round"/>
-  </svg>
-);
-
-const CheckMini = () => (
-  <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-    <path d="M2.5 6.2L5 8.7l4.5-5.4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
-
-/* ─── Step copy ─── */
-const STEP_COPY = [
-  {
-    title: "Book a free demo.",
-    lede:  "Pick the services you'd like to talk through. We'll tailor the questions to match.",
-  },
-  {
-    title: "Tell us about you.",
-    lede:  "Fill in the form below and we'll use it to personalize your demo experience.",
-  },
-  {
-    title: "Pick a time.",
-    lede:  "Choose a slot that works for you. We'll send a calendar invite right away.",
-  },
-];
-
-/* ─── Data ─── */
-const SERVICES = [
-  {
-    id: "receptionist",
-    title: "AI Receptionist",
-    desc: "A 24/7 voice agent that answers, qualifies, and routes inbound calls.",
-    tag: "Inbound",
-    icon: <PhoneIcon />,
-  },
-  {
-    id: "outbound",
-    title: "AI Outbound Caller",
-    desc: "Place high-volume, natural-sounding calls for sales, follow-ups, and reactivation.",
-    tag: "Outbound",
-    icon: <PhoneOutgoingIcon />,
-  },
-  {
-    id: "automation",
-    title: "AI Automation",
-    desc: "Custom workflows that connect your tools and run the busywork on autopilot.",
-    tag: "Operations",
-    icon: <ZapIcon />,
-  },
-];
-
-const SHARED = [
-  { key:"name",     label:"Your name",        type:"text",  placeholder:"Jane Cooper",          required:true,  half:true },
-  { key:"email",    label:"Work email",        type:"email", placeholder:"jane@company.com",      required:true,  half:true },
-  { key:"phone",    label:"Phone",             type:"tel",   placeholder:"+1 (555) 000-0000",     required:true,  half:true },
-  { key:"business", label:"Business name",     type:"text",  placeholder:"Acme, Inc.",            required:true,  half:true },
-  { key:"website",  label:"Business website",  type:"url",   placeholder:"https://acme.com",      required:true  },
-];
-
-const PER_SERVICE = {
-  receptionist: [
-    { key:"rc_challenge", label:"Main challenge you're looking to solve?",  type:"textarea", placeholder:"Missed after hours calls, long hold times, qualifying leads",      required:true  },
-    { key:"rc_volume",    label:"Inbound calls per day on average?",         type:"text",     placeholder:"e.g. 50",                                                           required:true  },
-    { key:"rc_notes",     label:"Additional notes",                          type:"textarea", placeholder:"Anything else we should know.",                                     required:false },
-  ],
-  outbound: [
-    { key:"ob_usecase", label:"What would you use AI outbound calling for?", type:"textarea", placeholder:"Lead qualification, appointment setting, win-back campaigns",      required:true  },
-    { key:"ob_volume",  label:"Outbound calls per day on average?",          type:"text",     placeholder:"e.g. 200",                                                          required:true  },
-    { key:"ob_notes",   label:"Additional notes",                            type:"textarea", placeholder:"Anything else we should know.",                                     required:false },
-  ],
-  automation: [
-    { key:"au_process", label:"What process are you looking to automate?",   type:"textarea", placeholder:"CRM hygiene, lead routing, document generation, reporting",       required:true  },
-    { key:"au_notes",   label:"Additional notes",                            type:"textarea", placeholder:"Anything else we should know.",                                     required:false },
-  ],
-};
-
-/* ─── Sub-components ─── */
-function ServiceCard({ service, selected, onToggle, delay }) {
-  return (
-    <button
-      type="button"
-      className={"card rise" + (selected ? " selected" : "")}
-      style={{ animationDelay: delay + "ms" }}
-      onClick={onToggle}
-      aria-pressed={selected}
-    >
-      <div className="card-head">
-        <div className="card-glyph">{service.icon}</div>
-        <div className="check-ring" aria-hidden="true">
-          <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-            <path d="M2.5 6.2L5 8.7l4.5-5.4" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-      </div>
-      <div>
-        <h3 className="card-title">{service.title}</h3>
-        <p className="card-desc">{service.desc}</p>
-      </div>
-      <div className="card-tag">{service.tag}</div>
-    </button>
-  );
+function selectIndustry(btn) {
+  document.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  selectedIndustry = btn.dataset.value;
 }
 
-function Field({ def, value, error, onChange }) {
-  const id = "f-" + def.key;
-  const base = {
-    id,
-    value: value || "",
-    onChange: e => onChange(def.key, e.target.value),
-    className: error ? "invalid" : "",
-  };
-  return (
-    <div className="field">
-      <label htmlFor={id}>
-        <span>{def.label}</span>
-        {!def.required && <span className="optional">Optional</span>}
-      </label>
-      {def.type === "textarea" ? (
-        <textarea {...base} placeholder={def.placeholder} rows={3} />
-      ) : def.type === "select" ? (
-        <select {...base}>
-          <option value="" disabled>Select an option</option>
-          {def.options.map(o => <option key={o} value={o}>{o}</option>)}
-        </select>
-      ) : (
-        <input type={def.type} {...base} placeholder={def.placeholder} autoComplete="off" />
-      )}
-      {error && <div className="err">{error}</div>}
-    </div>
-  );
-}
+function handleContinue() {
+  var firstName = document.getElementById('first-name').value.trim();
+  var lastName  = document.getElementById('last-name').value.trim();
+  var email     = document.getElementById('work-email').value.trim();
+  var fullName  = (firstName + ' ' + lastName).trim();
 
-function FieldGroup({ fields, values, errors, onChange }) {
-  const rows = [];
-  let i = 0;
-  while (i < fields.length) {
-    const f = fields[i], nxt = fields[i + 1];
-    if (f.half && nxt && nxt.half) {
-      rows.push(
-        <div className="field-row" key={f.key + "-row"}>
-          <Field def={f}   value={values[f.key]}   error={errors[f.key]}   onChange={onChange} />
-          <Field def={nxt} value={values[nxt.key]} error={errors[nxt.key]} onChange={onChange} />
-        </div>
-      );
-      i += 2;
-    } else {
-      rows.push(<Field key={f.key} def={f} value={values[f.key]} error={errors[f.key]} onChange={onChange} />);
-      i += 1;
-    }
-  }
-  return <>{rows}</>;
-}
+  // Submit to web3forms (silent)
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      access_key: '3cdd884e-bef5-4630-a791-7adc96bec13f',
+      subject: 'New Demo Request — ' + (fullName || 'Unknown'),
+      from_name: 'On Agency Book Demo',
+      'Name': fullName,
+      'Email': email,
+      'Industry': selectedIndustry || ''
+    })
+  }).catch(function() {});
 
-function NavSteps({ step, onNavigate }) {
-  const items = [
-    { label: "Services", n: 0 },
-    { label: "Details",  n: 1 },
-    { label: "Schedule", n: 2 },
-  ];
-  return (
-    <div className="nav-steps">
-      {items.map((s, i) => {
-        const clickable = s.n < step;
-        return (
-          <React.Fragment key={s.n}>
-            {i > 0 && (
-              <div className={"nav-step-connector" + (step > s.n - 1 ? " done" : "")} />
-            )}
-            <div
-              className={"nav-step-item" + (step === s.n ? " active" : step > s.n ? " done" : "") + (clickable ? " clickable" : "")}
-              onClick={() => clickable && onNavigate(s.n)}
-              style={clickable ? { cursor: "pointer" } : {}}
-            >
-              <div className="nav-step-circle">
-                {step > s.n ? <CheckMini /> : (i + 1)}
-              </div>
-              <span className="nav-step-label">{s.label}</span>
-            </div>
-          </React.Fragment>
-        );
-      })}
-    </div>
-  );
-}
+  // Transition to step 2
+  document.getElementById('step-1').style.display = 'none';
+  document.getElementById('step-2').style.display = 'flex';
+  document.getElementById('progress-fill').style.width = '100%';
 
-/* ─── App ─── */
-function App() {
-  const [selected,  setSelected]  = useState([]);
-  const [flowStep,  setFlowStep]  = useState(0);
-  const [values,    setValues]    = useState({});
-  const [errors,    setErrors]    = useState({});
-  const calRef = useRef(null);
-
-  const toggle = id =>
-    setSelected(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
-
-  const onChange = (key, val) => {
-    setValues(v => ({ ...v, [key]: val }));
-    if (errors[key]) setErrors(e => { const n = {...e}; delete n[key]; return n; });
-  };
-
-  const ordered = useMemo(() => SERVICES.filter(s => selected.includes(s.id)), [selected]);
-
-  const validate = () => {
-    const e = {};
-    [...SHARED, ...ordered.flatMap(s => PER_SERVICE[s.id])]
-      .filter(f => f.required)
-      .forEach(f => {
-        const v = (values[f.key] || "").trim();
-        if (!v) { e[f.key] = "Required."; return; }
-        if (f.type === "email" && !/^\S+@\S+\.\S+$/.test(v)) e[f.key] = "Enter a valid email.";
-        if (f.type === "url"   && !/^(https?:\/\/)?\S+\.\S+/.test(v)) e[f.key] = "Enter a valid URL.";
-      });
-    setErrors(e);
-    return !Object.keys(e).length;
-  };
-
-  const handleNext = () => {
-    setFlowStep(1);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleSubmit = async ev => {
-    ev.preventDefault();
-    if (!validate()) return;
-
-    try {
-      const payload = {
-        access_key: "3cdd884e-bef5-4630-a791-7adc96bec13f",
-        subject: "New Demo Request — " + (values.name || "Unknown"),
-        from_name: "On Agency Book Demo",
-        "Name":             values.name     || "",
-        "Email":            values.email    || "",
-        "Phone":            values.phone    || "",
-        "Business Name":    values.business || "",
-        "Business Website": values.website  || "",
-        "Services":         ordered.map(s => s.title).join(", "),
-      };
-      ordered.forEach(s => {
-        if (s.id === "receptionist") {
-          if (values.rc_challenge) payload["Receptionist — Main Challenge"]    = values.rc_challenge;
-          if (values.rc_volume)    payload["Receptionist — Inbound Calls/Day"] = values.rc_volume;
-          if (values.rc_notes)     payload["Receptionist — Notes"]             = values.rc_notes;
-        }
-        if (s.id === "outbound") {
-          if (values.ob_usecase) payload["Outbound — Use Case"]    = values.ob_usecase;
-          if (values.ob_volume)  payload["Outbound — Calls/Day"]   = values.ob_volume;
-          if (values.ob_notes)   payload["Outbound — Notes"]       = values.ob_notes;
-        }
-        if (s.id === "automation") {
-          if (values.au_process) payload["Automation — Process"]   = values.au_process;
-          if (values.au_notes)   payload["Automation — Notes"]     = values.au_notes;
-        }
-      });
-      await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-    } catch (_) {
-      // Silent — never block the user flow
-    }
-
-    setFlowStep(2);
-    setTimeout(() => {
-      if (calRef.current) {
-        const y = calRef.current.getBoundingClientRect().top + window.scrollY - 24;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }
-    }, 80);
-  };
-
-  useEffect(() => {
-    if (flowStep !== 2 || !window.Cal) return;
-    window.Cal("init", "book-free-demo", { origin: "https://app.cal.com" });
-    window.Cal.ns["book-free-demo"]("inline", {
-      elementOrSelector: "#cal-inline",
+  // Init Cal.com
+  if (window.Cal) {
+    window.Cal('init', 'book-free-demo', { origin: 'https://app.cal.com' });
+    window.Cal.ns['book-free-demo']('inline', {
+      elementOrSelector: '#cal-inline',
       config: {
-        layout: "month_view",
-        theme: "light",
-        name:  values.name  || "",
-        email: values.email || "",
-        notes: buildNotes(ordered, values),
+        layout: 'month_view',
+        theme: 'light',
+        name: fullName,
+        email: email
       },
-      calLink: "onagency/book-free-demo",
+      calLink: 'onagency/book-free-demo'
     });
-    window.Cal.ns["book-free-demo"]("ui", {
-      theme: "light",
+    window.Cal.ns['book-free-demo']('ui', {
+      theme: 'light',
       hideEventTypeDetails: false,
-      layout: "month_view",
+      layout: 'month_view',
       cssVarsPerTheme: {
         light: {
-          "cal-brand":    "#0A0A0A",
-          "cal-bg":       "#FFFFFF",
-          "cal-bg-muted": "#FAFAFA",
+          'cal-brand':    '#0a0a0a',
+          'cal-bg':       '#ffffff',
+          'cal-bg-muted': '#fafafa'
         }
       }
     });
-  }, [flowStep]);
+  }
 
-  const requiredCount = useMemo(() => {
-    if (!ordered.length) return 0;
-    return [...SHARED, ...ordered.flatMap(s => PER_SERVICE[s.id])].filter(f => f.required).length;
-  }, [ordered]);
-
-  const firstName = values.name?.split(" ")[0] || "there";
-
-  return (
-    <>
-      {/* Fixed nav */}
-      <nav className="top-nav">
-        <div className="nav-inner">
-          <a href="https://onagency.ai" className="nav-logo" target="_blank" rel="noopener noreferrer" aria-label="On Agency">
-            <OnAgencyMark />
-          </a>
-          <NavSteps step={flowStep} onNavigate={n => { setFlowStep(n); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
-        </div>
-      </nav>
-
-      <div className="page">
-        <div className="grid-bg" aria-hidden="true" />
-
-        <div className="container">
-          {/* ── Hero ── */}
-          <div className="eyebrow rise">
-            <CalendarIcon />
-            Book a Demo Appointment
-          </div>
-          <h1 className="hero-title rise rise-1" key={"title-" + flowStep}>
-            {STEP_COPY[flowStep].title}
-          </h1>
-          <p className="lede rise rise-2" key={"lede-" + flowStep}>
-            {STEP_COPY[flowStep].lede}
-          </p>
-
-          {/* ══ STEP 1 — Services ══ */}
-          {flowStep === 0 && (
-            <>
-              <div className="step-header rise rise-3">
-                <div className="step-label">Step 01 / Services</div>
-                <div className="step-count">{selected.length} selected · multi-select</div>
-              </div>
-
-              <div className="services">
-                {SERVICES.map((s, i) => (
-                  <ServiceCard
-                    key={s.id}
-                    service={s}
-                    delay={150 + i * 60}
-                    selected={selected.includes(s.id)}
-                    onToggle={() => toggle(s.id)}
-                  />
-                ))}
-              </div>
-
-              <div className="service-footer rise rise-4">
-                {selected.length === 0
-                  ? <span className="hint">Select at least one service to continue</span>
-                  : <span className="hint">{selected.length} service{selected.length > 1 ? "s" : ""} selected</span>
-                }
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={handleNext}
-                  disabled={selected.length === 0}
-                >
-                  Next
-                  <svg className="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </div>
-            </>
-          )}
-
-          {/* ══ STEP 2 — Form ══ */}
-          {flowStep === 1 && (
-            <form onSubmit={handleSubmit} noValidate>
-              <div className="summary">
-                {ordered.map(s => (
-                  <span key={s.id} className="chip">
-                    <span className="chip-dot" />
-                    {s.title}
-                  </span>
-                ))}
-                <button type="button" className="btn-ghost" onClick={() => setFlowStep(0)}>
-                  ← Edit
-                </button>
-              </div>
-
-              <section className="form-section">
-                <div className="form-section-head">
-                  <div className="fsec-index">01</div>
-                  <div className="fsec-title">Contact and business</div>
-                  <div className="fsec-meta">Shared</div>
-                </div>
-                <FieldGroup fields={SHARED} values={values} errors={errors} onChange={onChange} />
-              </section>
-
-              {ordered.map((s, idx) => (
-                <section className="form-section" key={s.id}>
-                  <div className="form-section-head">
-                    <div className="fsec-index">{String(idx + 2).padStart(2, "0")}</div>
-                    <div className="fsec-title">{s.title}</div>
-                    <div className="fsec-meta">{s.tag}</div>
-                  </div>
-                  <FieldGroup fields={PER_SERVICE[s.id]} values={values} errors={errors} onChange={onChange} />
-                </section>
-              ))}
-
-              <div className="submit-row">
-                <button type="button" className="submit-back" onClick={() => { setFlowStep(0); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
-                  ← Back to services
-                </button>
-                <button type="submit" className="btn">
-                  Continue
-                  <svg className="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </div>
-            </form>
-          )}
-
-          {/* ══ STEP 3 — Calendar ══ */}
-          {flowStep === 2 && (
-            <div ref={calRef}>
-              <div className="calendar-shell rise">
-                <div id="cal-inline" className="cal-frame" />
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* ── Footer ── */}
-        <footer className="site-footer">
-          <div className="footer-links">
-            <a href="https://onagency.ai/privacy-policy" className="footer-link">Privacy Policy</a>
-            <a href="https://onagency.ai/terms-of-service" className="footer-link">Terms of Service</a>
-          </div>
-        </footer>
-      </div>
-    </>
-  );
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
-function buildNotes(services, v) {
-  const lines = ["Services of interest: " + services.map(s => s.title).join(", ")];
-  if (v.business) lines.push("Business: " + v.business);
-  if (v.website)  lines.push("Website: "  + v.website);
-  services.forEach(s => {
-    if (s.id === "receptionist") {
-      if (v.rc_challenge) lines.push("Receptionist challenge: " + v.rc_challenge);
-      if (v.rc_volume)    lines.push("Inbound volume: "         + v.rc_volume);
-      if (v.rc_notes)     lines.push("Receptionist notes: "     + v.rc_notes);
-    }
-    if (s.id === "outbound") {
-      if (v.ob_usecase) lines.push("Outbound use case: " + v.ob_usecase);
-      if (v.ob_volume)  lines.push("Outbound volume: "   + v.ob_volume);
-      if (v.ob_notes)   lines.push("Outbound notes: "    + v.ob_notes);
-    }
-    if (s.id === "automation") {
-      if (v.au_process) lines.push("Automation process: " + v.au_process);
-      if (v.au_notes)   lines.push("Automation notes: "   + v.au_notes);
-    }
-  });
-  return lines.join("\n");
-}
-
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 </script>
+
 </body>
 </html>
