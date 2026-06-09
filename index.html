@@ -119,7 +119,7 @@ html, body {
 }
 
 .form-title {
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--content-strong);
@@ -149,7 +149,7 @@ html, body {
 .field-label {
   font-size: 11px;
   font-weight: 500;
-  color: #9ca3af;
+  color: #646465;
   line-height: 1.4;
   display: flex;
   width: fit-content;
@@ -162,7 +162,7 @@ html, body {
   outline: none;
   color: #1a1a1a;
   background: var(--interactive-default);
-  border: 1px solid #ebebeb;
+  border: 1px solid #c2c2c2;
   border-radius: 8px;
   height: 32px;
   padding: 4px 10px;
@@ -173,17 +173,16 @@ html, body {
   -webkit-appearance: none;
 }
 
-.field-input::placeholder { color: #d1d5db; }
+.field-input::placeholder { color: #c2c2c2; }
 
 .field-input:hover {
-  background: var(--interactive-hover);
-  border-color: #d1d5db;
+  border-color: #c2c2c2;
+  box-shadow: 0 0 0 3px #e1e1e1;
 }
 
 .field-input:focus {
-  background: var(--interactive-hover);
-  border-color: #a0a0a0;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+  border-color: #c2c2c2;
+  box-shadow: 0 0 0 3px #e1e1e1;
   outline: none;
 }
 
@@ -199,7 +198,7 @@ html, body {
   display: inline-flex;
   cursor: pointer;
   align-items: center;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid #c2c2c2;
   background: var(--surface-base);
   border-radius: 6px;
   height: 36px;
@@ -207,7 +206,7 @@ html, body {
   font-size: 13px;
   font-weight: 500;
   font-family: var(--font);
-  color: var(--content-subtle);
+  color: #29251e;
   gap: 8px;
   width: 100%;
   justify-content: flex-start;
@@ -216,7 +215,7 @@ html, body {
 }
 
 .toggle-btn svg {
-  color: var(--content-subtle);
+  color: #29251e;
   width: 16px;
   height: 16px;
   flex-shrink: 0;
@@ -230,19 +229,19 @@ html, body {
 }
 
 .toggle-btn:hover {
-  border-color: var(--border-default);
+  border-color: #c2c2c2;
   background: var(--interactive-hover);
-  color: var(--content-default);
+  color: #29251e;
 }
 
 .toggle-btn.selected {
-  border-color: #3b82f6;
-  background: #eff6ff;
-  color: #2563eb;
+  border-color: #0391ff;
+  background: #e1f1ff;
+  color: #0391ff;
 }
 
 .toggle-btn.selected svg {
-  color: #2563eb;
+  color: #0391ff;
 }
 
 /* ── Continue button ── */
@@ -256,7 +255,7 @@ html, body {
   outline: none;
   cursor: pointer;
   user-select: none;
-  background: #3b82f6;
+  background: #0391ff;
   color: #ffffff;
   height: 36px;
   gap: 6px;
@@ -269,7 +268,7 @@ html, body {
   transition: background 150ms;
 }
 
-.continue-btn:hover { background: #2563eb; }
+.continue-btn:hover { background: #0380e0; }
 
 .continue-btn:disabled {
   background: var(--interactive-disabled);
@@ -336,11 +335,11 @@ html, body {
 }
 
 .testimonial-quote {
-  font-size: 18px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.5;
   color: var(--content-default);
   font-family: 'Hedvig Letters Serif', Georgia, serif;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .testimonial-author {
@@ -422,7 +421,7 @@ html, body {
 }
 
 .progress-fill {
-  background: #3b82f6;
+  background: #0391ff;
   height: 100%;
   border-radius: 999px;
   transition: width 500ms ease-out;
