@@ -6,7 +6,7 @@
 <title>Book a Demo — On Agency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
 
@@ -20,13 +20,13 @@
   --content-default:      #333333;
   --content-subtle:       #646465;
   --content-disabled:     #c2c2c2;
-  --content-accent:       #0a0a0a;
+  --content-accent:       #3b82f6;
   --interactive-default:  #ffffff;
   --interactive-hover:    #f0f0f0;
   --interactive-disabled: #e5e5e5;
-  --accent-default:       #0a0a0a;
-  --accent-hover:         #1f1f1f;
-  --accent-lighter:       #f5f5f5;
+  --accent-default:       #3b82f6;
+  --accent-hover:         #2563eb;
+  --accent-lighter:       #eff6ff;
   --font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
@@ -119,7 +119,7 @@ html, body {
 }
 
 .form-title {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--content-strong);
@@ -236,13 +236,13 @@ html, body {
 }
 
 .toggle-btn.selected {
-  border-color: var(--accent-default);
-  background: var(--accent-lighter);
-  color: var(--content-accent);
+  border-color: #3b82f6;
+  background: #eff6ff;
+  color: #2563eb;
 }
 
 .toggle-btn.selected svg {
-  color: var(--content-accent);
+  color: #2563eb;
 }
 
 /* ── Continue button ── */
@@ -256,7 +256,7 @@ html, body {
   outline: none;
   cursor: pointer;
   user-select: none;
-  background: #0a0a0a;
+  background: #3b82f6;
   color: #ffffff;
   height: 36px;
   gap: 6px;
@@ -269,7 +269,7 @@ html, body {
   transition: background 150ms;
 }
 
-.continue-btn:hover { background: #1f1f1f; }
+.continue-btn:hover { background: #2563eb; }
 
 .continue-btn:disabled {
   background: var(--interactive-disabled);
@@ -339,8 +339,8 @@ html, body {
   font-size: 18px;
   line-height: 1.65;
   color: var(--content-default);
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 300;
+  font-family: 'Hedvig Letters Serif', Georgia, serif;
+  font-weight: 500;
 }
 
 .testimonial-author {
@@ -422,7 +422,7 @@ html, body {
 }
 
 .progress-fill {
-  background: #0a0a0a;
+  background: #3b82f6;
   height: 100%;
   border-radius: 999px;
   transition: width 500ms ease-out;
