@@ -6,7 +6,7 @@
 <title>Book a Demo — On Agency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
 
@@ -149,7 +149,7 @@ html, body {
 .field-label {
   font-size: 11px;
   font-weight: 500;
-  color: var(--content-subtle);
+  color: #9ca3af;
   line-height: 1.4;
   display: flex;
   width: fit-content;
@@ -160,9 +160,9 @@ html, body {
   width: 100%;
   min-width: 0;
   outline: none;
-  color: var(--content-default);
+  color: #1a1a1a;
   background: var(--interactive-default);
-  border: 1px solid var(--border-default);
+  border: 1px solid #ebebeb;
   border-radius: 8px;
   height: 32px;
   padding: 4px 10px;
@@ -173,16 +173,17 @@ html, body {
   -webkit-appearance: none;
 }
 
-.field-input::placeholder { color: var(--content-disabled); }
+.field-input::placeholder { color: #d1d5db; }
 
 .field-input:hover {
   background: var(--interactive-hover);
+  border-color: #d1d5db;
 }
 
 .field-input:focus {
   background: var(--interactive-hover);
-  border-color: var(--content-strong);
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  border-color: #a0a0a0;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
   outline: none;
 }
 
@@ -255,7 +256,7 @@ html, body {
   outline: none;
   cursor: pointer;
   user-select: none;
-  background: var(--accent-default);
+  background: #0a0a0a;
   color: #ffffff;
   height: 36px;
   gap: 6px;
@@ -268,7 +269,7 @@ html, body {
   transition: background 150ms;
 }
 
-.continue-btn:hover { background: var(--accent-hover); }
+.continue-btn:hover { background: #1f1f1f; }
 
 .continue-btn:disabled {
   background: var(--interactive-disabled);
@@ -335,10 +336,11 @@ html, body {
 }
 
 .testimonial-quote {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.65;
   color: var(--content-default);
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
 }
 
 .testimonial-author {
@@ -420,7 +422,7 @@ html, body {
 }
 
 .progress-fill {
-  background: var(--accent-default);
+  background: #0a0a0a;
   height: 100%;
   border-radius: 999px;
   transition: width 500ms ease-out;
