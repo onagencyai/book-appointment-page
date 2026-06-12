@@ -37,19 +37,18 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 }
 
 /* ── Logo ── */
-.logo-header { flex-shrink: 0; padding: 28px 0; }
-.logo-header a { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; }
-.logo-wordmark { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: var(--content-strong); }
+.logo-header { flex-shrink: 0; padding: 32px 0; }
+.logo-header a { display: inline-flex; align-items: center; text-decoration: none; }
 
 /* ── Layout ── */
 .main-content {
   display: flex; width: 100%; flex: 1;
   flex-direction: column; align-items: center; justify-content: center;
-  padding: 0 16px 24px;
+  padding: 0 16px 16px;
 }
 .card-wrapper { display: flex; width: 100%; justify-content: center; }
 
-/* ── Booking card (steps 1 & 2) ── */
+/* ── Booking card (step 1) ── */
 .booking-card {
   background: var(--surface-base);
   border: 1px solid var(--border-default);
@@ -58,19 +57,19 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
   overflow: hidden; border-radius: 24px;
 }
 @media (min-width: 768px) {
-  .booking-card { grid-template-columns: 1fr 1fr; min-height: 560px; }
+  .booking-card { grid-template-columns: 1fr 1fr; min-height: 580px; }
 }
 
 /* ── Form panel ── */
 .form-panel {
-  padding: 36px 36px 28px;
+  overflow-y: auto;
+  padding: 40px 40px 24px;
   display: flex; flex-direction: column;
   justify-content: space-between; gap: 24px;
-  overflow-y: auto;
 }
 @media (max-width: 767px) { .form-panel { padding: 28px 24px 24px; } }
 
-.form-body { display: flex; flex-direction: column; gap: 18px; }
+.form-body { display: flex; flex-direction: column; gap: 20px; }
 
 .form-title-group { display: flex; flex-direction: column; gap: 4px; }
 .form-title { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; color: var(--content-strong); line-height: 1.3; }
@@ -106,33 +105,25 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 .field-textarea:hover { border-color: #e5e5e5; background: #f0f0f0; }
 .field-textarea:focus { border-color: #c2c2c2; background: #f0f0f0; box-shadow: 0 0 0 3px #e1e1e1; outline: none; }
 
-/* ── Service buttons (step 2) ── */
-.service-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+/* ── Service toggle group (in step 1, multi-select) ── */
+.toggle-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
 
-.service-btn {
+.toggle-btn {
   display: inline-flex; cursor: pointer; align-items: center;
   border: 1px solid #e5e5e5; background: var(--surface-base);
-  border-radius: 8px; height: 44px; padding: 0 12px;
+  border-radius: 8px; height: 36px; padding: 0 16px;
   font-size: 13px; font-weight: 500; font-family: var(--font);
   color: #29251e; gap: 8px; width: 100%; justify-content: flex-start;
   transition: border-color 150ms, background 150ms, color 150ms;
+  flex-shrink: 0;
 }
-.service-btn svg.icon { color: #777; width: 16px; height: 16px; flex-shrink: 0; transition: color 150ms; }
-.service-btn span.label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
-.service-btn .check {
-  width: 16px; height: 16px; border-radius: 4px;
-  border: 1.5px solid #e5e5e5; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: border-color 150ms, background 150ms; margin-left: auto;
-}
-.service-btn .check svg { width: 10px; height: 10px; color: white; opacity: 0; transition: opacity 150ms; }
-.service-btn:hover { background: var(--interactive-hover); }
-.service-btn.selected { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
-.service-btn.selected svg.icon { color: var(--accent); }
-.service-btn.selected .check { background: var(--accent); border-color: var(--accent); }
-.service-btn.selected .check svg { opacity: 1; }
+.toggle-btn svg { color: #777777; width: 16px; height: 16px; flex-shrink: 0; transition: color 150ms; }
+.toggle-btn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.toggle-btn:hover { border-color: #e5e5e5; background: var(--interactive-hover); color: #29251e; }
+.toggle-btn.selected { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+.toggle-btn.selected svg { color: var(--accent); }
 
-/* ── Continue / back buttons ── */
+/* ── Continue button ── */
 .continue-btn {
   display: inline-flex; align-items: center; justify-content: center;
   white-space: nowrap; border: 1px solid transparent;
@@ -152,22 +143,24 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 .right-panel-inner { border: 1px solid var(--border-default); position: relative; height: 100%; overflow: hidden; border-radius: 20px; }
 .right-bg { position: absolute; inset: 0; }
 .right-bg img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; color: transparent; }
-.testimonial-wrapper { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-end; padding-right: 24px; }
-.testimonial-card { background: var(--surface-base); width: 300px; display: flex; flex-direction: column; gap: 24px; border-radius: 20px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,.08),0 4px 24px rgba(0,0,0,.06); }
-.testimonial-body { display: flex; flex-direction: column; gap: 16px; }
-.testimonial-quote { font-size: 14px; line-height: 1.55; color: var(--content-default); font-family: 'Hedvig Letters Serif', Georgia, serif; font-weight: 500; }
-.testimonial-author { display: flex; align-items: center; gap: 10px; }
-.testimonial-avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
-.author-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-.author-name { font-size: 12px; font-weight: 500; color: var(--content-default); }
-.author-role { font-size: 11px; color: var(--content-subtle); }
-.stats-card { background: var(--surface-subtle); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
-.stat-row { display: flex; align-items: center; gap: 6px; }
-.stat-row svg { color: var(--content-subtle); width: 13px; height: 13px; flex-shrink: 0; }
-.stat-value { font-size: 12px; font-weight: 500; color: var(--content-default); }
-.stat-label { font-size: 11px; color: var(--content-subtle); }
 
-/* ── Step 3: full-width form card ── */
+.testimonial-wrapper { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-end; padding-right: 24px; }
+.testimonial-card { background: var(--surface-base); width: 340px; display: flex; flex-direction: column; gap: 28px; border-radius: 20px; padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,.08),0 4px 24px rgba(0,0,0,.06); }
+.testimonial-body { display: flex; flex-direction: column; gap: 20px; }
+.testimonial-quote { font-size: 15px; line-height: 1.55; color: var(--content-default); font-family: 'Hedvig Letters Serif', Georgia, serif; font-weight: 500; }
+.testimonial-author { display: flex; align-items: center; gap: 14px; }
+.testimonial-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.author-info { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.author-name { font-size: 13px; font-weight: 500; color: var(--content-default); }
+.author-role { font-size: 12px; color: var(--content-subtle); }
+
+.stats-card { background: var(--surface-subtle); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+.stat-row { display: flex; align-items: center; gap: 6px; }
+.stat-row svg { color: var(--content-subtle); width: 14px; height: 14px; flex-shrink: 0; }
+.stat-value { font-size: 13px; font-weight: 500; color: var(--content-default); }
+.stat-label { font-size: 12px; color: var(--content-subtle); }
+
+/* ── Step 2: full-width form card ── */
 .booking-card-form {
   background: var(--surface-base);
   border: 1px solid var(--border-default);
@@ -188,7 +181,6 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 .selected-pills { display: flex; flex-wrap: wrap; gap: 6px; }
 .service-pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; background: var(--accent-light); color: var(--accent); font-size: 11px; font-weight: 500; }
 
-/* Form sections */
 .form-sections { display: flex; flex-direction: column; gap: 28px; }
 .form-section { display: flex; flex-direction: column; gap: 14px; }
 
@@ -205,7 +197,6 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 .fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
 @media (max-width: 600px) { .fields-grid { grid-template-columns: 1fr; } }
 .field-full { grid-column: 1 / -1; }
-
 .optional-tag { color: var(--content-disabled); font-weight: 400; }
 
 .form3-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 4px; }
@@ -219,7 +210,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 .privacy-note a { color: var(--content-subtle); text-decoration: none; }
 .privacy-note a:hover { text-decoration: underline; }
 
-/* ── Step 4: calendar ── */
+/* ── Step 3: calendar ── */
 .booking-card-cal { background: var(--surface-base); border: 1px solid var(--border-default); width: 100%; max-width: 960px; overflow: hidden; border-radius: 24px; }
 .cal-panel { padding: 40px; }
 .cal-title { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: var(--content-strong); margin-bottom: 4px; }
@@ -245,13 +236,12 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
         <line x1="954.216" y1="255.009" x2="1304.96" y2="52.5088" stroke="#1a1a1a" stroke-width="105" stroke-linecap="round"/>
         <line x1="72.2163" y1="860.009" x2="422.957" y2="657.509" stroke="#1a1a1a" stroke-width="105" stroke-linecap="round"/>
       </svg>
-      <span class="logo-wordmark">on agency</span>
     </a>
   </div>
 
   <div class="main-content">
 
-    <!-- ── Step 1: Contact info ── -->
+    <!-- ── Step 1: Contact info + service selection ── -->
     <div id="step-1" class="card-wrapper">
       <div class="booking-card">
 
@@ -276,11 +266,54 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
               <div class="field-label">Phone</div>
               <input id="phone" class="field-input" type="tel" placeholder="+1 (555) 000-0000" autocomplete="tel">
             </div>
+
+            <!-- Services -->
+            <div class="field-group">
+              <div class="field-label">What can we help with?</div>
+              <div class="toggle-group" role="group" aria-label="Services">
+
+                <button type="button" class="toggle-btn" data-value="ai-receptionist" onclick="toggleService(this)">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M3 11a9 9 0 0 1 18 0v2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <rect x="2" y="12.5" width="3" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                    <rect x="19" y="12.5" width="3" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M22 17.5a2.5 2.5 0 0 1-2.5 2.5H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <span>AI Receptionist</span>
+                </button>
+
+                <button type="button" class="toggle-btn" data-value="chat-agents" onclick="toggleService(this)">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <span>Chat Agents</span>
+                </button>
+
+                <button type="button" class="toggle-btn" data-value="outbound-caller" onclick="toggleService(this)">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 2h6v6M22 2l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Outbound Caller</span>
+                </button>
+
+                <button type="button" class="toggle-btn" data-value="automation" onclick="toggleService(this)">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7 23l-4-4 4-4m14 0v2a4 4 0 0 1-4 4H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Automation</span>
+                </button>
+
+              </div>
+            </div>
           </div>
 
           <button type="button" class="continue-btn" onclick="goToStep2()">Continue</button>
         </div>
 
+        <!-- Right: testimonial -->
         <div class="right-panel">
           <div class="right-panel-inner">
             <div class="right-bg">
@@ -323,104 +356,8 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
       </div>
     </div>
 
-    <!-- ── Step 2: Service selection ── -->
+    <!-- ── Step 2: Service-specific form (full width) ── -->
     <div id="step-2" class="card-wrapper" style="display:none;">
-      <div class="booking-card">
-
-        <div class="form-panel">
-          <div class="form-body">
-            <div class="form-title-group">
-              <h1 class="form-title">What can we help with?</h1>
-              <p class="form-subtitle">Select everything that applies — you can choose more than one.</p>
-            </div>
-
-            <div class="service-group" role="group" aria-label="Services">
-
-              <button type="button" class="service-btn" data-value="ai-receptionist" onclick="toggleService(this)">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M3 11a9 9 0 0 1 18 0v2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  <rect x="2" y="12.5" width="3" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
-                  <rect x="19" y="12.5" width="3" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
-                  <path d="M22 17.5a2.5 2.5 0 0 1-2.5 2.5H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-                <span class="label">AI Receptionist</span>
-                <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              </button>
-
-              <button type="button" class="service-btn" data-value="chat-agents" onclick="toggleService(this)">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-                <span class="label">Chat Agents</span>
-                <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              </button>
-
-              <button type="button" class="service-btn" data-value="outbound-caller" onclick="toggleService(this)">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16 2h6v6M22 2l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span class="label">Outbound Caller</span>
-                <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              </button>
-
-              <button type="button" class="service-btn" data-value="automation" onclick="toggleService(this)">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M7 23l-4-4 4-4m14 0v2a4 4 0 0 1-4 4H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span class="label">Automation</span>
-                <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              </button>
-
-            </div>
-          </div>
-
-          <button type="button" class="continue-btn" id="step2-continue" onclick="goToStep3()" disabled>Continue</button>
-        </div>
-
-        <div class="right-panel">
-          <div class="right-panel-inner">
-            <div class="right-bg">
-              <img src="https://www.conduit.ai/_next/image?url=%2Ffigma%2Fblog-thumb-bg-5.png&w=1920&q=75&dpl=dpl_GZu3z9XoAj9UushYC4Gdt1BPzDnf" alt="" decoding="async">
-            </div>
-            <div class="testimonial-wrapper">
-              <div class="testimonial-card">
-                <div class="testimonial-body">
-                  <p class="testimonial-quote">"Before, thousands of guest messages went unanswered. Now agents handle 15,000 messages a day, and our support team is 80% smaller."</p>
-                  <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://www.conduit.ai/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzqfc7p0h%2Fproduction%2F1bf7f6390dcc9e922abc6bf21eef3f15a08b31c4-200x200.png%3Fw%3D2000%26fit%3Dmax%26auto%3Dformat%26dpr%3D2&w=64&q=75" alt="Iuliia Rymar" loading="lazy" decoding="async">
-                    <div class="author-info">
-                      <span class="author-name">Iuliia Rymar</span>
-                      <span class="author-role">Operations Manager, Arbio</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="stats-card">
-                  <div class="stat-row">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M6.094 11.229A8.01 8.01 0 0 1 6 10c0-4.418 3.605-8 8.053-8 4.447 0 8.052 3.582 8.052 8 0 .998-.184 1.954-.52 2.835-.07.182-.105.274-.12.345a.897.897 0 0 0-.024.194c-.002.073.008.153.028.314l.403 3.27c.043.355.065.532.006.66a.5.5 0 0 1-.257.252c-.13.055-.306.03-.66-.022l-3.184-.467c-.167-.024-.25-.037-.326-.036a.898.898 0 0 0-.2.021c-.074.016-.169.051-.358.122a8.174 8.174 0 0 1-4.07.42M7.632 22C10.597 22 13 19.538 13 16.5S10.597 11 7.632 11c-2.965 0-5.369 2.462-5.369 5.5 0 .61.097 1.198.277 1.747.075.232.113.348.126.427.013.083.015.13.01.213-.005.08-.025.17-.065.351L2 22l2.995-.409c.163-.022.245-.034.316-.033.076 0 .115.005.19.02.07.013.173.05.381.123a5.246 5.246 0 0 0 1.75.299Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="stat-value">1.28M</span><span class="stat-label">messages handled</span>
-                  </div>
-                  <div class="stat-row">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M9 21v-7.4c0-.56 0-.84.109-1.054a1 1 0 0 1 .437-.437C9.76 12 10.04 12 10.6 12h2.8c.56 0 .84 0 1.054.109a1 1 0 0 1 .437.437C15 12.76 15 13.04 15 13.6V21M11.018 2.764 4.235 8.039c-.453.353-.68.53-.843.75a2 2 0 0 0-.318.65C3 9.704 3 9.991 3 10.565V17.8c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874C4.52 21 5.08 21 6.2 21h11.6c1.12 0 1.68 0 2.108-.218a2 2 0 0 0 .874-.874C21 19.48 21 18.92 21 17.8v-7.235c0-.574 0-.861-.074-1.126a2.002 2.002 0 0 0-.318-.65c-.163-.22-.39-.397-.843-.75l-6.783-5.275c-.351-.273-.527-.41-.72-.462a1 1 0 0 0-.523 0c-.194.052-.37.189-.721.462Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="stat-value">805</span><span class="stat-label">active listings</span>
-                  </div>
-                  <div class="stat-row">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4.093 12.688c-.348.418-.523.628-.525.804a.5.5 0 0 0 .185.397c.138.111.41.111.955.111H12l-1 8 8.907-10.688c.348-.418.523-.628.525-.804a.5.5 0 0 0-.185-.397c-.138-.111-.41-.111-.955-.111H12l1-8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="stat-value">86%</span><span class="stat-label">automated</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── Step 3: Service-specific form ── -->
-    <div id="step-3" class="card-wrapper" style="display:none;">
       <div class="booking-card-form">
         <div class="form-panel-full">
 
@@ -430,7 +367,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
                 <h1 class="form3-title">Book a Demo Appointment</h1>
                 <p class="form3-desc">Fill in the form below and we'll use it to personalize your demo experience.</p>
               </div>
-              <button class="edit-link" onclick="goBackToServices()">&#8592; Edit</button>
+              <button class="edit-link" onclick="goBackToStep1()">&#8592; Edit</button>
             </div>
             <div class="selected-pills" id="selected-pills"></div>
           </div>
@@ -438,9 +375,9 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
           <div class="form-sections" id="form-sections"></div>
 
           <div class="form3-footer">
-            <button class="back-btn" onclick="goBackToServices()">&#8592; Back to services</button>
+            <button class="back-btn" onclick="goBackToStep1()">&#8592; Back</button>
             <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
-              <button class="continue-btn-right" onclick="goToStep4()">Continue</button>
+              <button class="continue-btn-right" onclick="goToStep3()">Continue</button>
               <span class="privacy-note">Protected by <a href="#">Privacy Policy</a></span>
             </div>
           </div>
@@ -449,8 +386,8 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
       </div>
     </div>
 
-    <!-- ── Step 4: Calendar ── -->
-    <div id="step-4" class="card-wrapper" style="display:none;">
+    <!-- ── Step 3: Calendar ── -->
+    <div id="step-3" class="card-wrapper" style="display:none;">
       <div class="booking-card-cal">
         <div class="cal-panel">
           <h1 class="cal-title">Pick a time.</h1>
@@ -464,7 +401,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 
   <div class="progress-container">
     <div class="progress-track">
-      <div id="progress-fill" class="progress-fill" style="width:25%;"></div>
+      <div id="progress-fill" class="progress-fill" style="width:33%;"></div>
     </div>
   </div>
 
@@ -495,28 +432,13 @@ function toggleService(btn) {
     selectedServices.push(val);
     btn.classList.add('selected');
   }
-  document.getElementById('step2-continue').disabled = selectedServices.length === 0;
 }
 
 function show(id) { document.getElementById(id).style.display = 'flex'; }
 function hide(id) { document.getElementById(id).style.display = 'none'; }
 
 function goToStep2() {
-  hide('step-1'); show('step-2');
-  document.getElementById('progress-fill').style.width = '50%';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function goBackToServices() {
-  hide('step-3'); show('step-2');
-  document.getElementById('progress-fill').style.width = '50%';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function goToStep3() {
-  if (!selectedServices.length) return;
-
-  // Pills
+  // Build pills
   var pillsEl = document.getElementById('selected-pills');
   pillsEl.innerHTML = selectedServices.map(function(s) {
     return '<span class="service-pill">' + serviceNames[s] + '</span>';
@@ -524,8 +446,14 @@ function goToStep3() {
 
   buildFormSections();
 
-  hide('step-2'); show('step-3');
-  document.getElementById('progress-fill').style.width = '75%';
+  hide('step-1'); show('step-2');
+  document.getElementById('progress-fill').style.width = '67%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBackToStep1() {
+  hide('step-2'); show('step-1');
+  document.getElementById('progress-fill').style.width = '33%';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -588,41 +516,39 @@ function buildFormSections() {
 
 function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
 
-function goToStep4() {
+function goToStep3() {
   var name  = val('full-name');
   var email = val('work-email');
   var phone = val('phone');
 
-  var payload = {
-    access_key: '3cdd884e-bef5-4630-a791-7adc96bec13f',
-    subject:    'New Demo Request — ' + (name || 'Unknown'),
-    from_name:  'On Agency Book Demo',
-    'Name':     name,
-    'Email':    email,
-    'Phone':    phone,
-    'Services': selectedServices.map(function(s){ return serviceNames[s]; }).join(', '),
-    'Business Name':    val('biz-name'),
-    'Business Website': val('biz-website'),
-    'Receptionist Challenge': val('recep-challenge'),
-    'Receptionist Calls/Day': val('recep-calls'),
-    'Receptionist Notes':     val('recep-notes'),
-    'Chat Channels':  val('chat-channels'),
-    'Chat Use Case':  val('chat-usecase'),
-    'Chat Notes':     val('chat-notes'),
-    'Outbound Use':        val('out-use'),
-    'Outbound Calls/Day':  val('out-calls'),
-    'Outbound Notes':      val('out-notes'),
-    'Automation Process':  val('auto-process'),
-    'Automation Notes':    val('auto-notes')
-  };
-
   fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+    body: JSON.stringify({
+      access_key: '3cdd884e-bef5-4630-a791-7adc96bec13f',
+      subject:    'New Demo Request — ' + (name || 'Unknown'),
+      from_name:  'On Agency Book Demo',
+      'Name':     name,
+      'Email':    email,
+      'Phone':    phone,
+      'Services': selectedServices.map(function(s){ return serviceNames[s]; }).join(', '),
+      'Business Name':    val('biz-name'),
+      'Business Website': val('biz-website'),
+      'Receptionist Challenge': val('recep-challenge'),
+      'Receptionist Calls/Day': val('recep-calls'),
+      'Receptionist Notes':     val('recep-notes'),
+      'Chat Channels':  val('chat-channels'),
+      'Chat Use Case':  val('chat-usecase'),
+      'Chat Notes':     val('chat-notes'),
+      'Outbound Use':        val('out-use'),
+      'Outbound Calls/Day':  val('out-calls'),
+      'Outbound Notes':      val('out-notes'),
+      'Automation Process':  val('auto-process'),
+      'Automation Notes':    val('auto-notes')
+    })
   }).catch(function(){});
 
-  hide('step-3'); show('step-4');
+  hide('step-2'); show('step-3');
   document.getElementById('progress-fill').style.width = '100%';
 
   if (window.Cal) {
