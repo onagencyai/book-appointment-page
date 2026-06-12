@@ -6,7 +6,7 @@
 <title>Book a Demo — On Agency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
 
@@ -24,7 +24,7 @@
   --accent:              #0391ff;
   --accent-hover:        #0380e0;
   --accent-light:        #e1f1ff;
-  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: antialiased; background: var(--surface-subtle); }
@@ -105,7 +105,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 .field-textarea:hover { border-color: #e5e5e5; background: #f0f0f0; }
 .field-textarea:focus { border-color: #c2c2c2; background: #f0f0f0; box-shadow: 0 0 0 3px #e1e1e1; outline: none; }
 
-/* ── Service toggle group (in step 1, multi-select) ── */
+/* ── Service toggle group (step 1, multi-select) ── */
 .toggle-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
 
 .toggle-btn {
@@ -145,9 +145,9 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 .right-bg img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; color: transparent; }
 
 .testimonial-wrapper { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-end; padding-right: 24px; }
-.testimonial-card { background: var(--surface-base); width: 340px; display: flex; flex-direction: column; gap: 28px; border-radius: 20px; padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,.08),0 4px 24px rgba(0,0,0,.06); }
+.testimonial-card { background: var(--surface-base); width: 388px; display: flex; flex-direction: column; gap: 28px; border-radius: 20px; padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,.08),0 4px 24px rgba(0,0,0,.06); }
 .testimonial-body { display: flex; flex-direction: column; gap: 20px; }
-.testimonial-quote { font-size: 15px; line-height: 1.55; color: var(--content-default); font-family: 'Hedvig Letters Serif', Georgia, serif; font-weight: 500; }
+.testimonial-quote { font-size: 16px; line-height: 1.55; color: var(--content-default); font-family: 'Hedvig Letters Serif', Georgia, serif; font-weight: 500; }
 .testimonial-author { display: flex; align-items: center; gap: 14px; }
 .testimonial-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
 .author-info { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
@@ -171,12 +171,8 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 @media (max-width: 767px) { .form-panel-full { padding: 28px 24px 24px; } }
 
 .form3-header { display: flex; flex-direction: column; gap: 14px; }
-.form3-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
 .form3-title { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; color: var(--content-strong); line-height: 1.3; }
 .form3-desc { font-size: 12px; color: var(--content-subtle); line-height: 1.5; margin-top: 4px; }
-
-.edit-link { font-size: 12px; color: var(--content-subtle); cursor: pointer; background: none; border: none; font-family: var(--font); padding: 4px 0; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; transition: color 150ms; white-space: nowrap; }
-.edit-link:hover { color: var(--content-default); }
 
 .selected-pills { display: flex; flex-wrap: wrap; gap: 6px; }
 .service-pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; background: var(--accent-light); color: var(--accent); font-size: 11px; font-weight: 500; }
@@ -205,10 +201,6 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 
 .continue-btn-right { display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; border: 1px solid transparent; outline: none; cursor: pointer; user-select: none; background: var(--accent); color: #fff; height: 36px; border-radius: 8px; padding: 0 28px; font-size: 13px; font-weight: 500; font-family: var(--font); transition: background 150ms; flex-shrink: 0; }
 .continue-btn-right:hover { background: var(--accent-hover); }
-
-.privacy-note { font-size: 11px; color: var(--content-disabled); text-align: right; }
-.privacy-note a { color: var(--content-subtle); text-decoration: none; }
-.privacy-note a:hover { text-decoration: underline; }
 
 /* ── Step 3: calendar ── */
 .booking-card-cal { background: var(--surface-base); border: 1px solid var(--border-default); width: 100%; max-width: 960px; overflow: hidden; border-radius: 24px; }
@@ -267,41 +259,45 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
               <input id="phone" class="field-input" type="tel" placeholder="+1 (555) 000-0000" autocomplete="tel">
             </div>
 
-            <!-- Services -->
             <div class="field-group">
               <div class="field-label">What can we help with?</div>
               <div class="toggle-group" role="group" aria-label="Services">
 
+                <!-- AI Receptionist — Lucide: headphones -->
                 <button type="button" class="toggle-btn" data-value="ai-receptionist" onclick="toggleService(this)">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M3 11a9 9 0 0 1 18 0v2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    <rect x="2" y="12.5" width="3" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
-                    <rect x="19" y="12.5" width="3" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M22 17.5a2.5 2.5 0 0 1-2.5 2.5H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+                    <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
                   </svg>
                   <span>AI Receptionist</span>
                 </button>
 
+                <!-- Chat Agents — Lucide: message-square -->
                 <button type="button" class="toggle-btn" data-value="chat-agents" onclick="toggleService(this)">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                   </svg>
                   <span>Chat Agents</span>
                 </button>
 
+                <!-- Outbound Caller — Lucide: phone-outgoing -->
                 <button type="button" class="toggle-btn" data-value="outbound-caller" onclick="toggleService(this)">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M16 2h6v6M22 2l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    <polyline points="17 1 21 1 21 5"/>
+                    <line x1="16" y1="6" x2="21" y2="1"/>
                   </svg>
                   <span>Outbound Caller</span>
                 </button>
 
+                <!-- Automation — Lucide: repeat -->
                 <button type="button" class="toggle-btn" data-value="automation" onclick="toggleService(this)">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M7 23l-4-4 4-4m14 0v2a4 4 0 0 1-4 4H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m17 2 4 4-4 4"/>
+                    <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                    <path d="m7 22-4-4 4-4"/>
+                    <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
                   </svg>
                   <span>Automation</span>
                 </button>
@@ -322,30 +318,33 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
             <div class="testimonial-wrapper">
               <div class="testimonial-card">
                 <div class="testimonial-body">
-                  <p class="testimonial-quote">"Before, thousands of guest messages went unanswered. Now agents handle 15,000 messages a day, and our support team is 80% smaller."</p>
+                  <p class="testimonial-quote">"Working with On Agency has been a game changer. They built an AI receptionist that works exactly the way I need it, and the follow-up systems they set up save me hours every day."</p>
                   <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://www.conduit.ai/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzqfc7p0h%2Fproduction%2F1bf7f6390dcc9e922abc6bf21eef3f15a08b31c4-200x200.png%3Fw%3D2000%26fit%3Dmax%26auto%3Dformat%26dpr%3D2&w=64&q=75" alt="Iuliia Rymar" loading="lazy" decoding="async">
+                    <img class="testimonial-avatar" src="https://www.conduit.ai/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzqfc7p0h%2Fproduction%2F1bf7f6390dcc9e922abc6bf21eef3f15a08b31c4-200x200.png%3Fw%3D2000%26fit%3Dmax%26auto%3Dformat%26dpr%3D2&w=64&q=75" alt="" loading="lazy" decoding="async">
                     <div class="author-info">
-                      <span class="author-name">Iuliia Rymar</span>
-                      <span class="author-role">Operations Manager, Arbio</span>
+                      <span class="author-name">Rachel D.</span>
+                      <span class="author-role">Dental Practice Owner</span>
                     </div>
                   </div>
                 </div>
                 <div class="stats-card">
                   <div class="stat-row">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M6.094 11.229A8.01 8.01 0 0 1 6 10c0-4.418 3.605-8 8.053-8 4.447 0 8.052 3.582 8.052 8 0 .998-.184 1.954-.52 2.835-.07.182-.105.274-.12.345a.897.897 0 0 0-.024.194c-.002.073.008.153.028.314l.403 3.27c.043.355.065.532.006.66a.5.5 0 0 1-.257.252c-.13.055-.306.03-.66-.022l-3.184-.467c-.167-.024-.25-.037-.326-.036a.898.898 0 0 0-.2.021c-.074.016-.169.051-.358.122a8.174 8.174 0 0 1-4.07.42M7.632 22C10.597 22 13 19.538 13 16.5S10.597 11 7.632 11c-2.965 0-5.369 2.462-5.369 5.5 0 .61.097 1.198.277 1.747.075.232.113.348.126.427.013.083.015.13.01.213-.005.08-.025.17-.065.351L2 22l2.995-.409c.163-.022.245-.034.316-.033.076 0 .115.005.19.02.07.013.173.05.381.123a5.246 5.246 0 0 0 1.75.299Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="stat-value">1.28M</span>
-                    <span class="stat-label">messages handled</span>
+                    <!-- Lucide: clock -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span class="stat-value">500+</span>
+                    <span class="stat-label">hours saved per client / month</span>
                   </div>
                   <div class="stat-row">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M9 21v-7.4c0-.56 0-.84.109-1.054a1 1 0 0 1 .437-.437C9.76 12 10.04 12 10.6 12h2.8c.56 0 .84 0 1.054.109a1 1 0 0 1 .437.437C15 12.76 15 13.04 15 13.6V21M11.018 2.764 4.235 8.039c-.453.353-.68.53-.843.75a2 2 0 0 0-.318.65C3 9.704 3 9.991 3 10.565V17.8c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874C4.52 21 5.08 21 6.2 21h11.6c1.12 0 1.68 0 2.108-.218a2 2 0 0 0 .874-.874C21 19.48 21 18.92 21 17.8v-7.235c0-.574 0-.861-.074-1.126a2.002 2.002 0 0 0-.318-.65c-.163-.22-.39-.397-.843-.75l-6.783-5.275c-.351-.273-.527-.41-.72-.462a1 1 0 0 0-.523 0c-.194.052-.37.189-.721.462Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="stat-value">805</span>
-                    <span class="stat-label">active listings</span>
+                    <!-- Lucide: star -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <span class="stat-value">98%</span>
+                    <span class="stat-label">client satisfaction rate</span>
                   </div>
                   <div class="stat-row">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4.093 12.688c-.348.418-.523.628-.525.804a.5.5 0 0 0 .185.397c.138.111.41.111.955.111H12l-1 8 8.907-10.688c.348-.418.523-.628.525-.804a.5.5 0 0 0-.185-.397c-.138-.111-.41-.111-.955-.111H12l1-8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="stat-value">86%</span>
-                    <span class="stat-label">automated</span>
+                    <!-- Lucide: zap -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    <span class="stat-value">3×</span>
+                    <span class="stat-label">faster avg. response time</span>
                   </div>
                 </div>
               </div>
@@ -362,13 +361,8 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
         <div class="form-panel-full">
 
           <div class="form3-header">
-            <div class="form3-top">
-              <div>
-                <h1 class="form3-title">Book a Demo Appointment</h1>
-                <p class="form3-desc">Fill in the form below and we'll use it to personalize your demo experience.</p>
-              </div>
-              <button class="edit-link" onclick="goBackToStep1()">&#8592; Edit</button>
-            </div>
+            <h1 class="form3-title">Book a Demo Appointment</h1>
+            <p class="form3-desc">Fill in the form below and we'll use it to personalize your demo experience.</p>
             <div class="selected-pills" id="selected-pills"></div>
           </div>
 
@@ -376,10 +370,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 
           <div class="form3-footer">
             <button class="back-btn" onclick="goBackToStep1()">&#8592; Back</button>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
-              <button class="continue-btn-right" onclick="goToStep3()">Continue</button>
-              <span class="privacy-note">Protected by <a href="#">Privacy Policy</a></span>
-            </div>
+            <button class="continue-btn-right" onclick="goToStep3()">Continue</button>
           </div>
 
         </div>
@@ -438,7 +429,6 @@ function show(id) { document.getElementById(id).style.display = 'flex'; }
 function hide(id) { document.getElementById(id).style.display = 'none'; }
 
 function goToStep2() {
-  // Build pills
   var pillsEl = document.getElementById('selected-pills');
   pillsEl.innerHTML = selectedServices.map(function(s) {
     return '<span class="service-pill">' + serviceNames[s] + '</span>';
@@ -464,7 +454,6 @@ function buildFormSections() {
 
   function pad(num) { return num < 10 ? '0' + num : '' + num; }
 
-  // 01 — Contact & Business (always)
   html += '<div class="form-section">';
   html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Contact &amp; Business</span><span class="section-badge badge-shared">Shared</span></div>';
   html += '<div class="fields-grid">';
@@ -487,7 +476,7 @@ function buildFormSections() {
     html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Chat Agents</span><span class="section-badge badge-messaging">Messaging</span></div>';
     html += '<div class="fields-grid">';
     html += '<div class="field-group field-full"><div class="field-label">What channels are you using?</div><textarea id="chat-channels" class="field-textarea" placeholder="Website chat, WhatsApp, SMS, Instagram DMs..."></textarea></div>';
-    html += '<div class="field-group field-full"><div class="field-label">Main use case?</div><textarea id="chat-usecase" class="field-textarea" placeholder="Lead capture, guest support, booking assistance..."></textarea></div>';
+    html += '<div class="field-group field-full"><div class="field-label">Main use case?</div><textarea id="chat-usecase" class="field-textarea" placeholder="Lead capture, support, booking assistance..."></textarea></div>';
     html += '<div class="field-group field-full"><div class="field-label">Additional notes <span class="optional-tag">— Optional</span></div><textarea id="chat-notes" class="field-textarea" placeholder="Anything else we should know."></textarea></div>';
     html += '</div></div>';
   }
