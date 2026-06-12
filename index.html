@@ -11,454 +11,225 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
 
 :root {
-  --surface-subtle:       #fafafa;
-  --surface-base:         #ffffff;
-  --surface-raised:       #f0f0f0;
-  --border-default:       #e5e5e5;
-  --border-subtle:        #f0f0f0;
-  --content-strong:       #1a1a1a;
-  --content-default:      #333333;
-  --content-subtle:       #646465;
-  --content-disabled:     #c2c2c2;
-  --content-accent:       #3b82f6;
-  --interactive-default:  #ffffff;
-  --interactive-hover:    #f0f0f0;
-  --interactive-disabled: #e5e5e5;
-  --accent-default:       #3b82f6;
-  --accent-hover:         #2563eb;
-  --accent-lighter:       #eff6ff;
+  --surface-subtle:      #fafafa;
+  --surface-base:        #ffffff;
+  --border-default:      #e5e5e5;
+  --content-strong:      #1a1a1a;
+  --content-default:     #333333;
+  --content-subtle:      #646465;
+  --content-disabled:    #c2c2c2;
+  --interactive-default: #ffffff;
+  --interactive-hover:   #f0f0f0;
+  --interactive-disabled:#e5e5e5;
+  --accent:              #0391ff;
+  --accent-hover:        #0380e0;
+  --accent-light:        #e1f1ff;
   --font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
-html, body {
-  height: 100%;
-  font-family: var(--font);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: var(--surface-subtle);
-}
+html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: antialiased; background: var(--surface-subtle); }
 
-/* ── Shell ── */
 .product-shell {
-  background-color: var(--surface-subtle);
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: var(--surface-subtle);
+  position: fixed; inset: 0; z-index: 50;
+  display: flex; flex-direction: column; align-items: center;
   overflow-y: auto;
 }
 
-/* ── Logo header ── */
-.logo-header {
-  flex-shrink: 0;
-  padding: 32px 0;
-}
-.logo-header a {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-}
+/* ── Logo ── */
+.logo-header { flex-shrink: 0; padding: 28px 0; }
+.logo-header a { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; }
+.logo-wordmark { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: var(--content-strong); }
 
-/* ── Main content ── */
+/* ── Layout ── */
 .main-content {
-  display: flex;
-  width: 100%;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 16px 16px;
+  display: flex; width: 100%; flex: 1;
+  flex-direction: column; align-items: center; justify-content: center;
+  padding: 0 16px 24px;
 }
+.card-wrapper { display: flex; width: 100%; justify-content: center; }
 
-.card-wrapper {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-
-/* ── Booking card (step 1) ── */
+/* ── Booking card (steps 1 & 2) ── */
 .booking-card {
-  background-color: var(--surface-base);
+  background: var(--surface-base);
   border: 1px solid var(--border-default);
-  display: grid;
-  grid-template-columns: 1fr;
-  height: 600px;
-  width: 100%;
-  max-width: 960px;
-  overflow: hidden;
-  border-radius: 24px;
+  display: grid; grid-template-columns: 1fr;
+  width: 100%; max-width: 960px;
+  overflow: hidden; border-radius: 24px;
 }
-
 @media (min-width: 768px) {
-  .booking-card { grid-template-columns: 1fr 1fr; }
+  .booking-card { grid-template-columns: 1fr 1fr; min-height: 560px; }
 }
 
-/* ── Form panel (left) ── */
+/* ── Form panel ── */
 .form-panel {
-  min-height: 598px;
+  padding: 36px 36px 28px;
+  display: flex; flex-direction: column;
+  justify-content: space-between; gap: 24px;
   overflow-y: auto;
-  padding: 40px 40px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
 }
+@media (max-width: 767px) { .form-panel { padding: 28px 24px 24px; } }
 
-.form-body {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
+.form-body { display: flex; flex-direction: column; gap: 18px; }
 
-.form-title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+.form-title-group { display: flex; flex-direction: column; gap: 4px; }
+.form-title { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; color: var(--content-strong); line-height: 1.3; }
+.form-subtitle { font-size: 12px; color: var(--content-subtle); line-height: 1.5; }
 
-.form-title {
-  font-size: 19px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--content-strong);
-  line-height: 1.3;
-}
-
-.form-subtitle {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--content-subtle);
-  line-height: 1.5;
-}
-
-/* ── Field ── */
-.name-row {
-  display: flex;
-  gap: 12px;
-}
-
-.field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-}
-
-.field-label {
-  font-size: 12px;
-  font-weight: 500;
-  color: #646465;
-  line-height: 1.4;
-  display: flex;
-  width: fit-content;
-  align-items: center;
-}
+/* ── Fields ── */
+.field-group { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+.field-label { font-size: 12px; font-weight: 500; color: #646465; line-height: 1.4; }
 
 .field-input {
-  width: 100%;
-  min-width: 0;
-  outline: none;
-  color: #1a1a1a;
-  background: var(--interactive-default);
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  height: 32px;
-  padding: 4px 10px;
-  font-size: 14px;
-  font-family: var(--font);
+  width: 100%; min-width: 0; outline: none;
+  color: #1a1a1a; background: var(--interactive-default);
+  border: 1px solid #e5e5e5; border-radius: 8px;
+  height: 36px; padding: 4px 10px;
+  font-size: 14px; font-family: var(--font);
   transition: border-color 150ms, background 150ms, box-shadow 150ms;
-  appearance: none;
-  -webkit-appearance: none;
+  appearance: none; -webkit-appearance: none;
 }
-
 .field-input::placeholder { color: #c2c2c2; }
+.field-input:hover  { border-color: #e5e5e5; background: #f0f0f0; }
+.field-input:focus  { border-color: #c2c2c2; background: #f0f0f0; box-shadow: 0 0 0 3px #e1e1e1; outline: none; }
 
-.field-input:hover {
-  border-color: #e5e5e5;
-  background: #f0f0f0;
+.field-textarea {
+  width: 100%; min-width: 0; outline: none;
+  color: #1a1a1a; background: var(--interactive-default);
+  border: 1px solid #e5e5e5; border-radius: 8px;
+  min-height: 72px; padding: 8px 10px;
+  font-size: 14px; font-family: var(--font); line-height: 1.5;
+  transition: border-color 150ms, background 150ms, box-shadow 150ms;
+  resize: vertical;
 }
+.field-textarea::placeholder { color: #c2c2c2; }
+.field-textarea:hover { border-color: #e5e5e5; background: #f0f0f0; }
+.field-textarea:focus { border-color: #c2c2c2; background: #f0f0f0; box-shadow: 0 0 0 3px #e1e1e1; outline: none; }
 
-.field-input:focus {
-  border-color: #c2c2c2;
-  background: #f0f0f0;
-  box-shadow: 0 0 0 3px #e1e1e1;
-  outline: none;
-}
+/* ── Service buttons (step 2) ── */
+.service-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
 
-/* ── Industry toggle group ── */
-.toggle-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  width: 100%;
-}
-
-.toggle-btn {
-  display: inline-flex;
-  cursor: pointer;
-  align-items: center;
-  border: 1px solid #e5e5e5;
-  background: var(--surface-base);
-  border-radius: 8px;
-  height: 36px;
-  padding: 0 16px;
-  font-size: 13px;
-  font-weight: 500;
-  font-family: var(--font);
-  color: #29251e;
-  gap: 8px;
-  width: 100%;
-  justify-content: flex-start;
+.service-btn {
+  display: inline-flex; cursor: pointer; align-items: center;
+  border: 1px solid #e5e5e5; background: var(--surface-base);
+  border-radius: 8px; height: 44px; padding: 0 12px;
+  font-size: 13px; font-weight: 500; font-family: var(--font);
+  color: #29251e; gap: 8px; width: 100%; justify-content: flex-start;
   transition: border-color 150ms, background 150ms, color 150ms;
-  flex-shrink: 0;
 }
-
-.toggle-btn svg {
-  color: #777777;
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-  transition: color 150ms;
+.service-btn svg.icon { color: #777; width: 16px; height: 16px; flex-shrink: 0; transition: color 150ms; }
+.service-btn span.label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.service-btn .check {
+  width: 16px; height: 16px; border-radius: 4px;
+  border: 1.5px solid #e5e5e5; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 150ms, background 150ms; margin-left: auto;
 }
+.service-btn .check svg { width: 10px; height: 10px; color: white; opacity: 0; transition: opacity 150ms; }
+.service-btn:hover { background: var(--interactive-hover); }
+.service-btn.selected { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+.service-btn.selected svg.icon { color: var(--accent); }
+.service-btn.selected .check { background: var(--accent); border-color: var(--accent); }
+.service-btn.selected .check svg { opacity: 1; }
 
-.toggle-btn span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.toggle-btn:hover {
-  border-color: #e5e5e5;
-  background: var(--interactive-hover);
-  color: #29251e;
-}
-
-.toggle-btn.selected {
-  border-color: #0391ff;
-  background: #e1f1ff;
-  color: #0391ff;
-}
-
-.toggle-btn.selected svg {
-  color: #0391ff;
-}
-
-/* ── Continue button ── */
+/* ── Continue / back buttons ── */
 .continue-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  border: 1px solid transparent;
-  flex-shrink: 0;
-  outline: none;
-  cursor: pointer;
-  user-select: none;
-  background: #0391ff;
-  color: #ffffff;
-  height: 36px;
-  gap: 6px;
-  border-radius: 8px;
-  padding: 0 14px;
-  font-size: 13px;
-  font-weight: 500;
-  font-family: var(--font);
-  width: 100%;
-  transition: background 150ms;
+  display: inline-flex; align-items: center; justify-content: center;
+  white-space: nowrap; border: 1px solid transparent;
+  flex-shrink: 0; outline: none; cursor: pointer; user-select: none;
+  background: var(--accent); color: #fff;
+  height: 36px; gap: 6px; border-radius: 8px; padding: 0 14px;
+  font-size: 13px; font-weight: 500; font-family: var(--font);
+  width: 100%; transition: background 150ms;
 }
-
-.continue-btn:hover { background: #0380e0; }
-
-.continue-btn:disabled {
-  background: var(--interactive-disabled);
-  color: var(--content-disabled);
-  cursor: not-allowed;
-}
+.continue-btn:hover { background: var(--accent-hover); }
+.continue-btn:disabled { background: var(--interactive-disabled); color: var(--content-disabled); cursor: not-allowed; }
 
 /* ── Right panel ── */
-.right-panel {
-  display: none;
-  padding: 4px 4px 4px 0;
-}
+.right-panel { display: none; padding: 4px 4px 4px 0; }
+@media (min-width: 768px) { .right-panel { display: block; } }
 
-@media (min-width: 768px) {
-  .right-panel { display: block; }
-}
+.right-panel-inner { border: 1px solid var(--border-default); position: relative; height: 100%; overflow: hidden; border-radius: 20px; }
+.right-bg { position: absolute; inset: 0; }
+.right-bg img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; color: transparent; }
+.testimonial-wrapper { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-end; padding-right: 24px; }
+.testimonial-card { background: var(--surface-base); width: 300px; display: flex; flex-direction: column; gap: 24px; border-radius: 20px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,.08),0 4px 24px rgba(0,0,0,.06); }
+.testimonial-body { display: flex; flex-direction: column; gap: 16px; }
+.testimonial-quote { font-size: 14px; line-height: 1.55; color: var(--content-default); font-family: 'Hedvig Letters Serif', Georgia, serif; font-weight: 500; }
+.testimonial-author { display: flex; align-items: center; gap: 10px; }
+.testimonial-avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.author-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.author-name { font-size: 12px; font-weight: 500; color: var(--content-default); }
+.author-role { font-size: 11px; color: var(--content-subtle); }
+.stats-card { background: var(--surface-subtle); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.stat-row { display: flex; align-items: center; gap: 6px; }
+.stat-row svg { color: var(--content-subtle); width: 13px; height: 13px; flex-shrink: 0; }
+.stat-value { font-size: 12px; font-weight: 500; color: var(--content-default); }
+.stat-label { font-size: 11px; color: var(--content-subtle); }
 
-.right-panel-inner {
-  border: 1px solid var(--border-default);
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 20px;
-}
-
-.right-bg {
-  position: absolute;
-  inset: 0;
-}
-
-.right-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  inset: 0;
-  color: transparent;
-}
-
-.testimonial-wrapper {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 24px;
-}
-
-.testimonial-card {
+/* ── Step 3: full-width form card ── */
+.booking-card-form {
   background: var(--surface-base);
-  width: 388px;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  border-radius: 20px;
-  padding: 28px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 24px rgba(0,0,0,0.06);
-}
-
-.testimonial-body {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.testimonial-quote {
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--content-default);
-  font-family: 'Hedvig Letters Serif', Georgia, serif;
-  font-weight: 500;
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.testimonial-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.author-info {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-width: 0;
-}
-
-.author-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--content-default);
-}
-
-.author-role {
-  font-size: 12px;
-  color: var(--content-subtle);
-}
-
-/* ── Stats card ── */
-.stats-card {
-  background: var(--surface-subtle);
-  border-radius: 12px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.stat-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.stat-row svg {
-  color: var(--content-subtle);
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-}
-
-.stat-value {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--content-default);
-}
-
-.stat-label {
-  font-size: 12px;
-  color: var(--content-subtle);
-}
-
-/* ── Progress bar ── */
-.progress-container {
-  width: 100%;
-  flex-shrink: 0;
-}
-
-.progress-track {
-  height: 4px;
-  width: 100%;
-  background: transparent;
-}
-
-.progress-fill {
-  background: #0391ff;
-  height: 100%;
-  border-radius: 999px;
-  transition: width 500ms ease-out;
-}
-
-/* ── Step 2 – calendar view ── */
-.booking-card-cal {
-  background-color: var(--surface-base);
   border: 1px solid var(--border-default);
-  width: 100%;
-  max-width: 960px;
-  overflow: hidden;
-  border-radius: 24px;
+  width: 100%; max-width: 960px;
+  overflow: hidden; border-radius: 24px;
 }
+.form-panel-full { padding: 40px 48px 36px; display: flex; flex-direction: column; gap: 28px; }
+@media (max-width: 767px) { .form-panel-full { padding: 28px 24px 24px; } }
 
-.cal-panel {
-  padding: 40px;
-}
+.form3-header { display: flex; flex-direction: column; gap: 14px; }
+.form3-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.form3-title { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; color: var(--content-strong); line-height: 1.3; }
+.form3-desc { font-size: 12px; color: var(--content-subtle); line-height: 1.5; margin-top: 4px; }
 
-.cal-title {
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--content-strong);
-  margin-bottom: 4px;
-}
+.edit-link { font-size: 12px; color: var(--content-subtle); cursor: pointer; background: none; border: none; font-family: var(--font); padding: 4px 0; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; transition: color 150ms; white-space: nowrap; }
+.edit-link:hover { color: var(--content-default); }
 
-.cal-subtitle {
-  font-size: 12px;
-  color: var(--content-subtle);
-  margin-bottom: 24px;
-}
+.selected-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.service-pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; background: var(--accent-light); color: var(--accent); font-size: 11px; font-weight: 500; }
 
-#cal-inline {
-  min-height: 600px;
-}
+/* Form sections */
+.form-sections { display: flex; flex-direction: column; gap: 28px; }
+.form-section { display: flex; flex-direction: column; gap: 14px; }
+
+.section-header { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--border-default); }
+.section-num { font-size: 11px; font-weight: 600; color: var(--content-disabled); letter-spacing: .05em; }
+.section-title { font-size: 14px; font-weight: 600; color: var(--content-strong); }
+.section-badge { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 999px; line-height: 1.6; }
+.badge-shared    { background: #f0f0f0; color: #646465; }
+.badge-inbound   { background: #f0fdf4; color: #16a34a; }
+.badge-messaging { background: #faf5ff; color: #9333ea; }
+.badge-outbound  { background: #fff7ed; color: #ea580c; }
+.badge-ops       { background: #eff6ff; color: #3b82f6; }
+
+.fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+@media (max-width: 600px) { .fields-grid { grid-template-columns: 1fr; } }
+.field-full { grid-column: 1 / -1; }
+
+.optional-tag { color: var(--content-disabled); font-weight: 400; }
+
+.form3-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 4px; }
+.back-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 500; color: var(--content-subtle); cursor: pointer; background: none; border: none; font-family: var(--font); padding: 0; transition: color 150ms; white-space: nowrap; }
+.back-btn:hover { color: var(--content-default); }
+
+.continue-btn-right { display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; border: 1px solid transparent; outline: none; cursor: pointer; user-select: none; background: var(--accent); color: #fff; height: 36px; border-radius: 8px; padding: 0 28px; font-size: 13px; font-weight: 500; font-family: var(--font); transition: background 150ms; flex-shrink: 0; }
+.continue-btn-right:hover { background: var(--accent-hover); }
+
+.privacy-note { font-size: 11px; color: var(--content-disabled); text-align: right; }
+.privacy-note a { color: var(--content-subtle); text-decoration: none; }
+.privacy-note a:hover { text-decoration: underline; }
+
+/* ── Step 4: calendar ── */
+.booking-card-cal { background: var(--surface-base); border: 1px solid var(--border-default); width: 100%; max-width: 960px; overflow: hidden; border-radius: 24px; }
+.cal-panel { padding: 40px; }
+.cal-title { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: var(--content-strong); margin-bottom: 4px; }
+.cal-subtitle { font-size: 12px; color: var(--content-subtle); margin-bottom: 24px; }
+#cal-inline { min-height: 600px; }
+
+/* ── Progress ── */
+.progress-container { width: 100%; flex-shrink: 0; }
+.progress-track { height: 4px; width: 100%; background: transparent; }
+.progress-fill { background: var(--accent); height: 100%; border-radius: 999px; transition: width 500ms ease-out; }
 </style>
 </head>
 <body>
@@ -467,81 +238,49 @@ html, body {
 
   <!-- Logo -->
   <div class="logo-header">
-    <a href="/" aria-label="Conduit">
-      <img src="https://www.conduit.ai/figma/conduit-wordmark.svg?dpl=dpl_GZu3z9XoAj9UushYC4Gdt1BPzDnf" alt="Conduit" width="86" height="19" decoding="async">
+    <a href="/" aria-label="On Agency">
+      <svg width="38" height="26" viewBox="0 0 1377 932" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line x1="71.7163" y1="52.5088" x2="422.457" y2="255.009" stroke="#1a1a1a" stroke-width="105" stroke-linecap="round"/>
+        <line x1="953.716" y1="657.509" x2="1304.46" y2="860.009" stroke="#1a1a1a" stroke-width="105" stroke-linecap="round"/>
+        <line x1="954.216" y1="255.009" x2="1304.96" y2="52.5088" stroke="#1a1a1a" stroke-width="105" stroke-linecap="round"/>
+        <line x1="72.2163" y1="860.009" x2="422.957" y2="657.509" stroke="#1a1a1a" stroke-width="105" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-wordmark">on agency</span>
     </a>
   </div>
 
-  <!-- Main -->
   <div class="main-content">
 
-    <!-- ── Step 1: form ── -->
+    <!-- ── Step 1: Contact info ── -->
     <div id="step-1" class="card-wrapper">
       <div class="booking-card">
 
-        <!-- Left: form -->
         <div class="form-panel">
           <div class="form-body">
-
             <div class="form-title-group">
               <h1 class="form-title">Get Started</h1>
               <p class="form-subtitle">A few details and we'll get your demo booked.</p>
             </div>
 
-            <!-- Name -->
-            <div class="name-row">
-              <div class="field-group">
-                <div class="field-label">First Name</div>
-                <input id="first-name" class="field-input" type="text" placeholder="Barry" autocomplete="given-name">
-              </div>
-              <div class="field-group">
-                <div class="field-label">Last Name</div>
-                <input id="last-name" class="field-input" type="text" placeholder="Sternlicht" autocomplete="family-name">
-              </div>
+            <div class="field-group">
+              <div class="field-label">Full Name</div>
+              <input id="full-name" class="field-input" type="text" placeholder="Jane Cooper" autocomplete="name">
             </div>
 
-            <!-- Email -->
             <div class="field-group">
               <div class="field-label">Work Email</div>
-              <input id="work-email" class="field-input" type="email" placeholder="barry@starwoodcapital.ai" autocomplete="email">
+              <input id="work-email" class="field-input" type="email" placeholder="jane@company.com" autocomplete="email">
             </div>
 
-            <!-- Industry -->
             <div class="field-group">
-              <div class="field-label">Industry</div>
-              <div class="toggle-group" role="group" aria-label="Industry">
-
-                <button type="button" class="toggle-btn" data-value="short-term-rental" onclick="selectIndustry(this)">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.477 1.336a2 2 0 0 1 1.046 0c.397.108.732.37.999.58 2.303 1.809 4.62 3.599 6.934 5.394.377.292.709.55.956.884.217.294.379.624.477.975.112.4.112.82.111 1.298-.003 2.457 0 4.914 0 7.372 0 .527 0 .981-.03 1.356-.033.395-.104.789-.297 1.167a3 3 0 0 1-1.311 1.311c-.378.193-.772.264-1.167.296-.802.066-1.614.03-2.418.031-.12 0-.262 0-.387-.01a1.51 1.51 0 0 1-.571-.153 1.5 1.5 0 0 1-.655-.656 1.508 1.508 0 0 1-.154-.571 4.923 4.923 0 0 1-.01-.387l.008-5.596c0-.56.001-.841-.108-1.056a1 1 0 0 0-.437-.437c-.214-.11-.494-.11-1.055-.11h-2.8c-.56 0-.839 0-1.053.11a1 1 0 0 0-.437.436c-.109.213-.11.493-.11 1.052L9 20.223c0 .12 0 .262-.01.387a1.508 1.508 0 0 1-.154.571 1.5 1.5 0 0 1-.655.655 1.51 1.51 0 0 1-.571.154c-.126.01-.268.01-.387.01-.804 0-1.617.035-2.418-.03-.395-.033-.789-.104-1.167-.297a3 3 0 0 1-1.311-1.311c-.193-.378-.264-.772-.296-1.167C2 18.82 2 18.365 2 17.838c0-2.457.003-4.914 0-7.371 0-.477-.001-.897.111-1.298a3 3 0 0 1 .477-.975c.247-.334.58-.592.956-.884 2.313-1.795 4.631-3.585 6.934-5.394.267-.21.602-.472 1-.58Z" fill="currentColor"/></svg>
-                  <span>Short Term Rental</span>
-                </button>
-
-                <button type="button" class="toggle-btn" data-value="independent-hotel" onclick="selectIndustry(this)">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.161 2h9.678c.527 0 .982 0 1.356.03.395.033.789.104 1.167.297a3 3 0 0 1 1.311 1.311c.193.378.264.772.296 1.167.031.375.031.83.031 1.356V20h1a1 1 0 1 1 0 2H2a1 1 0 1 1 0-2h1V6.161c0-.527 0-.981.03-1.356.033-.395.104-.789.297-1.167a3 3 0 0 1 1.311-1.311c.378-.193.772-.264 1.167-.296C6.18 2 6.635 2 7.161 2Zm.089 4a1 1 0 0 0 0 2H10a1 1 0 1 0 0-2H7.25Zm0 4a1 1 0 1 0 0 2H10a1 1 0 1 0 0-2H7.25Zm-1 5a1 1 0 0 1 1-1H10a1 1 0 1 1 0 2H7.25a1 1 0 0 1-1-1ZM14 6a1 1 0 1 0 0 2h2.75a1 1 0 1 0 0-2H14Zm-1 5a1 1 0 0 1 1-1h2.75a1 1 0 1 1 0 2H14a1 1 0 0 1-1-1Zm1 3a1 1 0 1 0 0 2h2.75a1 1 0 1 0 0-2H14Z" fill="currentColor"/></svg>
-                  <span>Independent Hotel</span>
-                </button>
-
-                <button type="button" class="toggle-btn" data-value="hotel-chain" onclick="selectIndustry(this)">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.338 2h-2.676c-.528 0-.982 0-1.357.03-.395.033-.789.104-1.167.297a3 3 0 0 0-1.311 1.311c-.193.378-.264.772-.296 1.167-.031.375-.031.83-.031 1.356V10H4.568c-.252 0-.498 0-.706.017a2.02 2.02 0 0 0-.77.201 2 2 0 0 0-.874.874 2.022 2.022 0 0 0-.201.77C2 12.07 2 12.316 2 12.568V20a1 1 0 1 0 0 2h20a1 1 0 1 0 0-2v-7.432c0-.252 0-.498-.017-.706a2.023 2.023 0 0 0-.201-.77 2 2 0 0 0-.874-.874 2.02 2.02 0 0 0-.77-.201 9.155 9.155 0 0 0-.706-.017H17.5V6.161c0-.527 0-.981-.03-1.356-.033-.395-.104-.789-.297-1.167a3 3 0 0 0-1.311-1.311c-.378-.193-.772-.264-1.167-.296A17.9 17.9 0 0 0 13.338 2ZM10 7a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1Zm1 3a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2h-2Z" fill="currentColor"/></svg>
-                  <span>Hotel Chain</span>
-                </button>
-
-                <button type="button" class="toggle-btn" data-value="aparthotel" onclick="selectIndustry(this)">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.162 2h3.676c.528 0 .982 0 1.357.03.395.033.789.104 1.167.297a3 3 0 0 1 1.311 1.311c.193.378.264.772.296 1.167.031.375.031.83.031 1.356V20a1 1 0 1 1 0 2H2a1 1 0 1 1 0-2v-5.838c0-.528 0-.982.03-1.357.033-.395.104-.789.297-1.167a3 3 0 0 1 1.311-1.311c.378-.193.772-.264 1.167-.296C5.18 10 5.635 10 6.161 10H10V6.161c0-.527 0-.981.03-1.356.033-.395.104-.789.297-1.167a3 3 0 0 1 1.311-1.311c.378-.193.772-.264 1.167-.296C13.18 2 13.635 2 14.162 2ZM19 7a1 1 0 0 0-1-1h-4a1 1 0 1 0 0 2h4a1 1 0 0 0 1-1Zm0 4a1 1 0 0 0-1-1h-4a1 1 0 1 0 0 2h4a1 1 0 0 0 1-1Zm-1 3a1 1 0 1 1 0 2h-4a1 1 0 1 1 0-2h4Z" fill="currentColor"/></svg>
-                  <span>Aparthotel</span>
-                </button>
-
-              </div>
+              <div class="field-label">Phone</div>
+              <input id="phone" class="field-input" type="tel" placeholder="+1 (555) 000-0000" autocomplete="tel">
             </div>
           </div>
 
-          <!-- Continue -->
-          <button type="button" class="continue-btn" onclick="handleContinue()">
-            Continue
-          </button>
+          <button type="button" class="continue-btn" onclick="goToStep2()">Continue</button>
         </div>
 
-        <!-- Right: testimonial -->
         <div class="right-panel">
           <div class="right-panel-inner">
             <div class="right-bg">
@@ -550,7 +289,7 @@ html, body {
             <div class="testimonial-wrapper">
               <div class="testimonial-card">
                 <div class="testimonial-body">
-                  <p class="testimonial-quote">"Before Conduit, thousands of guest messages went unanswered. Now agents handle 15,000 messages a day, and our support team is 80% smaller."</p>
+                  <p class="testimonial-quote">"Before, thousands of guest messages went unanswered. Now agents handle 15,000 messages a day, and our support team is 80% smaller."</p>
                   <div class="testimonial-author">
                     <img class="testimonial-avatar" src="https://www.conduit.ai/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzqfc7p0h%2Fproduction%2F1bf7f6390dcc9e922abc6bf21eef3f15a08b31c4-200x200.png%3Fw%3D2000%26fit%3Dmax%26auto%3Dformat%26dpr%3D2&w=64&q=75" alt="Iuliia Rymar" loading="lazy" decoding="async">
                     <div class="author-info">
@@ -561,17 +300,17 @@ html, body {
                 </div>
                 <div class="stats-card">
                   <div class="stat-row">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.094 11.229A8.01 8.01 0 0 1 6 10c0-4.418 3.605-8 8.053-8 4.447 0 8.052 3.582 8.052 8 0 .998-.184 1.954-.52 2.835-.07.182-.105.274-.12.345a.897.897 0 0 0-.024.194c-.002.073.008.153.028.314l.403 3.27c.043.355.065.532.006.66a.5.5 0 0 1-.257.252c-.13.055-.306.03-.66-.022l-3.184-.467c-.167-.024-.25-.037-.326-.036a.898.898 0 0 0-.2.021c-.074.016-.169.051-.358.122a8.174 8.174 0 0 1-4.07.42M7.632 22C10.597 22 13 19.538 13 16.5S10.597 11 7.632 11c-2.965 0-5.369 2.462-5.369 5.5 0 .61.097 1.198.277 1.747.075.232.113.348.126.427.013.083.015.13.01.213-.005.08-.025.17-.065.351L2 22l2.995-.409c.163-.022.245-.034.316-.033.076 0 .115.005.19.02.07.013.173.05.381.123a5.246 5.246 0 0 0 1.75.299Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M6.094 11.229A8.01 8.01 0 0 1 6 10c0-4.418 3.605-8 8.053-8 4.447 0 8.052 3.582 8.052 8 0 .998-.184 1.954-.52 2.835-.07.182-.105.274-.12.345a.897.897 0 0 0-.024.194c-.002.073.008.153.028.314l.403 3.27c.043.355.065.532.006.66a.5.5 0 0 1-.257.252c-.13.055-.306.03-.66-.022l-3.184-.467c-.167-.024-.25-.037-.326-.036a.898.898 0 0 0-.2.021c-.074.016-.169.051-.358.122a8.174 8.174 0 0 1-4.07.42M7.632 22C10.597 22 13 19.538 13 16.5S10.597 11 7.632 11c-2.965 0-5.369 2.462-5.369 5.5 0 .61.097 1.198.277 1.747.075.232.113.348.126.427.013.083.015.13.01.213-.005.08-.025.17-.065.351L2 22l2.995-.409c.163-.022.245-.034.316-.033.076 0 .115.005.19.02.07.013.173.05.381.123a5.246 5.246 0 0 0 1.75.299Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span class="stat-value">1.28M</span>
                     <span class="stat-label">messages handled</span>
                   </div>
                   <div class="stat-row">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 21v-7.4c0-.56 0-.84.109-1.054a1 1 0 0 1 .437-.437C9.76 12 10.04 12 10.6 12h2.8c.56 0 .84 0 1.054.109a1 1 0 0 1 .437.437C15 12.76 15 13.04 15 13.6V21M11.018 2.764 4.235 8.039c-.453.353-.68.53-.843.75a2 2 0 0 0-.318.65C3 9.704 3 9.991 3 10.565V17.8c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874C4.52 21 5.08 21 6.2 21h11.6c1.12 0 1.68 0 2.108-.218a2 2 0 0 0 .874-.874C21 19.48 21 18.92 21 17.8v-7.235c0-.574 0-.861-.074-1.126a2.002 2.002 0 0 0-.318-.65c-.163-.22-.39-.397-.843-.75l-6.783-5.275c-.351-.273-.527-.41-.72-.462a1 1 0 0 0-.523 0c-.194.052-.37.189-.721.462Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M9 21v-7.4c0-.56 0-.84.109-1.054a1 1 0 0 1 .437-.437C9.76 12 10.04 12 10.6 12h2.8c.56 0 .84 0 1.054.109a1 1 0 0 1 .437.437C15 12.76 15 13.04 15 13.6V21M11.018 2.764 4.235 8.039c-.453.353-.68.53-.843.75a2 2 0 0 0-.318.65C3 9.704 3 9.991 3 10.565V17.8c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874C4.52 21 5.08 21 6.2 21h11.6c1.12 0 1.68 0 2.108-.218a2 2 0 0 0 .874-.874C21 19.48 21 18.92 21 17.8v-7.235c0-.574 0-.861-.074-1.126a2.002 2.002 0 0 0-.318-.65c-.163-.22-.39-.397-.843-.75l-6.783-5.275c-.351-.273-.527-.41-.72-.462a1 1 0 0 0-.523 0c-.194.052-.37.189-.721.462Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span class="stat-value">805</span>
                     <span class="stat-label">active listings</span>
                   </div>
                   <div class="stat-row">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2 4.093 12.688c-.348.418-.523.628-.525.804a.5.5 0 0 0 .185.397c.138.111.41.111.955.111H12l-1 8 8.907-10.688c.348-.418.523-.628.525-.804a.5.5 0 0 0-.185-.397c-.138-.111-.41-.111-.955-.111H12l1-8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4.093 12.688c-.348.418-.523.628-.525.804a.5.5 0 0 0 .185.397c.138.111.41.111.955.111H12l-1 8 8.907-10.688c.348-.418.523-.628.525-.804a.5.5 0 0 0-.185-.397c-.138-.111-.41-.111-.955-.111H12l1-8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span class="stat-value">86%</span>
                     <span class="stat-label">automated</span>
                   </div>
@@ -584,8 +323,134 @@ html, body {
       </div>
     </div>
 
-    <!-- ── Step 2: calendar ── -->
-    <div id="step-2" class="card-wrapper" style="display: none;">
+    <!-- ── Step 2: Service selection ── -->
+    <div id="step-2" class="card-wrapper" style="display:none;">
+      <div class="booking-card">
+
+        <div class="form-panel">
+          <div class="form-body">
+            <div class="form-title-group">
+              <h1 class="form-title">What can we help with?</h1>
+              <p class="form-subtitle">Select everything that applies — you can choose more than one.</p>
+            </div>
+
+            <div class="service-group" role="group" aria-label="Services">
+
+              <button type="button" class="service-btn" data-value="ai-receptionist" onclick="toggleService(this)">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M3 11a9 9 0 0 1 18 0v2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <rect x="2" y="12.5" width="3" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                  <rect x="19" y="12.5" width="3" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M22 17.5a2.5 2.5 0 0 1-2.5 2.5H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span class="label">AI Receptionist</span>
+                <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </button>
+
+              <button type="button" class="service-btn" data-value="chat-agents" onclick="toggleService(this)">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span class="label">Chat Agents</span>
+                <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </button>
+
+              <button type="button" class="service-btn" data-value="outbound-caller" onclick="toggleService(this)">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M16 2h6v6M22 2l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="label">Outbound Caller</span>
+                <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </button>
+
+              <button type="button" class="service-btn" data-value="automation" onclick="toggleService(this)">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M7 23l-4-4 4-4m14 0v2a4 4 0 0 1-4 4H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="label">Automation</span>
+                <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </button>
+
+            </div>
+          </div>
+
+          <button type="button" class="continue-btn" id="step2-continue" onclick="goToStep3()" disabled>Continue</button>
+        </div>
+
+        <div class="right-panel">
+          <div class="right-panel-inner">
+            <div class="right-bg">
+              <img src="https://www.conduit.ai/_next/image?url=%2Ffigma%2Fblog-thumb-bg-5.png&w=1920&q=75&dpl=dpl_GZu3z9XoAj9UushYC4Gdt1BPzDnf" alt="" decoding="async">
+            </div>
+            <div class="testimonial-wrapper">
+              <div class="testimonial-card">
+                <div class="testimonial-body">
+                  <p class="testimonial-quote">"Before, thousands of guest messages went unanswered. Now agents handle 15,000 messages a day, and our support team is 80% smaller."</p>
+                  <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://www.conduit.ai/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzqfc7p0h%2Fproduction%2F1bf7f6390dcc9e922abc6bf21eef3f15a08b31c4-200x200.png%3Fw%3D2000%26fit%3Dmax%26auto%3Dformat%26dpr%3D2&w=64&q=75" alt="Iuliia Rymar" loading="lazy" decoding="async">
+                    <div class="author-info">
+                      <span class="author-name">Iuliia Rymar</span>
+                      <span class="author-role">Operations Manager, Arbio</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="stats-card">
+                  <div class="stat-row">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M6.094 11.229A8.01 8.01 0 0 1 6 10c0-4.418 3.605-8 8.053-8 4.447 0 8.052 3.582 8.052 8 0 .998-.184 1.954-.52 2.835-.07.182-.105.274-.12.345a.897.897 0 0 0-.024.194c-.002.073.008.153.028.314l.403 3.27c.043.355.065.532.006.66a.5.5 0 0 1-.257.252c-.13.055-.306.03-.66-.022l-3.184-.467c-.167-.024-.25-.037-.326-.036a.898.898 0 0 0-.2.021c-.074.016-.169.051-.358.122a8.174 8.174 0 0 1-4.07.42M7.632 22C10.597 22 13 19.538 13 16.5S10.597 11 7.632 11c-2.965 0-5.369 2.462-5.369 5.5 0 .61.097 1.198.277 1.747.075.232.113.348.126.427.013.083.015.13.01.213-.005.08-.025.17-.065.351L2 22l2.995-.409c.163-.022.245-.034.316-.033.076 0 .115.005.19.02.07.013.173.05.381.123a5.246 5.246 0 0 0 1.75.299Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="stat-value">1.28M</span><span class="stat-label">messages handled</span>
+                  </div>
+                  <div class="stat-row">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M9 21v-7.4c0-.56 0-.84.109-1.054a1 1 0 0 1 .437-.437C9.76 12 10.04 12 10.6 12h2.8c.56 0 .84 0 1.054.109a1 1 0 0 1 .437.437C15 12.76 15 13.04 15 13.6V21M11.018 2.764 4.235 8.039c-.453.353-.68.53-.843.75a2 2 0 0 0-.318.65C3 9.704 3 9.991 3 10.565V17.8c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874C4.52 21 5.08 21 6.2 21h11.6c1.12 0 1.68 0 2.108-.218a2 2 0 0 0 .874-.874C21 19.48 21 18.92 21 17.8v-7.235c0-.574 0-.861-.074-1.126a2.002 2.002 0 0 0-.318-.65c-.163-.22-.39-.397-.843-.75l-6.783-5.275c-.351-.273-.527-.41-.72-.462a1 1 0 0 0-.523 0c-.194.052-.37.189-.721.462Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="stat-value">805</span><span class="stat-label">active listings</span>
+                  </div>
+                  <div class="stat-row">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4.093 12.688c-.348.418-.523.628-.525.804a.5.5 0 0 0 .185.397c.138.111.41.111.955.111H12l-1 8 8.907-10.688c.348-.418.523-.628.525-.804a.5.5 0 0 0-.185-.397c-.138-.111-.41-.111-.955-.111H12l1-8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="stat-value">86%</span><span class="stat-label">automated</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Step 3: Service-specific form ── -->
+    <div id="step-3" class="card-wrapper" style="display:none;">
+      <div class="booking-card-form">
+        <div class="form-panel-full">
+
+          <div class="form3-header">
+            <div class="form3-top">
+              <div>
+                <h1 class="form3-title">Book a Demo Appointment</h1>
+                <p class="form3-desc">Fill in the form below and we'll use it to personalize your demo experience.</p>
+              </div>
+              <button class="edit-link" onclick="goBackToServices()">&#8592; Edit</button>
+            </div>
+            <div class="selected-pills" id="selected-pills"></div>
+          </div>
+
+          <div class="form-sections" id="form-sections"></div>
+
+          <div class="form3-footer">
+            <button class="back-btn" onclick="goBackToServices()">&#8592; Back to services</button>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+              <button class="continue-btn-right" onclick="goToStep4()">Continue</button>
+              <span class="privacy-note">Protected by <a href="#">Privacy Policy</a></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Step 4: Calendar ── -->
+    <div id="step-4" class="card-wrapper" style="display:none;">
       <div class="booking-card-cal">
         <div class="cal-panel">
           <h1 class="cal-title">Pick a time.</h1>
@@ -597,10 +462,9 @@ html, body {
 
   </div>
 
-  <!-- Progress bar -->
   <div class="progress-container">
     <div class="progress-track">
-      <div id="progress-fill" class="progress-fill" style="width: 50%;"></div>
+      <div id="progress-fill" class="progress-fill" style="width:25%;"></div>
     </div>
   </div>
 
@@ -612,63 +476,167 @@ html, body {
 </script>
 
 <script>
-var selectedIndustry = null;
+var selectedServices = [];
 
-function selectIndustry(btn) {
-  document.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('selected'); });
-  btn.classList.add('selected');
-  selectedIndustry = btn.dataset.value;
+var serviceNames = {
+  'ai-receptionist': 'AI Receptionist',
+  'chat-agents':     'Chat Agents',
+  'outbound-caller': 'Outbound Caller',
+  'automation':      'Automation'
+};
+
+function toggleService(btn) {
+  var val = btn.dataset.value;
+  var idx = selectedServices.indexOf(val);
+  if (idx > -1) {
+    selectedServices.splice(idx, 1);
+    btn.classList.remove('selected');
+  } else {
+    selectedServices.push(val);
+    btn.classList.add('selected');
+  }
+  document.getElementById('step2-continue').disabled = selectedServices.length === 0;
 }
 
-function handleContinue() {
-  var firstName = document.getElementById('first-name').value.trim();
-  var lastName  = document.getElementById('last-name').value.trim();
-  var email     = document.getElementById('work-email').value.trim();
-  var fullName  = (firstName + ' ' + lastName).trim();
+function show(id) { document.getElementById(id).style.display = 'flex'; }
+function hide(id) { document.getElementById(id).style.display = 'none'; }
 
-  // Submit to web3forms (silent)
+function goToStep2() {
+  hide('step-1'); show('step-2');
+  document.getElementById('progress-fill').style.width = '50%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBackToServices() {
+  hide('step-3'); show('step-2');
+  document.getElementById('progress-fill').style.width = '50%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goToStep3() {
+  if (!selectedServices.length) return;
+
+  // Pills
+  var pillsEl = document.getElementById('selected-pills');
+  pillsEl.innerHTML = selectedServices.map(function(s) {
+    return '<span class="service-pill">' + serviceNames[s] + '</span>';
+  }).join('');
+
+  buildFormSections();
+
+  hide('step-2'); show('step-3');
+  document.getElementById('progress-fill').style.width = '75%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function buildFormSections() {
+  var el = document.getElementById('form-sections');
+  var html = '';
+  var n = 1;
+
+  function pad(num) { return num < 10 ? '0' + num : '' + num; }
+
+  // 01 — Contact & Business (always)
+  html += '<div class="form-section">';
+  html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Contact &amp; Business</span><span class="section-badge badge-shared">Shared</span></div>';
+  html += '<div class="fields-grid">';
+  html += '<div class="field-group"><div class="field-label">Business name</div><input id="biz-name" class="field-input" type="text" placeholder="Acme, Inc."></div>';
+  html += '<div class="field-group"><div class="field-label">Business website</div><input id="biz-website" class="field-input" type="url" placeholder="https://acme.com"></div>';
+  html += '</div></div>';
+
+  if (selectedServices.indexOf('ai-receptionist') > -1) {
+    html += '<div class="form-section">';
+    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">AI Receptionist</span><span class="section-badge badge-inbound">Inbound</span></div>';
+    html += '<div class="fields-grid">';
+    html += '<div class="field-group field-full"><div class="field-label">Main challenge you\'re looking to solve?</div><textarea id="recep-challenge" class="field-textarea" placeholder="Missed after-hours calls, long hold times, qualifying leads..."></textarea></div>';
+    html += '<div class="field-group"><div class="field-label">Inbound calls per day on average?</div><input id="recep-calls" class="field-input" type="text" placeholder="e.g. 50"></div>';
+    html += '<div class="field-group field-full"><div class="field-label">Additional notes <span class="optional-tag">— Optional</span></div><textarea id="recep-notes" class="field-textarea" placeholder="Anything else we should know."></textarea></div>';
+    html += '</div></div>';
+  }
+
+  if (selectedServices.indexOf('chat-agents') > -1) {
+    html += '<div class="form-section">';
+    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Chat Agents</span><span class="section-badge badge-messaging">Messaging</span></div>';
+    html += '<div class="fields-grid">';
+    html += '<div class="field-group field-full"><div class="field-label">What channels are you using?</div><textarea id="chat-channels" class="field-textarea" placeholder="Website chat, WhatsApp, SMS, Instagram DMs..."></textarea></div>';
+    html += '<div class="field-group field-full"><div class="field-label">Main use case?</div><textarea id="chat-usecase" class="field-textarea" placeholder="Lead capture, guest support, booking assistance..."></textarea></div>';
+    html += '<div class="field-group field-full"><div class="field-label">Additional notes <span class="optional-tag">— Optional</span></div><textarea id="chat-notes" class="field-textarea" placeholder="Anything else we should know."></textarea></div>';
+    html += '</div></div>';
+  }
+
+  if (selectedServices.indexOf('outbound-caller') > -1) {
+    html += '<div class="form-section">';
+    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Outbound Caller</span><span class="section-badge badge-outbound">Outbound</span></div>';
+    html += '<div class="fields-grid">';
+    html += '<div class="field-group field-full"><div class="field-label">What would you use AI outbound calling for?</div><textarea id="out-use" class="field-textarea" placeholder="Lead qualification, appointment setting, win-back campaigns..."></textarea></div>';
+    html += '<div class="field-group"><div class="field-label">Outbound calls per day on average?</div><input id="out-calls" class="field-input" type="text" placeholder="e.g. 200"></div>';
+    html += '<div class="field-group field-full"><div class="field-label">Additional notes <span class="optional-tag">— Optional</span></div><textarea id="out-notes" class="field-textarea" placeholder="Anything else we should know."></textarea></div>';
+    html += '</div></div>';
+  }
+
+  if (selectedServices.indexOf('automation') > -1) {
+    html += '<div class="form-section">';
+    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Automation Workflows</span><span class="section-badge badge-ops">Operations</span></div>';
+    html += '<div class="fields-grid">';
+    html += '<div class="field-group field-full"><div class="field-label">What process are you looking to automate?</div><textarea id="auto-process" class="field-textarea" placeholder="CRM hygiene, lead routing, document generation, reporting..."></textarea></div>';
+    html += '<div class="field-group field-full"><div class="field-label">Additional notes <span class="optional-tag">— Optional</span></div><textarea id="auto-notes" class="field-textarea" placeholder="Anything else we should know."></textarea></div>';
+    html += '</div></div>';
+  }
+
+  el.innerHTML = html;
+}
+
+function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+function goToStep4() {
+  var name  = val('full-name');
+  var email = val('work-email');
+  var phone = val('phone');
+
+  var payload = {
+    access_key: '3cdd884e-bef5-4630-a791-7adc96bec13f',
+    subject:    'New Demo Request — ' + (name || 'Unknown'),
+    from_name:  'On Agency Book Demo',
+    'Name':     name,
+    'Email':    email,
+    'Phone':    phone,
+    'Services': selectedServices.map(function(s){ return serviceNames[s]; }).join(', '),
+    'Business Name':    val('biz-name'),
+    'Business Website': val('biz-website'),
+    'Receptionist Challenge': val('recep-challenge'),
+    'Receptionist Calls/Day': val('recep-calls'),
+    'Receptionist Notes':     val('recep-notes'),
+    'Chat Channels':  val('chat-channels'),
+    'Chat Use Case':  val('chat-usecase'),
+    'Chat Notes':     val('chat-notes'),
+    'Outbound Use':        val('out-use'),
+    'Outbound Calls/Day':  val('out-calls'),
+    'Outbound Notes':      val('out-notes'),
+    'Automation Process':  val('auto-process'),
+    'Automation Notes':    val('auto-notes')
+  };
+
   fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      access_key: '3cdd884e-bef5-4630-a791-7adc96bec13f',
-      subject: 'New Demo Request — ' + (fullName || 'Unknown'),
-      from_name: 'On Agency Book Demo',
-      'Name': fullName,
-      'Email': email,
-      'Industry': selectedIndustry || ''
-    })
-  }).catch(function() {});
+    body: JSON.stringify(payload)
+  }).catch(function(){});
 
-  // Transition to step 2
-  document.getElementById('step-1').style.display = 'none';
-  document.getElementById('step-2').style.display = 'flex';
+  hide('step-3'); show('step-4');
   document.getElementById('progress-fill').style.width = '100%';
 
-  // Init Cal.com
   if (window.Cal) {
     window.Cal('init', 'book-free-demo', { origin: 'https://app.cal.com' });
     window.Cal.ns['book-free-demo']('inline', {
       elementOrSelector: '#cal-inline',
-      config: {
-        layout: 'month_view',
-        theme: 'light',
-        name: fullName,
-        email: email
-      },
+      config: { layout: 'month_view', theme: 'light', name: name, email: email },
       calLink: 'onagency/book-free-demo'
     });
     window.Cal.ns['book-free-demo']('ui', {
       theme: 'light',
       hideEventTypeDetails: false,
       layout: 'month_view',
-      cssVarsPerTheme: {
-        light: {
-          'cal-brand':    '#0a0a0a',
-          'cal-bg':       '#ffffff',
-          'cal-bg-muted': '#fafafa'
-        }
-      }
+      cssVarsPerTheme: { light: { 'cal-brand': '#0a0a0a', 'cal-bg': '#ffffff', 'cal-bg-muted': '#fafafa' } }
     });
   }
 
