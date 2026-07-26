@@ -9,6 +9,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+@font-face {
+  font-family: 'AnthropicSerif';
+  src: url('AnthropicSerif-Display-Regular-Static.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
 
 :root {
@@ -84,7 +90,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
   width: 100%; min-width: 0; outline: none;
   color: #1a1a1a; background: var(--interactive-default);
   border: 1px solid #e5e5e5; border-radius: 8px;
-  height: 36px; padding: 4px 10px;
+  height: 34px; padding: 4px 10px;
   font-size: 14px; font-family: var(--font);
   transition: border-color 150ms, background 150ms, box-shadow 150ms;
   appearance: none; -webkit-appearance: none;
@@ -113,7 +119,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
   display: inline-flex; cursor: pointer; align-items: center;
   border: 1px solid #e5e5e5; background: var(--surface-base);
   border-radius: 8px; height: 36px; padding: 0 16px;
-  font-size: 13px; font-weight: 500; font-family: var(--font);
+  font-size: 14px; font-weight: 500; font-family: var(--font);
   color: #29251e; gap: 8px; width: 100%; justify-content: flex-start;
   transition: border-color 150ms, background 150ms, color 150ms;
   flex-shrink: 0;
@@ -148,7 +154,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 .testimonial-wrapper { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-end; padding-right: 24px; }
 .testimonial-card { background: var(--surface-base); width: 388px; display: flex; flex-direction: column; gap: 28px; border-radius: 20px; padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,.08),0 4px 24px rgba(0,0,0,.06); }
 .testimonial-body { display: flex; flex-direction: column; gap: 20px; }
-.testimonial-quote { font-size: 15px; line-height: 1.55; color: var(--content-default); font-weight: 400; }
+.testimonial-quote { font-family: 'AnthropicSerif', Georgia, serif; font-size: 18px; line-height: 1.5; color: var(--content-default); font-weight: 400; }
 .testimonial-author { display: flex; align-items: center; gap: 14px; }
 .testimonial-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
 .author-info { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
