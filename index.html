@@ -70,7 +70,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 /* ── Form panel ── */
 .form-panel {
   overflow-y: auto;
-  padding: 40px 40px 24px;
+  padding: 40px 28px 24px;
   display: flex; flex-direction: column;
   justify-content: space-between; gap: 24px;
 }
@@ -118,7 +118,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 .toggle-btn {
   display: inline-flex; cursor: pointer; align-items: center;
   border: 1px solid #e5e5e5; background: var(--surface-base);
-  border-radius: 8px; height: 36px; padding: 0 16px;
+  border-radius: 8px; height: 40px; padding: 0 14px;
   font-size: 14px; font-weight: 500; font-family: var(--font);
   color: #29251e; gap: 8px; width: 100%; justify-content: flex-start;
   transition: border-color 150ms, background 150ms, color 150ms;
@@ -275,38 +275,37 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
               <div class="field-label">What can we help with?</div>
               <div class="toggle-group" role="group" aria-label="Services">
 
-                <!-- AI Receptionist — Heroicons solid: microphone -->
+                <!-- AI Receptionist — Phosphor: headset-fill -->
                 <button type="button" class="toggle-btn" data-value="ai-receptionist" onclick="toggleService(this)">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M8.25 4.5a3.75 3.75 0 1 1 7.5 0v8.25a3.75 3.75 0 1 1-7.5 0V4.5Z"/>
-                    <path d="M6 10.5a.75.75 0 0 1 .75.75v1.5a5.25 5.25 0 1 0 10.5 0v-1.5a.75.75 0 0 1 1.5 0v1.5a6.751 6.751 0 0 1-6 6.709v2.291h3a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1 0-1.5h3v-2.291a6.751 6.751 0 0 1-6-6.709v-1.5A.75.75 0 0 1 6 10.5Z"/>
+                  <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+                    <path d="M232,128v80a40,40,0,0,1-40,40H136a8,8,0,0,1,0-16h56a24,24,0,0,0,24-24H192a24,24,0,0,1-24-24V144a24,24,0,0,1,24-24h23.65A88,88,0,0,0,66,65.54,87.29,87.29,0,0,0,40.36,120H64a24,24,0,0,1,24,24v40a24,24,0,0,1-24,24H48a24,24,0,0,1-24-24V128A104.11,104.11,0,0,1,201.89,54.66,103.41,103.41,0,0,1,232,128Z"/>
                   </svg>
                   <span>AI Receptionist</span>
                   <span class="toggle-checkbox"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>
                 </button>
 
-                <!-- Chat Agents — Heroicons solid: chat-bubble-oval-left -->
+                <!-- Chat Agents — Phosphor: chat-teardrop-text-fill -->
                 <button type="button" class="toggle-btn" data-value="chat-agents" onclick="toggleService(this)">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M5.337 21.718a6.707 6.707 0 0 1-.533-.074.75.75 0 0 1-.44-1.223 3.73 3.73 0 0 0 .814-1.686c.023-.115-.022-.317-.254-.543C3.274 16.587 2.25 14.41 2.25 12c0-5.03 4.428-9 9.75-9s9.75 3.97 9.75 9c0 5.03-4.428 9-9.75 9-.833 0-1.643-.097-2.417-.279a6.721 6.721 0 0 1-4.246.997Z" clip-rule="evenodd"/>
+                  <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+                    <path d="M132,24A100.11,100.11,0,0,0,32,124v84a16,16,0,0,0,16,16h84a100,100,0,0,0,0-200Zm32,128H96a8,8,0,0,1,0-16h68a8,8,0,0,1,0,16Zm0-32H96a8,8,0,0,1,0-16h68a8,8,0,0,1,0,16Z"/>
                   </svg>
                   <span>Chat Agents</span>
                   <span class="toggle-checkbox"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>
                 </button>
 
-                <!-- Outbound Caller — Heroicons solid: phone -->
-                <button type="button" class="toggle-btn" data-value="outbound-caller" onclick="toggleService(this)">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd"/>
+                <!-- AI Caller — Phosphor: phone-outgoing-fill -->
+                <button type="button" class="toggle-btn" data-value="ai-caller" onclick="toggleService(this)">
+                  <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+                    <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l-.06-.13L96.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-47.92A16,16,0,0,0,222.37,158.46ZM216,72H195.31L224,43.31A8,8,0,0,0,212.69,32L184,60.69V40a8,8,0,0,0-16,0V80a8,8,0,0,0,8,8h40a8,8,0,0,0,0-16Z"/>
                   </svg>
-                  <span>Outbound Caller</span>
+                  <span>AI Caller</span>
                   <span class="toggle-checkbox"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>
                 </button>
 
-                <!-- Automation — Heroicons solid: sparkles -->
+                <!-- Automation — Phosphor: tree-structure-fill -->
                 <button type="button" class="toggle-btn" data-value="automation" onclick="toggleService(this)">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" clip-rule="evenodd"/>
+                  <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+                    <path d="M144,96V80H128a8,8,0,0,0-8,8v80a8,8,0,0,0,8,8h16V160a16,16,0,0,1,16-16h48a16,16,0,0,1,16,16v48a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V192H128a24,24,0,0,1-24-24V136H72v8a16,16,0,0,1-16,16H24A16,16,0,0,1,8,144V112A16,16,0,0,1,24,96H56a16,16,0,0,1,16,16v8h32V88a24,24,0,0,1,24-24h16V48a16,16,0,0,1,16-16h48a16,16,0,0,1,16,16V96a16,16,0,0,1-16,16H160A16,16,0,0,1,144,96Z"/>
                   </svg>
                   <span>Automation</span>
                   <span class="toggle-checkbox"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>
@@ -419,7 +418,7 @@ var selectedServices = [];
 var serviceNames = {
   'ai-receptionist': 'AI Receptionist',
   'chat-agents':     'Chat Agents',
-  'outbound-caller': 'Outbound Caller',
+  'ai-caller':       'AI Caller',
   'automation':      'Automation'
 };
 
@@ -491,9 +490,9 @@ function buildFormSections() {
     html += '</div></div>';
   }
 
-  if (selectedServices.indexOf('outbound-caller') > -1) {
+  if (selectedServices.indexOf('ai-caller') > -1) {
     html += '<div class="form-section">';
-    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Outbound Caller</span></div>';
+    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">AI Caller</span></div>';
     html += '<div class="fields-grid">';
     html += '<div class="field-group field-full"><div class="field-label">What would you use AI outbound calling for?</div><textarea id="out-use" class="field-textarea" placeholder="Lead qualification, appointment setting, win-back campaigns..."></textarea></div>';
     html += '<div class="field-group"><div class="field-label">How many calls would you make per day?</div><input id="out-calls" class="field-input" type="text" placeholder="e.g. 200"></div>';
