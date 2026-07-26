@@ -125,10 +125,14 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
   flex-shrink: 0;
 }
 .toggle-btn svg { color: #777777; width: 16px; height: 16px; flex-shrink: 0; transition: color 150ms; }
-.toggle-btn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.toggle-btn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.toggle-checkbox { margin-left: auto; width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid #d1d1d1; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #fff; transition: background 150ms, border-color 150ms; }
+.toggle-checkbox svg { display: none; width: 10px; height: 10px; }
 .toggle-btn:hover { border-color: #e5e5e5; background: var(--interactive-hover); color: #29251e; }
 .toggle-btn.selected { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
 .toggle-btn.selected svg { color: var(--accent); }
+.toggle-btn.selected .toggle-checkbox { background: var(--accent); border-color: var(--accent); }
+.toggle-btn.selected .toggle-checkbox svg { display: block; color: #fff; }
 
 /* ── Continue button ── */
 .continue-btn {
@@ -278,6 +282,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
                     <path d="M6 10.5a.75.75 0 0 1 .75.75v1.5a5.25 5.25 0 1 0 10.5 0v-1.5a.75.75 0 0 1 1.5 0v1.5a6.751 6.751 0 0 1-6 6.709v2.291h3a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1 0-1.5h3v-2.291a6.751 6.751 0 0 1-6-6.709v-1.5A.75.75 0 0 1 6 10.5Z"/>
                   </svg>
                   <span>AI Receptionist</span>
+                  <span class="toggle-checkbox"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>
                 </button>
 
                 <!-- Chat Agents — Heroicons solid: chat-bubble-oval-left -->
@@ -286,14 +291,16 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
                     <path fill-rule="evenodd" d="M5.337 21.718a6.707 6.707 0 0 1-.533-.074.75.75 0 0 1-.44-1.223 3.73 3.73 0 0 0 .814-1.686c.023-.115-.022-.317-.254-.543C3.274 16.587 2.25 14.41 2.25 12c0-5.03 4.428-9 9.75-9s9.75 3.97 9.75 9c0 5.03-4.428 9-9.75 9-.833 0-1.643-.097-2.417-.279a6.721 6.721 0 0 1-4.246.997Z" clip-rule="evenodd"/>
                   </svg>
                   <span>Chat Agents</span>
+                  <span class="toggle-checkbox"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>
                 </button>
 
                 <!-- Outbound Caller — Heroicons solid: phone -->
                 <button type="button" class="toggle-btn" data-value="outbound-caller" onclick="toggleService(this)">
                   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd"/>
                   </svg>
                   <span>Outbound Caller</span>
+                  <span class="toggle-checkbox"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>
                 </button>
 
                 <!-- Automation — Heroicons solid: sparkles -->
@@ -302,6 +309,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
                     <path fill-rule="evenodd" d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" clip-rule="evenodd"/>
                   </svg>
                   <span>Automation</span>
+                  <span class="toggle-checkbox"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></span>
                 </button>
 
               </div>
