@@ -74,7 +74,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
   display: flex; flex-direction: column;
   justify-content: space-between; gap: 24px;
 }
-@media (max-width: 767px) { .form-panel { padding: 28px 24px 24px; } .toggle-checkbox { display: none; } }
+@media (max-width: 767px) { .form-panel { padding: 28px 24px 24px; } }
 
 .form-body { display: flex; flex-direction: column; gap: 20px; }
 
@@ -133,6 +133,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 .toggle-btn.selected svg { color: var(--accent); }
 .toggle-btn.selected .toggle-checkbox { background: var(--accent); border-color: var(--accent); }
 .toggle-btn.selected .toggle-checkbox svg { display: block; color: #fff; }
+@media (max-width: 767px) { .toggle-checkbox { display: none; } }
 
 /* ── Continue button ── */
 .continue-btn {
