@@ -136,7 +136,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
   white-space: nowrap; border: 1px solid transparent;
   flex-shrink: 0; outline: none; cursor: pointer; user-select: none;
   background: var(--accent); color: #fff;
-  height: 36px; gap: 6px; border-radius: 8px; padding: 0 14px;
+  height: 36px; gap: 6px; border-radius: 3px; padding: 0 14px;
   font-size: 14px; font-weight: 500; font-family: var(--font);
   width: 100%; transition: background 150ms;
 }
@@ -206,7 +206,7 @@ html, body { height: 100%; font-family: var(--font); -webkit-font-smoothing: ant
 .back-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 500; color: var(--content-subtle); cursor: pointer; background: none; border: none; font-family: var(--font); padding: 0; transition: color 150ms; white-space: nowrap; }
 .back-btn:hover { color: var(--content-default); }
 
-.continue-btn-right { display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; border: 1px solid transparent; outline: none; cursor: pointer; user-select: none; background: var(--accent); color: #fff; height: 36px; border-radius: 8px; padding: 0 28px; font-size: 14px; font-weight: 500; font-family: var(--font); transition: background 150ms; flex-shrink: 0; }
+.continue-btn-right { display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; border: 1px solid transparent; outline: none; cursor: pointer; user-select: none; background: var(--accent); color: #fff; height: 36px; border-radius: 3px; padding: 0 28px; font-size: 14px; font-weight: 500; font-family: var(--font); transition: background 150ms; flex-shrink: 0; }
 .continue-btn-right:hover { background: var(--accent-hover); }
 
 /* ── Step 3: calendar ── */
@@ -456,7 +456,7 @@ function buildFormSections() {
   function pad(num) { return num < 10 ? '0' + num : '' + num; }
 
   html += '<div class="form-section">';
-  html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Contact &amp; Business</span><span class="section-badge badge-shared">Shared</span></div>';
+  html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Contact &amp; Business</span></div>';
   html += '<div class="fields-grid">';
   html += '<div class="field-group"><div class="field-label">Business name</div><input id="biz-name" class="field-input" type="text" placeholder="Acme, Inc."></div>';
   html += '<div class="field-group"><div class="field-label">Business website</div><input id="biz-website" class="field-input" type="url" placeholder="https://acme.com"></div>';
@@ -464,17 +464,17 @@ function buildFormSections() {
 
   if (selectedServices.indexOf('ai-receptionist') > -1) {
     html += '<div class="form-section">';
-    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">AI Receptionist</span><span class="section-badge badge-inbound">Inbound</span></div>';
+    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">AI Receptionist</span></div>';
     html += '<div class="fields-grid">';
     html += '<div class="field-group field-full"><div class="field-label">Main challenge you\'re looking to solve?</div><textarea id="recep-challenge" class="field-textarea" placeholder="Missed after-hours calls, long hold times, qualifying leads..."></textarea></div>';
-    html += '<div class="field-group"><div class="field-label">Inbound calls per day on average?</div><input id="recep-calls" class="field-input" type="text" placeholder="e.g. 50"></div>';
+    html += '<div class="field-group"><div class="field-label">How many calls do you get per day?</div><input id="recep-calls" class="field-input" type="text" placeholder="e.g. 50"></div>';
     html += '<div class="field-group field-full"><div class="field-label">Additional notes <span class="optional-tag">— Optional</span></div><textarea id="recep-notes" class="field-textarea" placeholder="Anything else we should know."></textarea></div>';
     html += '</div></div>';
   }
 
   if (selectedServices.indexOf('chat-agents') > -1) {
     html += '<div class="form-section">';
-    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Chat Agents</span><span class="section-badge badge-messaging">Messaging</span></div>';
+    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Chat Agents</span></div>';
     html += '<div class="fields-grid">';
     html += '<div class="field-group field-full"><div class="field-label">What channels are you using?</div><textarea id="chat-channels" class="field-textarea" placeholder="Website chat, WhatsApp, SMS, Instagram DMs..."></textarea></div>';
     html += '<div class="field-group field-full"><div class="field-label">Main use case?</div><textarea id="chat-usecase" class="field-textarea" placeholder="Lead capture, support, booking assistance..."></textarea></div>';
@@ -484,17 +484,17 @@ function buildFormSections() {
 
   if (selectedServices.indexOf('outbound-caller') > -1) {
     html += '<div class="form-section">';
-    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Outbound Caller</span><span class="section-badge badge-outbound">Outbound</span></div>';
+    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Outbound Caller</span></div>';
     html += '<div class="fields-grid">';
     html += '<div class="field-group field-full"><div class="field-label">What would you use AI outbound calling for?</div><textarea id="out-use" class="field-textarea" placeholder="Lead qualification, appointment setting, win-back campaigns..."></textarea></div>';
-    html += '<div class="field-group"><div class="field-label">Outbound calls per day on average?</div><input id="out-calls" class="field-input" type="text" placeholder="e.g. 200"></div>';
+    html += '<div class="field-group"><div class="field-label">How many calls would you make per day?</div><input id="out-calls" class="field-input" type="text" placeholder="e.g. 200"></div>';
     html += '<div class="field-group field-full"><div class="field-label">Additional notes <span class="optional-tag">— Optional</span></div><textarea id="out-notes" class="field-textarea" placeholder="Anything else we should know."></textarea></div>';
     html += '</div></div>';
   }
 
   if (selectedServices.indexOf('automation') > -1) {
     html += '<div class="form-section">';
-    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Automation Workflows</span><span class="section-badge badge-ops">Operations</span></div>';
+    html += '<div class="section-header"><span class="section-num">' + pad(n++) + '</span><span class="section-title">Automation Workflows</span></div>';
     html += '<div class="fields-grid">';
     html += '<div class="field-group field-full"><div class="field-label">What would you like to automate?</div><textarea id="auto-process" class="field-textarea" placeholder="e.g. sending appointment reminders, following up with new leads, notifying your team when a booking comes in..."></textarea></div>';
     html += '<div class="field-group field-full"><div class="field-label">Additional notes <span class="optional-tag">— Optional</span></div><textarea id="auto-notes" class="field-textarea" placeholder="Anything else we should know."></textarea></div>';
